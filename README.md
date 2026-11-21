@@ -24,6 +24,21 @@ tools/make-icons.py            renders every install icon and the navbar mark fr
 .nojekyll                      serve files as-is, no Jekyll processing
 ```
 
+## The four projects
+
+The home page names all four in PascalCase and shows the version each one ships.
+When a release goes out, change the version on its card here and in the list below.
+
+| Project | Version shown | Release link |
+| --- | --- | --- |
+| PocketCore | v1.0.0 | <https://github.com/CoreJBH/pocketcore/releases/latest> |
+| ZeroWallet | v1.1.4 | <https://github.com/CoreJBH/zerowallet/releases/latest> |
+| CleanSwap | v0.6.0 | <https://github.com/CoreJBH/cleanswap/releases/latest> |
+| NodePulse | v1.1.1 | <https://github.com/CoreJBH/nodepulse/releases/latest> |
+
+PocketCore's card downloads the APK straight from
+`releases/latest/download/pocketcore.apk`.
+
 ## Local check
 
 ```sh
