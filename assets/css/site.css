@@ -334,7 +334,16 @@ h3 { font-size: 1.12rem; letter-spacing: -0.015em; line-height: 1.35; }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+}
+
+/* the label's own homepage is typography-only: one column, no hero art */
+.hero-solo .hero-grid { grid-template-columns: minmax(0, 1fr); }
+
+@media (max-width: 820px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); }
 }
 
 .hero-copy { max-width: 720px; }
