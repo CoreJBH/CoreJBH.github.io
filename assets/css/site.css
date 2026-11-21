@@ -681,27 +681,6 @@ h3 { font-size: 1.12rem; letter-spacing: -0.015em; line-height: 1.35; }
   color: transparent;
 }
 
-.hero-phone {
-  position: relative;
-  display: grid;
-  place-items: center;
-}
-.hero-phone .shot { position: relative; display: block; }
-.hero-phone .shot img {
-  width: min(280px, 74%);
-  border-radius: 26px;
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  box-shadow: 0 34px 90px rgba(0, 20, 60, 0.8), 0 0 0 8px rgba(4, 12, 32, 0.8);
-}
-.hero-phone .halo {
-  position: absolute;
-  width: min(460px, 100%);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 200, 255, 0.26), transparent 66%);
-  z-index: -1;
-}
-
 .spec-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); }
 .spec {
   background: linear-gradient(180deg, rgba(9, 21, 51, 0.95), rgba(5, 13, 34, 0.95));
@@ -832,8 +811,15 @@ ul.checks.steps li::before {
 /* screenshots */
 .shots {
   display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 26px 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+}
+@media (max-width: 1000px) {
+  .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 720px) {
+  .shots { grid-template-columns: minmax(0, 1fr); }
 }
 .shot { margin: 0; display: grid; gap: 12px; justify-items: center; }
 .shot img {
@@ -841,6 +827,15 @@ ul.checks.steps li::before {
   border-radius: 18px;
   border: 1px solid var(--line);
   box-shadow: 0 20px 50px rgba(0, 8, 30, 0.6);
+}
+/* the Android status card is a wide, short strip: it has no phone frame, and it
+   sits against the middle of the tall screens beside it instead of their top edge */
+.shot-wide { align-self: center; gap: 16px; }
+.shot-wide img {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  filter: drop-shadow(0 16px 30px rgba(0, 8, 32, 0.75));
 }
 .shot figcaption {
   font-family: var(--mono);

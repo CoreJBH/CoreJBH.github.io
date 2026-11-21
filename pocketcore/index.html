@@ -20,12 +20,12 @@
 <meta property="og:image" content="https://corejbh.github.io/assets/img/og-pocketcore.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://corejbh.github.io/pocketcore/">
-<link rel="icon" href="../assets/img/favicon-32.png?v=2026-11-22e" sizes="32x32" type="image/png">
-<link rel="icon" href="../assets/img/icon-192.png?v=2026-11-22e" sizes="192x192" type="image/png">
-<link rel="icon" href="../assets/img/icon-512.png?v=2026-11-22e" sizes="512x512" type="image/png">
-<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=2026-11-22e" sizes="180x180">
+<link rel="icon" href="../assets/img/favicon-32.png?v=2026-11-22f" sizes="32x32" type="image/png">
+<link rel="icon" href="../assets/img/icon-192.png?v=2026-11-22f" sizes="192x192" type="image/png">
+<link rel="icon" href="../assets/img/icon-512.png?v=2026-11-22f" sizes="512x512" type="image/png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=2026-11-22f" sizes="180x180">
 <link rel="manifest" href="/manifest.webmanifest">
-<link rel="stylesheet" href="../assets/css/site.css?v=2026-11-22e">
+<link rel="stylesheet" href="../assets/css/site.css?v=2026-11-22f">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -33,7 +33,7 @@
 <header class="site-head">
   <div class="wrap">
     <a class="brand" href="../" aria-label="CoreJBH home">
-      <img class="brand-mark" src="../assets/img/tesseract-mark.png?v=2026-11-22e" width="30" height="30" alt="" decoding="async">
+      <img class="brand-mark" src="../assets/img/tesseract-mark.png?v=2026-11-22f" width="30" height="30" alt="" decoding="async">
       <span class="word">CORE<span class="dot">JBH</span></span>
     </a>
     <nav class="site-nav" aria-label="Main">
@@ -47,7 +47,7 @@
 
 <main id="main">
 
-  <section class="hero app-hero">
+  <section class="hero app-hero hero-solo">
     <div class="wrap hero-grid">
       <div class="hero-copy">
         <div class="badge-row">
@@ -74,13 +74,6 @@
         <p class="hero-note">
           <span>no wallet</span><span>no accounts</span><span>no telemetry</span><span>loopback RPC only</span>
         </p>
-      </div>
-      <div class="hero-phone" aria-hidden="true">
-        <div class="halo"></div>
-        <picture class="shot">
-          <source srcset="../assets/img/screen-sync.webp" type="image/webp">
-          <img src="../assets/img/screen-sync.png" width="620" height="1399" alt="" decoding="async">
-        </picture>
       </div>
     </div>
   </section>
@@ -213,27 +206,48 @@
       <div class="sec-head">
         <span class="idx">03 / SCREENS</span>
         <h2>Inside the app</h2>
-        <p>SYNC, EXPLORE and SETTINGS as shipped in v1.0.0 — every figure is an RPC answer from the phone's own node.</p>
+        <p>The launch screen, the status card Android keeps for a node running in the background, then Node, Sync, Explore and Settings, all as shipped in v1.0.0. Every figure on the app screens is an RPC answer from the phone's own node.</p>
       </div>
       <div class="shots">
         <figure class="shot reveal">
           <picture>
+            <source srcset="../assets/img/screen-splash.webp" type="image/webp">
+            <img src="../assets/img/screen-splash.png" width="620" height="1343" alt="The PocketCore launch screen: a glowing blue tesseract above the POCKETCORE wordmark and the tagline “Your mobile Bitcoin full node”" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Splash</figcaption>
+        </figure>
+        <figure class="shot shot-wide reveal">
+          <picture>
+            <source srcset="../assets/img/screen-notification.webp" type="image/webp">
+            <img src="../assets/img/screen-notification.png" width="782" height="125" alt="The Android status card while the node runs in the background: 31.64% — Block #601,537, Syncing, with a progress bar" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Notification · running in the background</figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <picture>
+            <source srcset="../assets/img/screen-node.webp" type="image/webp">
+            <img src="../assets/img/screen-node.png" width="620" height="1400" alt="NODE tab: block height, headers and peers, start/stop and restart, peers, mempool, chain data and uptime, and the loopback JSON-RPC endpoint" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Node</figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <picture>
             <source srcset="../assets/img/screen-sync.webp" type="image/webp">
-            <img src="../assets/img/screen-sync.png" width="620" height="1399" alt="SYNC tab: chainstate validation progress, AssumeUTXO snapshot picker and pruned storage figures" decoding="async">
+            <img src="../assets/img/screen-sync.png" width="620" height="1399" alt="SYNC tab: chainstate validation progress, AssumeUTXO snapshot picker and pruned storage figures" loading="lazy" decoding="async">
           </picture>
           <figcaption>SYNC</figcaption>
         </figure>
         <figure class="shot reveal">
           <picture>
             <source srcset="../assets/img/screen-explore.webp" type="image/webp">
-            <img src="../assets/img/screen-explore.png" width="620" height="1399" alt="EXPLORE tab: best block, block lookup and transaction lookup against this phone's node" decoding="async">
+            <img src="../assets/img/screen-explore.png" width="620" height="1399" alt="EXPLORE tab: best block, block lookup and transaction lookup against this phone's node" loading="lazy" decoding="async">
           </picture>
           <figcaption>EXPLORE</figcaption>
         </figure>
         <figure class="shot reveal">
           <picture>
             <source srcset="../assets/img/screen-settings.webp" type="image/webp">
-            <img src="../assets/img/screen-settings.png" width="620" height="1399" alt="SETTINGS tab: network selector, watch-only descriptor, prune size, data directory and background policy" decoding="async">
+            <img src="../assets/img/screen-settings.png" width="620" height="1399" alt="SETTINGS tab: network selector, watch-only descriptor, prune size, data directory and background policy" loading="lazy" decoding="async">
           </picture>
           <figcaption>SETTINGS</figcaption>
         </figure>
@@ -330,7 +344,7 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <img class="brand-mark" src="../assets/img/tesseract-mark.png?v=2026-11-22e" width="30" height="30" alt="" decoding="async">
+        <img class="brand-mark" src="../assets/img/tesseract-mark.png?v=2026-11-22f" width="30" height="30" alt="" decoding="async">
         <div>
           <div class="word">CORE<span class="dot" style="color:var(--cyan)">JBH</span></div>
           <p class="tagline">PocketCore · verify, don't trust.</p>
@@ -350,6 +364,6 @@
   </div>
 </footer>
 
-<script src="../assets/js/site.js?v=2026-11-22e" defer></script>
+<script src="../assets/js/site.js?v=2026-11-22f" defer></script>
 </body>
 </html>
