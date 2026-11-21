@@ -1,153 +1,166 @@
 #!/usr/bin/env python3
-"""Build every CoreJBH icon and the navbar mark from the approved brand art.
+"""Build every CoreJBH install icon and the navbar mark from assets/img/favicon.svg.
 
-The master is `assets/img/brand/corejbh-2cube-v2.png`: the approved two-cube
-tesseract, rendered as a cyan neon wireframe on a near-#030B27 field.
+The master is `assets/img/favicon.svg`, the first tesseract mark: a cyan neon
+wireframe on transparency, 48 x 48 units, stroke widths 2.1 (the two hexagons)
+and 1.7 (the six connectors).
 
-The field of a rendered PNG is never exactly the site colour (here it is a
-noisy #010925 -> #030B27-ish), so the art is keyed instead of pasted:
+Geometry is measured once from the master and hard-coded here, because the mark
+is drawn, not cropped. The outer hexagon's centreline box is (6, 3) - (42, 45);
+grown by half the 2.1 stroke on every side that is
 
-    bg    = median colour of the 4 px border
-    alpha = max over channels of (pixel - bg) / (255 - bg)   clamped to 0..1
+    box    = (4.95, 1.95) - (43.05, 46.05)      -> extent 44.1 units
+    centre = (24, 24)
 
-That is the straight-alpha coverage of a light-cyan drawing over a dark field,
-because every channel of the line and its glow is brighter than the field. The
-un-premultiplied colour is then rebuilt as
+Each output is framed so that box spans `content` of the canvas and its centre
+falls on the canvas centre; the mark is then rasterised straight from the master
+with resvg, so the strokes and the glow filter stay vector-crisp at every size
+and the field is exactly #000000, not a near-black copy of it.
 
-    fg = bg + (pixel - bg) / alpha
+Outputs (assets/img/, all opaque #000000 except the navbar mark):
 
-so `fg` over `bg` reproduces the source pixel exactly, and pasting the keyed
-art over #030B27 with PIL's alpha compositing gives back the approved image with
-the field flattened to the site colour. Alpha below 0.010 is dropped first: that
-is the field's sensor noise (bounded at alpha ~0.009 by the border spread), so
-dropping it leaves an exactly flat #030B27 background rather than a speckled one.
-
-Framing is driven by one measured number: the extent of the drawn cube, taken as
-the bounding box of alpha >= 0.5 (the geometry, not the halo). Each output is
-scaled so that extent covers `content` of the canvas, and the mark's measured
-centre is pinned to the canvas centre.
-
-Outputs (assets/img/):
-
-    icon-512.png           512   content 0.80, opaque #030B27
-    icon-192.png           192   content 0.80, opaque
-    icon-512-maskable.png  512   content 0.64, opaque: inside the 80 % safe circle
-    apple-touch-icon.png   180   content 0.80, opaque
-    favicon-32.png          32   content 1.00, opaque; the tab icon
-    tesseract-mark.png     128   content 0.92, straight-alpha RGBA, no field box
-
-The navbar and footer draw tesseract-mark.png at 30 CSS px, so 128 px stays sharp
-at 3x while the file remains small enough to load on every page.
+    icon-512.png           512   content 0.76  PWA / install icon, "any"
+    icon-192.png           192   content 0.76  PWA / install icon, "any"
+    icon-512-maskable.png  512   content 0.62  "maskable": the drawn mark's
+                                              farthest point is 0.31 of the
+                                              canvas, well inside the 80 %
+                                              safe circle Android masks to
+    apple-touch-icon.png   180   content 0.76  iOS home screen
+    favicon-32.png          32   content 0.94  the browser tab
+    tesseract-mark.png     128   content 0.92  straight-alpha RGBA, no field
+                                              box; drawn at 28-32 CSS px in the
+                                              navbar and footer
 
 Usage (from the repository root):
     python3 tools/make-icons.py
     python3 tools/make-icons.py --preview DIR     # previews only, no writes
+
+Requires: resvg-py (pip install resvg-py) and Pillow.
 """
 from __future__ import annotations
 
 import argparse
+import io
+import math
 import os
 
-import numpy as np
+import resvg_py
 from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-FIELD = (3, 11, 39)          # #030B27, the site and manifest colour
+FIELD = "#000000"
 
-ALPHA_FLOOR = 0.010          # field noise sits below this
-EXTENT_ALPHA = 0.5           # alpha contour used to measure the drawn cube
+# centreline box of the outer hexagon, grown by half the 2.1 stroke
+BOX = (6 - 1.05, 3 - 1.05, 42 + 1.05, 45 + 1.05)
+CENTRE = (24.0, 24.0)
+EXTENT = max(BOX[2] - BOX[0], BOX[3] - BOX[1])          # 44.1 units
+OUTER_VERTICES = ((24, 3), (42, 13.5), (42, 34.5),
+                  (24, 45), (6, 34.5), (6, 13.5))
+HALF_STROKE = 1.05
+MASKABLE_SAFE = 0.40            # Android masks an icon to a circle of 80 % diameter
 
 # name, pixels, content share of the canvas, opaque?
 ICONS = (
-    ("icon-512.png", 512, 0.80, True),
-    ("icon-192.png", 192, 0.80, True),
-    ("icon-512-maskable.png", 512, 0.64, True),
-    ("apple-touch-icon.png", 180, 0.80, True),
-    ("favicon-32.png", 32, 1.00, True),
+    ("icon-512.png", 512, 0.76, True),
+    ("icon-192.png", 192, 0.76, True),
+    ("icon-512-maskable.png", 512, 0.62, True),
+    ("apple-touch-icon.png", 180, 0.76, True),
+    ("favicon-32.png", 32, 0.94, True),
     ("tesseract-mark.png", 128, 0.92, False),
 )
 
 
-def key(source: Image.Image) -> tuple[Image.Image, float, float, float]:
-    """Key the field out of `source`.
-
-    Returns the straight-alpha RGBA mark plus (centre x, centre y, extent) of the
-    drawn cube in source pixels.
-    """
-    rgb = np.asarray(source.convert("RGB")).astype(np.float64)
-    border = np.concatenate([
-        rgb[:4].reshape(-1, 3), rgb[-4:].reshape(-1, 3),
-        rgb[:, :4].reshape(-1, 3), rgb[:, -4:].reshape(-1, 3),
-    ])
-    bg = np.median(border, axis=0)
-
-    alpha = np.clip(((rgb - bg) / (255.0 - bg)).max(axis=2), 0.0, 1.0)
-    alpha[alpha < ALPHA_FLOOR] = 0.0
-
-    fg = bg + (rgb - bg) / np.maximum(alpha, 1e-6)[..., None]
-    fg = np.clip(fg, 0.0, 255.0)
-    fg[alpha == 0] = 0.0
-
-    mark = Image.fromarray(np.dstack([fg, alpha * 255.0]).astype(np.uint8), "RGBA")
-
-    ys, xs = np.where(alpha >= EXTENT_ALPHA)
-    if not len(xs):
-        raise SystemExit("source has no visible mark")
-    cx = (xs.min() + xs.max() + 1) / 2.0
-    cy = (ys.min() + ys.max() + 1) / 2.0
-    extent = float(max(xs.max() - xs.min() + 1, ys.max() - ys.min() + 1))
-    return mark, cx, cy, extent
+def body(master: str) -> str:
+    """Everything inside the master's <svg> element, verbatim."""
+    start = master.index("<svg")
+    inner = master.index(">", start) + 1
+    end = master.rindex("</svg>")
+    return master[inner:end]
 
 
-def render(mark: Image.Image, cx: float, cy: float, extent: float,
-           size: int, content: float, opaque: bool) -> Image.Image:
-    """Scale the mark so the cube spans `content` of a `size` canvas."""
-    k = content * size / extent
-    scaled = mark.resize((max(1, round(mark.width * k)), max(1, round(mark.height * k))),
-                         Image.LANCZOS)
-    offset = (round(size / 2.0 - cx * k), round(size / 2.0 - cy * k))
-    if opaque:
-        canvas = Image.new("RGBA", (size, size), FIELD + (255,))
-        canvas.alpha_composite(scaled, offset)
-        return canvas.convert("RGB")
-    canvas = Image.new("RGBA", (size, size), (0, 0, 0, 0))
-    canvas.alpha_composite(scaled, offset)
-    return canvas
+def compose(inner: str, size: int, content: float) -> str:
+    """The master's artwork scaled to `content` of a `size` canvas, centred."""
+    k = content * size / EXTENT
+    tx = size / 2.0 - CENTRE[0] * k
+    ty = size / 2.0 - CENTRE[1] * k
+    return (
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" '
+        f'viewBox="0 0 {size} {size}">'
+        f'<g transform="translate({tx:.4f} {ty:.4f}) scale({k:.6f})">{inner}</g>'
+        f"</svg>"
+    )
 
 
-def main() -> None:
+def render(inner: str, size: int, content: float, opaque: bool) -> Image.Image:
+    png = resvg_py.svg_to_bytes(
+        svg_string=compose(inner, size, content),
+        width=size,
+        height=size,
+        background=FIELD if opaque else None,
+    )
+    img = Image.open(io.BytesIO(bytes(png))).convert("RGBA")
+    if not opaque:
+        return img
+    canvas = Image.new("RGBA", (size, size), (0, 0, 0, 255))
+    canvas.alpha_composite(img)
+    return canvas.convert("RGB")
+
+
+def check(name: str, img: Image.Image, size: int, content: float) -> list[str]:
+    """Cheap invariants: a truly black field, and a maskable mark inside the safe circle."""
+    problems = []
+    if img.mode == "RGB":
+        probes = [(0, 0), (size - 1, 0), (0, size - 1), (size - 1, size - 1)]
+        if content < 0.8:          # the mark cannot reach an edge midpoint here
+            probes += [(size // 2, 0), (size // 2, size - 1),
+                       (0, size // 2), (size - 1, size // 2)]
+        for x, y in probes:
+            if img.getpixel((x, y)) != (0, 0, 0):
+                problems.append(f"{name}: field at ({x},{y}) is {img.getpixel((x, y))}, not #000000")
+    if name.endswith("-maskable.png"):
+        k = content * size / EXTENT
+        far = max(math.dist(CENTRE, v) + HALF_STROKE for v in OUTER_VERTICES) * k
+        if far > MASKABLE_SAFE * size:
+            problems.append(f"{name}: mark reaches {far / size:.3f} of the canvas, "
+                            f"outside the {MASKABLE_SAFE:.2f} safe circle")
+    return problems
+
+
+def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--source", default=os.path.join(
-        ROOT, "assets", "img", "brand", "corejbh-2cube-v2.png"))
+    ap.add_argument("--master", default=os.path.join(ROOT, "assets", "img", "favicon.svg"))
     ap.add_argument("--out", default=os.path.join(ROOT, "assets", "img"))
     ap.add_argument("--preview", default=None,
                     help="write previews here instead of the icon files")
     args = ap.parse_args()
 
-    if not os.path.exists(args.source):
-        raise SystemExit(f"source art not found: {args.source}")
-    mark, cx, cy, extent = key(Image.open(args.source))
+    if not os.path.exists(args.master):
+        raise SystemExit(f"master art not found: {args.master}")
+    inner = body(open(args.master, encoding="utf-8").read())
 
-    if args.preview:
-        os.makedirs(args.preview, exist_ok=True)
-        for name, size, content, opaque in ICONS:
-            img = render(mark, cx, cy, extent, size, content, opaque)
-            img.save(os.path.join(args.preview, "preview-" + name))
-            if not opaque:  # also show what the transparent mark looks like on the site
-                over = Image.new("RGBA", img.size, FIELD + (255,))
-                over.alpha_composite(img)
-                over.convert("RGB").save(
-                    os.path.join(args.preview, "preview-" + name.replace(".png", "-on-field.png")))
-        print("previews written to", args.preview)
-        return
-
+    problems: list[str] = []
     for name, size, content, opaque in ICONS:
-        img = render(mark, cx, cy, extent, size, content, opaque)
-        img.save(os.path.join(args.out, name), optimize=True)
+        img = render(inner, size, content, opaque)
+        where = args.preview or args.out
+        os.makedirs(where, exist_ok=True)
+        path = os.path.join(where, ("preview-" if args.preview else "") + name)
+        if not opaque:
+            img.save(path, optimize=True)
+            if args.preview:      # show the navbar mark as the dark site draws it
+                over = Image.new("RGBA", img.size, (3, 11, 39, 255))
+                over.alpha_composite(img)
+                over.convert("RGB").save(path.replace(".png", "-on-field.png"), optimize=True)
+        else:
+            img.save(path, optimize=True)
+        problems += check(name, img, size, content)
         print(f"{name}: {size}x{size} content {content:.2f} "
-              f"{'opaque' if opaque else 'transparent'} "
-              f"{os.path.getsize(os.path.join(args.out, name))} bytes")
+              f"{'opaque #000000' if opaque else 'transparent'} "
+              f"{os.path.getsize(path)} bytes")
+
+    for p in problems:
+        print("PROBLEM:", p)
+    return 1 if problems else 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

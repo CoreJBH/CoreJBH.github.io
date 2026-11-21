@@ -16,9 +16,11 @@ pocketcore/privacy.html        alias that redirects to the policy
 assets/css/site.css            the whole design system
 assets/js/site.js              copy-to-clipboard for the release hash
 assets/img/                    brand art, tesseract mark, PWA and app icons, screenshots
-manifest.webmanifest          install metadata: #030B27 theme, 192, 512 and maskable icons
+assets/img/favicon.svg         the master tesseract mark every install icon is rendered from
+manifest.webmanifest          install metadata: #000000 field, standalone, any + maskable icons
+sw.js                         service worker: lets the site install as a real app, caches nothing
 tools/check_site.py            offline link, tag and remote-resource check
-tools/make-icons.py            builds every icon and the navbar mark from assets/img/brand/
+tools/make-icons.py            renders every install icon and the navbar mark from favicon.svg
 .nojekyll                      serve files as-is, no Jekyll processing
 ```
 
@@ -29,7 +31,20 @@ python3 -m http.server -d . 8080
 # then open http://127.0.0.1:8080/
 
 python3 tools/check_site.py   # links, tag balance, no remote resources
+python3 tools/make-icons.py   # re-render the install icons (needs resvg-py)
 ```
+
+## Install as an app
+
+`manifest.webmanifest` plus `sw.js` make the site a real PWA: Chrome and Samsung
+Internet build a WebAPK, so the home-screen entry opens without browser chrome
+and shows `icon-512.png` — the tesseract wireframe on a pure `#000000` field —
+instead of a white-framed shortcut. The worker caches nothing; it exists so the
+install qualifies, and every request still goes to the network, so a deploy is
+live on the next load.
+
+A phone that already added the site keeps its old WebAPK until the entry is
+removed and added again.
 
 ## Deploy
 
