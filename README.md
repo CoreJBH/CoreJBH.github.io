@@ -68,7 +68,7 @@ The repository is the site: commit to `main` and GitHub Pages publishes it
 
 ## Facts that must stay in sync with the release
 
-- APK version `v1.0.0`, size 17,216,155 bytes
-- SHA-256 `872b8a6c406574ce15852ce0b1d895ffa08cb4b08f65f9e8f80b153379daabce`
+- APK version `v1.0.0` (versionCode 11), size 17,066,087 bytes
+- SHA-256 `8a4486a7458bff4380e27d1be45c6073d4dd4bf73afb2f3860a8b7a9c52e90f2`
 - daemon Bitcoin Core 32.1, `arm64-v8a`, Android 8.0+ (API 26)
 - source: <https://github.com/CoreJBH/pocketcore>
