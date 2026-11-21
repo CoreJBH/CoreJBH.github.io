@@ -15,10 +15,12 @@
 <meta property="og:image" content="https://corejbh.github.io/assets/img/og-pocketcore.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://corejbh.github.io/">
-<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/css/site.css?v=2026-11-21">
+<link rel="icon" href="assets/img/favicon-32.png?v=2026-11-21b" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/img/icon-192.png?v=2026-11-21b" sizes="192x192" type="image/png">
+<link rel="icon" href="assets/img/icon-512.png?v=2026-11-21b" sizes="512x512" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=2026-11-21b" sizes="180x180">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="assets/css/site.css?v=2026-11-21b">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -26,13 +28,7 @@
 <header class="site-head">
   <div class="wrap">
     <a class="brand" href="./" aria-label="CoreJBH home">
-      <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
-        <g fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
-          <path d="M24 3 42 13.5 42 34.5 24 45 6 34.5 6 13.5Z"/>
-          <path d="M24 15.2 31.5 19.5 31.5 28.5 24 32.8 16.5 28.5 16.5 19.5Z" stroke="#9be8ff"/>
-          <path d="M24 3v12.2M42 13.5 31.5 19.5M42 34.5 31.5 28.5M6 34.5 16.5 28.5M6 13.5 16.5 19.5" stroke="#5ccfff" stroke-width="1.7"/>
-        </g>
-      </svg>
+      <img class="brand-mark" src="assets/img/tesseract-mark.png?v=2026-11-21b" width="30" height="30" alt="" decoding="async">
       <span class="word">CORE<span class="dot">JBH</span></span>
     </a>
     <nav class="site-nav" aria-label="Main">
@@ -72,26 +68,10 @@
         <div class="halo"></div>
         <div class="ring"></div>
         <div class="ring"></div>
-        <svg class="mark" viewBox="0 0 48 48" role="presentation">
-          <defs>
-            <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#7fe8ff"/>
-              <stop offset="0.55" stop-color="#38bdf8"/>
-              <stop offset="1" stop-color="#1d8fe0"/>
-            </linearGradient>
-            <radialGradient id="core" cx="0.5" cy="0.5" r="0.5">
-              <stop offset="0" stop-color="#d8f7ff" stop-opacity="0.95"/>
-              <stop offset="0.45" stop-color="#2fd4ff" stop-opacity="0.55"/>
-              <stop offset="1" stop-color="#00a8ff" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-          <circle cx="24" cy="24" r="9" fill="url(#core)"/>
-          <g fill="none" stroke="url(#edge)" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round">
-            <path d="M24 3 42 13.5 42 34.5 24 45 6 34.5 6 13.5Z" stroke-width="1.05"/>
-            <path d="M24 15.2 31.5 19.5 31.5 28.5 24 32.8 16.5 28.5 16.5 19.5Z" stroke="#c7f2ff"/>
-            <path d="M24 3v12.2M42 13.5 31.5 19.5M42 34.5 31.5 28.5M6 34.5 16.5 28.5M6 13.5 16.5 19.5" stroke-width="0.8" opacity="0.9"/>
-          </g>
-        </svg>
+        <picture class="hero-mascot">
+          <source srcset="assets/img/mascot-hero.webp?v=2026-11-21b" type="image/webp">
+          <img src="assets/img/mascot-hero.png?v=2026-11-21b" width="900" height="900" alt="" decoding="async">
+        </picture>
         <p class="tag">tesseract · the core inside the core</p>
       </div>
     </div>
@@ -279,13 +259,7 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
-          <g fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
-            <path d="M24 3 42 13.5 42 34.5 24 45 6 34.5 6 13.5Z"/>
-            <path d="M24 15.2 31.5 19.5 31.5 28.5 24 32.8 16.5 28.5 16.5 19.5Z" stroke="#9be8ff"/>
-            <path d="M24 3v12.2M42 13.5 31.5 19.5M42 34.5 31.5 28.5M6 34.5 16.5 28.5M6 13.5 16.5 19.5" stroke="#5ccfff" stroke-width="1.7"/>
-          </g>
-        </svg>
+        <img class="brand-mark" src="assets/img/tesseract-mark.png?v=2026-11-21b" width="30" height="30" alt="" decoding="async">
         <div>
           <div class="word">CORE<span class="dot" style="color:var(--cyan)">JBH</span></div>
           <p class="tagline">Verify, don't trust.</p>
@@ -305,6 +279,6 @@
   </div>
 </footer>
 
-<script src="assets/js/site.js?v=2026-11-21" defer></script>
+<script src="assets/js/site.js?v=2026-11-21b" defer></script>
 </body>
 </html>

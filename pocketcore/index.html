@@ -15,10 +15,12 @@
 <meta property="og:image" content="https://corejbh.github.io/assets/img/og-pocketcore.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://corejbh.github.io/pocketcore/">
-<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="../assets/img/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="../assets/css/site.css?v=2026-11-21">
+<link rel="icon" href="../assets/img/favicon-32.png?v=2026-11-21b" sizes="32x32" type="image/png">
+<link rel="icon" href="../assets/img/icon-192.png?v=2026-11-21b" sizes="192x192" type="image/png">
+<link rel="icon" href="../assets/img/icon-512.png?v=2026-11-21b" sizes="512x512" type="image/png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=2026-11-21b" sizes="180x180">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="../assets/css/site.css?v=2026-11-21b">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -26,13 +28,7 @@
 <header class="site-head">
   <div class="wrap">
     <a class="brand" href="../" aria-label="CoreJBH home">
-      <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
-        <g fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
-          <path d="M24 3 42 13.5 42 34.5 24 45 6 34.5 6 13.5Z"/>
-          <path d="M24 15.2 31.5 19.5 31.5 28.5 24 32.8 16.5 28.5 16.5 19.5Z" stroke="#9be8ff"/>
-          <path d="M24 3v12.2M42 13.5 31.5 19.5M42 34.5 31.5 28.5M6 34.5 16.5 28.5M6 13.5 16.5 19.5" stroke="#5ccfff" stroke-width="1.7"/>
-        </g>
-      </svg>
+      <img class="brand-mark" src="../assets/img/tesseract-mark.png?v=2026-11-21b" width="30" height="30" alt="" decoding="async">
       <span class="word">CORE<span class="dot">JBH</span></span>
     </a>
     <nav class="site-nav" aria-label="Main">
@@ -76,7 +72,11 @@
       </div>
       <div class="hero-phone" aria-hidden="true">
         <div class="halo"></div>
-        <picture>
+        <picture class="hero-mark">
+          <source srcset="../assets/img/tesseract-real.webp?v=2026-11-21b" type="image/webp">
+          <img src="../assets/img/tesseract-real.png?v=2026-11-21b" width="512" height="512" alt="" decoding="async">
+        </picture>
+        <picture class="shot">
           <source srcset="../assets/img/screen-sync.webp" type="image/webp">
           <img src="../assets/img/screen-sync.png" width="620" height="1399" alt="" decoding="async">
         </picture>
@@ -329,13 +329,7 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
-          <g fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
-            <path d="M24 3 42 13.5 42 34.5 24 45 6 34.5 6 13.5Z"/>
-            <path d="M24 15.2 31.5 19.5 31.5 28.5 24 32.8 16.5 28.5 16.5 19.5Z" stroke="#9be8ff"/>
-            <path d="M24 3v12.2M42 13.5 31.5 19.5M42 34.5 31.5 28.5M6 34.5 16.5 28.5M6 13.5 16.5 19.5" stroke="#5ccfff" stroke-width="1.7"/>
-          </g>
-        </svg>
+        <img class="brand-mark" src="../assets/img/tesseract-mark.png?v=2026-11-21b" width="30" height="30" alt="" decoding="async">
         <div>
           <div class="word">CORE<span class="dot" style="color:var(--cyan)">JBH</span></div>
           <p class="tagline">POCKETCORE · verify, don't trust.</p>
@@ -355,6 +349,6 @@
   </div>
 </footer>
 
-<script src="../assets/js/site.js?v=2026-11-21" defer></script>
+<script src="../assets/js/site.js?v=2026-11-21b" defer></script>
 </body>
 </html>
