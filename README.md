@@ -15,9 +15,10 @@ pocketcore/privacy.html        alias that redirects to the policy
 404.html                       GitHub Pages not-found page
 assets/css/site.css            the whole design system
 assets/js/site.js              copy-to-clipboard for the release hash
-assets/img/                    tesseract mark, mascot, app screenshots, PWA icons
+assets/img/                    tesseract mark, PWA and app icons, screenshots
 manifest.webmanifest          install metadata: #030B27 theme, 192 and 512 icons
 tools/check_site.py            offline link, tag and remote-resource check
+tools/make-tesseract-mark.py   renders the icons and favicon from the computed 2-cube
 .nojekyll                      serve files as-is, no Jekyll processing
 ```
 
