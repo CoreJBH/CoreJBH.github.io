@@ -437,7 +437,7 @@ h3 { font-size: 1.12rem; letter-spacing: -0.015em; line-height: 1.35; }
   position: relative;
   overflow: hidden;
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  grid-template-columns: minmax(0, 1.28fr) minmax(0, 0.72fr);
   gap: clamp(24px, 4vw, 48px);
   align-items: center;
   padding: clamp(26px, 4vw, 46px);
@@ -450,7 +450,7 @@ h3 { font-size: 1.12rem; letter-spacing: -0.015em; line-height: 1.35; }
 }
 @media (max-width: 860px) {
   .flagship { grid-template-columns: 1fr; }
-  .flagship .flag-art { justify-self: center; }
+  .flagship .facts { margin-top: 4px; }
 }
 
 .flag-head {
@@ -509,24 +509,11 @@ h3 { font-size: 1.12rem; letter-spacing: -0.015em; line-height: 1.35; }
   font-size: 12.5px;
   color: var(--ink);
 }
-
-.flag-art {
-  display: grid;
-  justify-items: center;
-  gap: 12px;
-}
-.flag-art img {
-  width: min(230px, 100%);
-  border-radius: 20px;
-  box-shadow: 0 24px 60px rgba(0, 10, 40, 0.75);
-  border: 1px solid var(--line);
-}
-.flag-art .cap {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
+/* in the flagship card the facts are the right-hand column */
+.flagship .facts {
+  margin: 0;
+  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  align-self: center;
 }
 
 /* project card with icon */
