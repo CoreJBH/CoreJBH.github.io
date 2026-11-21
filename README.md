@@ -32,7 +32,7 @@ When a release goes out, change the version on its card here and in the list bel
 | Project | Version shown | Release link |
 | --- | --- | --- |
 | PocketCore | v1.0.0 | <https://github.com/CoreJBH/pocketcore/releases/latest> |
-| ZeroWallet | v1.1.4 | <https://github.com/CoreJBH/zerowallet/releases/latest> |
+| ZeroWallet | v1.1.5 | <https://github.com/CoreJBH/zerowallet/releases/latest> |
 | CleanSwap | v0.6.0 | <https://github.com/CoreJBH/cleanswap/releases/latest> |
 | NodePulse | v1.1.1 | <https://github.com/CoreJBH/nodepulse/releases/latest> |
 
