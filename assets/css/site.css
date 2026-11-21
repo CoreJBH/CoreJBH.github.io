@@ -373,7 +373,8 @@ h3 { font-size: 1.12rem; letter-spacing: -0.015em; line-height: 1.35; }
   position: relative;
   display: grid;
   place-items: center;
-  min-height: 320px;
+  min-height: 340px;
+  padding-bottom: 34px;
 }
 .hero-art .halo {
   position: absolute;
@@ -404,7 +405,7 @@ h3 { font-size: 1.12rem; letter-spacing: -0.015em; line-height: 1.35; }
 }
 .hero-art .tag {
   position: absolute;
-  bottom: 6%;
+  bottom: 0;
   font-family: var(--mono);
   font-size: 10.5px;
   letter-spacing: 0.24em;
@@ -903,6 +904,20 @@ ul.checks.steps li::before {
     linear-gradient(180deg, rgba(8, 20, 49, 0.95), rgba(4, 11, 30, 0.95));
   padding: clamp(22px, 3.4vw, 34px);
 }
+.verify-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 6px;
+}
+.verify-head h3 {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
 .hash {
   display: flex;
   align-items: center;
@@ -946,6 +961,7 @@ pre.cmd {
   line-height: 1.6;
 }
 pre.cmd .p { color: #4d6b96; }
+pre.cmd.wrap { white-space: pre-wrap; word-break: break-all; overflow-x: visible; }
 
 /* limits */
 .limits { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }

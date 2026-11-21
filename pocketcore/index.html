@@ -250,24 +250,26 @@
 
       <div class="two-col">
         <div>
-          <ol class="checks steps">
+          <ul class="checks steps">
             <li><b>Download</b> <span class="mono">pocketcore.apk</span> from <a href="https://github.com/CoreJBH/pocketcore/releases/latest" rel="noopener">Releases</a> — v1.0.0, 17,216,155 bytes.</li>
             <li><b>Allow “install unknown apps”</b> for the app you open it with, then install. Android 8.0 (API 26) or newer, <span class="mono">arm64-v8a</span>.</li>
             <li><b>Open POCKETCORE and press START NODE.</b> The status card shows the height while the node syncs; “Wi-Fi only” and “Charging only” pause it politely.</li>
             <li><b>Update in place.</b> A newer APK installs over the old one and keeps the chain. Do not uninstall to upgrade — that deletes the node data.</li>
-          </ol>
+          </ul>
           <p class="mono" style="margin-top:22px">About 1 GB free storage for the default pruned chain plus the app.
             Full validation from genesis takes days; load an AssumeUTXO snapshot to start near the tip instead.</p>
         </div>
 
         <div class="verify">
-          <h3 style="margin:0 0 6px;font-family:var(--mono);letter-spacing:.04em">SHA-256 · pocketcore.apk v1.0.0</h3>
+          <div class="verify-head">
+            <h3>SHA-256 · pocketcore.apk v1.0.0</h3>
+            <button class="copy" type="button" data-copy="apk-sha">copy</button>
+          </div>
           <p class="mono" style="margin:0">Check this before you install. If the hashes differ, the file is not the build we published.</p>
           <div class="hash">
             <code id="apk-sha">872b8a6c406574ce15852ce0b1d895ffa08cb4b08f65f9e8f80b153379daabce</code>
-            <button class="copy" type="button" data-copy="apk-sha">copy</button>
           </div>
-          <pre class="cmd"><span class="p">$</span> sha256sum pocketcore.apk
+          <pre class="cmd wrap"><span class="p">$</span> sha256sum pocketcore.apk
 872b8a6c406574ce15852ce0b1d895ffa08cb4b08f65f9e8f80b153379daabce</pre>
           <pre class="cmd"><span class="p">$</span> apksigner verify --print-certs pocketcore.apk
 <span class="p">#</span> debug certificate SHA-256 f5074815…2aa9c011

@@ -14,8 +14,9 @@ pocketcore/privacy/index.html  Privacy policy (canonical)
 pocketcore/privacy.html        alias that redirects to the policy
 404.html                       GitHub Pages not-found page
 assets/css/site.css            the whole design system
-assets/js/site.js              copy-to-clipboard + reveal on scroll
+assets/js/site.js              copy-to-clipboard for the release hash
 assets/img/                    tesseract mark, mascot, app screenshots
+tools/check_site.py            offline link, tag and remote-resource check
 .nojekyll                      serve files as-is, no Jekyll processing
 ```
 
@@ -24,6 +25,8 @@ assets/img/                    tesseract mark, mascot, app screenshots
 ```sh
 python3 -m http.server -d . 8080
 # then open http://127.0.0.1:8080/
+
+python3 tools/check_site.py   # links, tag balance, no remote resources
 ```
 
 ## Deploy
