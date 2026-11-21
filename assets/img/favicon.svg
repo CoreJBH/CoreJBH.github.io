@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="CoreJBH mark: a glowing tesseract">
+  <defs>
+    <filter id="g" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g fill="none" stroke="#38bdf8" stroke-width="2.1" stroke-linejoin="round" stroke-linecap="round" filter="url(#g)">
+    <path d="M24 3 42 13.5 42 34.5 24 45 6 34.5 6 13.5Z"/>
+    <path d="M24 15.2 31.5 19.5 31.5 28.5 24 32.8 16.5 28.5 16.5 19.5Z" stroke="#9be8ff"/>
+    <path d="M24 3v12.2M42 13.5 31.5 19.5M42 34.5 31.5 28.5M6 34.5 16.5 28.5M6 13.5 16.5 19.5" stroke="#5ccfff" stroke-width="1.7"/>
+    <path d="M24 15.2 24 3M24 32.8v12.2"/>
+  </g>
+</svg>

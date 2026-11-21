@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>POCKETCORE Privacy Policy — zero data collected</title>
+<meta name="description" content="POCKETCORE collects no personal data: no accounts, no analytics, no crash reporting, no advertising, no third-party tracking SDKs. Everything stays on your phone.">
+<meta name="author" content="CoreJBH">
+<meta name="theme-color" content="#030B27">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="POCKETCORE Privacy Policy">
+<meta property="og:description" content="Zero telemetry, zero analytics, zero personal data collected.">
+<meta property="og:url" content="https://corejbh.github.io/pocketcore/privacy/">
+<link rel="canonical" href="https://corejbh.github.io/pocketcore/privacy/">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="../../" aria-label="CoreJBH home">
+      <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M24 3 42 13.5 42 34.5 24 45 6 34.5 6 13.5Z"/>
+          <path d="M24 15.2 31.5 19.5 31.5 28.5 24 32.8 16.5 28.5 16.5 19.5Z" stroke="#9be8ff"/>
+          <path d="M24 3v12.2M42 13.5 31.5 19.5M42 34.5 31.5 28.5M6 34.5 16.5 28.5M6 13.5 16.5 19.5" stroke="#5ccfff" stroke-width="1.7"/>
+        </g>
+      </svg>
+      <span class="word">CORE<span class="dot">JBH</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../../pocketcore/">Pocketcore</a>
+      <a href="../">App privacy</a>
+      <a class="gh" href="https://github.com/CoreJBH/pocketcore/blob/main/PRIVACY.md" rel="noopener">Source &#8599;</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap doc">
+    <p class="eyebrow">Legal · POCKETCORE</p>
+    <h1>Privacy Policy</h1>
+    <p class="updated">App: POCKETCORE — Bitcoin Core full node for Android · Package <code>com.corejbh.pocketcore</code> · Developer CoreJBH · Effective 21 November 2026</p>
+
+    <h2>The short version</h2>
+    <p>POCKETCORE collects <strong>no personal data</strong>. There is no account, no analytics, no crash
+      reporting, no advertising, and no third-party tracking SDK of any kind. Everything the app knows stays on
+      your phone.</p>
+
+    <h2>What the app does not collect</h2>
+    <ul>
+      <li><strong>No personal information.</strong> POCKETCORE never asks for, reads or transmits your name, email
+        address, phone number, contacts, calendar, photos, files, precise location, advertising ID or any other
+        identifier.</li>
+      <li><strong>No analytics or telemetry.</strong> There is no usage tracking, no event logging, no session
+        recording and no A/B experimentation library in the app.</li>
+      <li><strong>No crash reports.</strong> If the app or the node stops, nothing is uploaded. Logs and
+        <code>debug.log</code> remain in the app's private storage on the device.</li>
+      <li><strong>No advertising and no tracking SDKs.</strong> The app contains no ad network, no attribution SDK,
+        no social login SDK and no push notification service. It links to no third-party service at runtime other
+        than the Bitcoin peer-to-peer network described below.</li>
+      <li><strong>No wallet and no keys.</strong> POCKETCORE is a node, not a wallet. It does not create, store or
+        accept private keys, seed phrases or WIF strings, and the bundled daemon is built with
+        <code>ENABLE_WALLET=OFF</code>.</li>
+    </ul>
+
+    <h2>Network connections the app makes</h2>
+    <p>POCKETCORE makes exactly two kinds of connection, both to do the one job the app has — validating the
+      Bitcoin blockchain itself.</p>
+    <ul>
+      <li><strong>Bitcoin peer-to-peer.</strong> The bundled Bitcoin Core daemon connects directly to other Bitcoin
+        nodes to download block headers and blocks and to relay transactions, using Bitcoin's encrypted BIP324 v2
+        transport where the peer supports it. This is the same traffic any Bitcoin node produces: IP addresses of
+        peers, protocol messages, and the public blockchain data itself. It is not sent to the developer or to any
+        server the developer controls, and the app sends no device identifiers along with it.</li>
+      <li><strong>Loopback RPC.</strong> The app talks to its own daemon over <code>127.0.0.1</code> with a randomly
+        generated username and password that never leave the device. The RPC port is bound to loopback only and is
+        not reachable from the LAN or the internet.</li>
+    </ul>
+    <p>The app makes <strong>no HTTP requests of its own</strong>. Android's network security configuration allows
+      cleartext traffic to <code>127.0.0.1</code> and <code>localhost</code> only; every other destination would
+      have to be HTTPS.</p>
+
+    <h2>What is stored on your device</h2>
+    <p>All data stays in the app's private storage, readable only by POCKETCORE:</p>
+    <ul>
+      <li>the validated blockchain data (headers, blocks, chainstate),</li>
+      <li><code>bitcoin.conf</code> and the daemon's logs,</li>
+      <li>your app settings (network, prune size, watch-only descriptor) in app-private
+        <code>SharedPreferences</code>,</li>
+      <li>the generated RPC password, sealed with an Android Keystore key.</li>
+    </ul>
+    <p>None of it is backed up or synchronized anywhere. <code>android:allowBackup="false"</code> keeps it out of
+      Android's cloud backup.</p>
+    <p>A watch-only descriptor is used only to derive addresses locally so the node can search its own UTXO set for
+      them; it is never transmitted to a third party.</p>
+
+    <h2>Permissions and why they are needed</h2>
+    <table>
+      <thead><tr><th>Permission</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td><code>INTERNET</code>, <code>ACCESS_NETWORK_STATE</code></td><td>connect to Bitcoin peers</td></tr>
+        <tr><td><code>FOREGROUND_SERVICE</code>, <code>FOREGROUND_SERVICE_SPECIAL_USE</code></td><td>keep the node running while the screen is off</td></tr>
+        <tr><td><code>POST_NOTIFICATIONS</code></td><td>show the node status card (height, sync progress)</td></tr>
+        <tr><td><code>WAKE_LOCK</code></td><td>let the CPU finish block validation with the screen off</td></tr>
+      </tbody>
+    </table>
+    <p>No permission is used to read your personal data, and none is requested for contacts, storage, location,
+      camera or microphone.</p>
+
+    <h2>Children</h2>
+    <p>POCKETCORE is a technical tool for running a Bitcoin node. It is not directed at children and collects no
+      data from anyone, including children under 13.</p>
+
+    <h2>Data deletion</h2>
+    <p>Because nothing is collected, there is nothing for the developer to delete. To remove all data the app has
+      created, uninstall it; Android deletes the app's private storage, including the synced chain, with it.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>If the app's behaviour ever changes, this document will be updated in the same repository before the change
+      ships, with the effective date above.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about this policy or the app: open an issue at
+      <a href="https://github.com/CoreJBH/pocketcore/issues" rel="noopener">github.com/CoreJBH/pocketcore/issues</a>,
+      or use the developer contact address shown on the POCKETCORE listing in Google Play.</p>
+
+    <section class="ko" lang="ko">
+      <h2>한국어 요약</h2>
+      <p>POCKETCORE는 <strong>개인정보를 전혀 수집하지 않습니다.</strong> 계정도, 분석 도구도, 오류 수집(crash
+        reporting)도, 광고도, 제3자 추적 SDK도 없습니다. 앱이 하는 통신은 비트코인 P2P 네트워크 접속과 기기 안의
+        자기 노드와의 로컬 연결(<code>127.0.0.1</code>) 두 가지뿐이며, 블록체인 데이터와 설정·로그는 모두 기기 내부
+        앱 전용 저장소에만 남습니다. 지갑이 아니므로 개인키·시드 문구를 만들거나 저장하지 않습니다. 앱을 삭제하면
+        저장된 데이터도 함께 삭제됩니다. 문의:
+        <a href="https://github.com/CoreJBH/pocketcore/issues" rel="noopener">github.com/CoreJBH/pocketcore/issues</a></p>
+    </section>
+
+    <p class="back"><a class="btn btn-ghost" href="../">&#8592; Back to POCKETCORE</a></p>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <g fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+            <path d="M24 3 42 13.5 42 34.5 24 45 6 34.5 6 13.5Z"/>
+            <path d="M24 15.2 31.5 19.5 31.5 28.5 24 32.8 16.5 28.5 16.5 19.5Z" stroke="#9be8ff"/>
+            <path d="M24 3v12.2M42 13.5 31.5 19.5M42 34.5 31.5 28.5M6 34.5 16.5 28.5M6 13.5 16.5 19.5" stroke="#5ccfff" stroke-width="1.7"/>
+          </g>
+        </svg>
+        <div>
+          <div class="word">CORE<span class="dot" style="color:var(--cyan)">JBH</span></div>
+          <p class="tagline">Verify, don't trust.</p>
+        </div>
+      </div>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="../../">CoreJBH</a>
+        <a href="../../pocketcore/">Pocketcore</a>
+        <a href="https://github.com/CoreJBH/pocketcore" rel="noopener">Source</a>
+      </nav>
+    </div>
+    <div class="foot-note">
+      <span>CoreJBH · independent Bitcoin &amp; cryptography engineering</span>
+      <span>this page loads nothing from another host · no cookies · no analytics</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

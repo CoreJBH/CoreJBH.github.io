@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CoreJBH — Verify, don't trust</title>
+<meta name="description" content="CoreJBH is independent Bitcoin and cryptography engineering: POCKETCORE, a real Bitcoin Core full node for Android, plus PUREWALLET, CLEANSWAP and NODEPULSE. No accounts, no telemetry, no servers you have to trust.">
+<meta name="author" content="CoreJBH">
+<meta name="theme-color" content="#030B27">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CoreJBH — Verify, don't trust">
+<meta property="og:description" content="Independent Bitcoin and cryptography engineering. POCKETCORE runs an unmodified Bitcoin Core 32.1 full node on your phone.">
+<meta property="og:url" content="https://corejbh.github.io/">
+<meta property="og:image" content="https://corejbh.github.io/assets/img/og-pocketcore.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://corejbh.github.io/">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="CoreJBH home">
+      <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M24 3 42 13.5 42 34.5 24 45 6 34.5 6 13.5Z"/>
+          <path d="M24 15.2 31.5 19.5 31.5 28.5 24 32.8 16.5 28.5 16.5 19.5Z" stroke="#9be8ff"/>
+          <path d="M24 3v12.2M42 13.5 31.5 19.5M42 34.5 31.5 28.5M6 34.5 16.5 28.5M6 13.5 16.5 19.5" stroke="#5ccfff" stroke-width="1.7"/>
+        </g>
+      </svg>
+      <span class="word">CORE<span class="dot">JBH</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#flagship">Pocketcore</a>
+      <a href="#projects">Projects</a>
+      <a href="#principles" class="opt">Principles</a>
+      <a class="gh" href="https://github.com/CoreJBH" rel="noopener">GitHub &#8599;</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Independent Bitcoin &amp; cryptography engineering</p>
+        <h1 class="display">Verify,<br><span class="glow">don't trust.</span></h1>
+        <p class="lead">CoreJBH builds tools that do their own arithmetic. No accounts, no analytics,
+          no server you have to believe — only code you can read, rebuild, and run on the device
+          in your hand.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="pocketcore/">
+            <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h11M9 4l4 4-4 4"/></svg>
+            POCKETCORE — the flagship
+          </a>
+          <a class="btn btn-ghost" href="https://github.com/CoreJBH" rel="noopener">
+            <svg viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+            Source on GitHub
+          </a>
+        </div>
+        <p class="hero-note">
+          <span>no trackers</span><span>no cookies</span><span>no external requests</span><span>no accounts</span>
+        </p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="halo"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <svg class="mark" viewBox="0 0 48 48" role="presentation">
+          <defs>
+            <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#7fe8ff"/>
+              <stop offset="0.55" stop-color="#38bdf8"/>
+              <stop offset="1" stop-color="#1d8fe0"/>
+            </linearGradient>
+            <radialGradient id="core" cx="0.5" cy="0.5" r="0.5">
+              <stop offset="0" stop-color="#d8f7ff" stop-opacity="0.95"/>
+              <stop offset="0.45" stop-color="#2fd4ff" stop-opacity="0.55"/>
+              <stop offset="1" stop-color="#00a8ff" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <circle cx="24" cy="24" r="9" fill="url(#core)"/>
+          <g fill="none" stroke="url(#edge)" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round">
+            <path d="M24 3 42 13.5 42 34.5 24 45 6 34.5 6 13.5Z" stroke-width="1.05"/>
+            <path d="M24 15.2 31.5 19.5 31.5 28.5 24 32.8 16.5 28.5 16.5 19.5Z" stroke="#c7f2ff"/>
+            <path d="M24 3v12.2M42 13.5 31.5 19.5M42 34.5 31.5 28.5M6 34.5 16.5 28.5M6 13.5 16.5 19.5" stroke-width="0.8" opacity="0.9"/>
+          </g>
+        </svg>
+        <p class="tag">tesseract · the core inside the core</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="strip" aria-label="Cryptographic primitives used across the projects">
+      <span><b>SHA-256d</b></span>
+      <span>secp256k1 · ECDSA</span>
+      <span>BIP340 Schnorr</span>
+      <span>BIP324 v2 transport</span>
+      <span>ChaCha20-Poly1305</span>
+      <span>AES-256-GCM</span>
+      <span>HMAC-SHA256</span>
+    </div>
+  </div>
+
+  <section class="sec" id="flagship">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">01 / FLAGSHIP</span>
+        <h2>POCKETCORE</h2>
+        <p>A full node, not a promise: the chain is checked on the phone that holds it.</p>
+      </div>
+
+      <article class="flagship reveal">
+        <div>
+          <div class="flag-head">
+            <img src="assets/img/tesseract-512.png" width="62" height="62" alt="POCKETCORE tesseract icon" decoding="async">
+            <div>
+              <div class="name">POCKETCORE</div>
+              <div class="sub">Bitcoin Core 32.1 · Android arm64</div>
+            </div>
+          </div>
+          <p style="color:var(--ink-dim);margin:0">An unmodified <code class="mono" style="color:#9ddcff">bitcoind</code> — Bitcoin Core 32.1,
+            cross-compiled for <span class="mono" style="color:#9ddcff">aarch64-linux-android</span> — runs as a child process of a
+            foreground service on your phone and is driven over loopback JSON-RPC. Every block on screen has had
+            its proof of work, Merkle root, scripts and ECDSA/Schnorr signatures checked by Core's own code on
+            your own CPU. Nothing is re-implemented in Kotlin. Nothing is delegated to a server.</p>
+
+          <dl class="facts">
+            <div><dt>daemon</dt><dd>Core 32.1 · C++</dd></div>
+            <div><dt>ABI</dt><dd>arm64-v8a</dd></div>
+            <div><dt>Android</dt><dd>8.0+ (API 26)</dd></div>
+            <div><dt>storage</dt><dd>pruned → full</dd></div>
+          </dl>
+
+          <div class="actions">
+            <a class="btn btn-primary" href="pocketcore/">
+              <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h11M9 4l4 4-4 4"/></svg>
+              Open the POCKETCORE page
+            </a>
+            <a class="btn btn-ghost" href="https://github.com/CoreJBH/pocketcore/releases/latest/download/pocketcore.apk" rel="noopener">
+              <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg>
+              Download APK · v1.0.0
+            </a>
+          </div>
+        </div>
+        <div class="flag-art">
+          <picture>
+            <source srcset="assets/img/screen-sync.webp" type="image/webp">
+            <img src="assets/img/screen-sync.png" width="620" height="1399" alt="POCKETCORE SYNC tab: chainstate validation progress and storage read from the phone's own node over RPC" decoding="async">
+          </picture>
+          <span class="cap">SYNC tab · every figure is an RPC answer</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec" id="projects">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">02 / PROJECTS</span>
+        <h2>Four tools, one rule</h2>
+        <p>Each one does its work on your device. None of them phones home.</p>
+      </div>
+
+      <div class="grid">
+        <a class="card proj reveal" href="pocketcore/">
+          <div class="top">
+            <img src="assets/img/tesseract-512.png" width="42" height="42" alt="" decoding="async">
+            <span class="pname">POCKETCORE</span>
+            <span class="arrow" aria-hidden="true">&#8599;</span>
+          </div>
+          <p class="desc">A real Bitcoin Core full node on Android. Full validation on the phone, wallet-free, RPC on loopback only.</p>
+          <span class="meta">Kotlin · Compose · C++ · arm64</span>
+        </a>
+
+        <a class="card proj reveal" href="https://github.com/CoreJBH/purewallet" rel="noopener">
+          <div class="top">
+            <img src="assets/img/icon-purewallet.png" width="42" height="42" alt="" decoding="async">
+            <span class="pname">PUREWALLET</span>
+            <span class="arrow" aria-hidden="true">&#8599;</span>
+          </div>
+          <p class="desc">On-device P2P Lightning and on-chain bitcoin wallet. No LSP, no backend, no custodian in the payment path.</p>
+          <span class="meta">LDK Node 0.7.0 · Kotlin</span>
+        </a>
+
+        <a class="card proj reveal" href="https://github.com/CoreJBH/cleanswap" rel="noopener">
+          <div class="top">
+            <img src="assets/img/icon-cleanswap.png" width="42" height="42" alt="" decoding="async">
+            <span class="pname">CLEANSWAP</span>
+            <span class="arrow" aria-hidden="true">&#8599;</span>
+          </div>
+          <p class="desc">Non-custodial Lightning bitcoin ⇄ USDT atomic swap. Both sides locked by a hashlock before either leg moves.</p>
+          <span class="meta">single-file HTML · solc 0.8.26</span>
+        </a>
+
+        <a class="card proj reveal" href="https://github.com/CoreJBH/nodepulse" rel="noopener">
+          <div class="top">
+            <img src="assets/img/icon-nodepulse.png" width="42" height="42" alt="" decoding="async">
+            <span class="pname">NODEPULSE</span>
+            <span class="arrow" aria-hidden="true">&#8599;</span>
+          </div>
+          <p class="desc">Live Bitcoin mainnet and Lightning topology on an interactive 3D globe, drawn frame by frame in one file.</p>
+          <span class="meta">Canvas 2D · zero dependencies</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="principles">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">03 / PRINCIPLES</span>
+        <h2>What the work is held to</h2>
+      </div>
+      <div class="principles">
+        <div class="principle reveal">
+          <span class="n">01</span>
+          <h3>Verify, don't trust</h3>
+          <p>No number on a screen is taken from a peer, an API or a vendor. It is computed by code that ships with the app and can be rebuilt from source.</p>
+        </div>
+        <div class="principle reveal">
+          <span class="n">02</span>
+          <h3>Nothing leaves the device</h3>
+          <p>No analytics, no crash reporting, no advertising IDs, no third-party SDKs. The only network traffic is the one the protocol needs.</p>
+        </div>
+        <div class="principle reveal">
+          <span class="n">03</span>
+          <h3>Keys are never in the middle</h3>
+          <p>A node stays a node (<code class="mono" style="color:#9ddcff">ENABLE_WALLET=OFF</code>); a wallet keeps its keys on the phone. Nothing is custodial.</p>
+        </div>
+        <div class="principle reveal">
+          <span class="n">04</span>
+          <h3>Limits are written down</h3>
+          <p>Build records, hashes and known gaps are published with each release. A tool that hides its edges cannot be audited.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="about">
+    <div class="wrap about">
+      <div>
+        <div class="sec-head" style="margin-bottom:26px">
+          <span class="idx">04 / ABOUT</span>
+          <h2 style="font-size:1.5rem">The code is the credential</h2>
+        </div>
+        <p>CoreJBH is an independent engineering label: one developer, no company behind it, no funding round,
+          no team page and no marketing department. The projects are built to be read — single-file apps,
+          unmodified upstream trees, unit tests and a build record that names every hash it ships.</p>
+        <p>There is no account to create and nothing to subscribe to. If you want to know what a tool does,
+          open the source, rebuild it, and compare the hash of your build with the one in the release.</p>
+        <div class="actions">
+          <a class="btn btn-ghost" href="https://github.com/CoreJBH?tab=repositories" rel="noopener">
+            <svg viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+            All repositories
+          </a>
+        </div>
+      </div>
+      <div class="about-art" aria-hidden="true">
+        <div class="halo"></div>
+        <picture>
+          <source srcset="assets/img/mascot.webp" type="image/webp">
+          <img src="assets/img/mascot.png" width="760" height="760" alt="" decoding="async">
+        </picture>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <g fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+            <path d="M24 3 42 13.5 42 34.5 24 45 6 34.5 6 13.5Z"/>
+            <path d="M24 15.2 31.5 19.5 31.5 28.5 24 32.8 16.5 28.5 16.5 19.5Z" stroke="#9be8ff"/>
+            <path d="M24 3v12.2M42 13.5 31.5 19.5M42 34.5 31.5 28.5M6 34.5 16.5 28.5M6 13.5 16.5 19.5" stroke="#5ccfff" stroke-width="1.7"/>
+          </g>
+        </svg>
+        <div>
+          <div class="word">CORE<span class="dot" style="color:var(--cyan)">JBH</span></div>
+          <p class="tagline">Verify, don't trust.</p>
+        </div>
+      </div>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="pocketcore/">Pocketcore</a>
+        <a href="pocketcore/privacy/">Privacy</a>
+        <a href="https://github.com/CoreJBH" rel="noopener">GitHub</a>
+        <a href="https://github.com/CoreJBH/pocketcore/issues" rel="noopener">Contact</a>
+      </nav>
+    </div>
+    <div class="foot-note">
+      <span>CoreJBH · independent Bitcoin &amp; cryptography engineering</span>
+      <span>this page loads nothing from another host · no cookies · no analytics</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>

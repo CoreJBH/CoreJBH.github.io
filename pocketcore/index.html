@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>POCKETCORE — a real Bitcoin Core full node in your pocket</title>
+<meta name="description" content="POCKETCORE runs an unmodified Bitcoin Core 32.1 full node on Android. SHA-256d, libsecp256k1 ECDSA and BIP340 Schnorr, BIP324 v2 transport and descriptor UTXO scans, all verified on the phone. No wallet, no accounts, no telemetry.">
+<meta name="author" content="CoreJBH">
+<meta name="theme-color" content="#030B27">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="POCKETCORE — Bitcoin Core 32.1 full node for Android">
+<meta property="og:description" content="Every block checked by SHA-256d and libsecp256k1 on your own phone. No wallet, no accounts, no servers, no fake node.">
+<meta property="og:url" content="https://corejbh.github.io/pocketcore/">
+<meta property="og:image" content="https://corejbh.github.io/assets/img/og-pocketcore.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://corejbh.github.io/pocketcore/">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="../" aria-label="CoreJBH home">
+      <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M24 3 42 13.5 42 34.5 24 45 6 34.5 6 13.5Z"/>
+          <path d="M24 15.2 31.5 19.5 31.5 28.5 24 32.8 16.5 28.5 16.5 19.5Z" stroke="#9be8ff"/>
+          <path d="M24 3v12.2M42 13.5 31.5 19.5M42 34.5 31.5 28.5M6 34.5 16.5 28.5M6 13.5 16.5 19.5" stroke="#5ccfff" stroke-width="1.7"/>
+        </g>
+      </svg>
+      <span class="word">CORE<span class="dot">JBH</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#crypto">Crypto</a>
+      <a href="#architecture" class="opt">Architecture</a>
+      <a href="#install">Install</a>
+      <a class="gh" href="https://github.com/CoreJBH/pocketcore" rel="noopener">GitHub &#8599;</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero app-hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="badge-row">
+          <span class="badge live">v1.0.0 released</span>
+          <span class="badge">Bitcoin Core 32.1</span>
+          <span class="badge">arm64-v8a</span>
+          <span class="badge">Android 8.0+</span>
+        </div>
+        <h1 class="wordmark">POCKETCORE</h1>
+        <p class="lead" style="margin-top:20px">A real Bitcoin Core full node in your pocket. Not a wallet, not a light
+          client, not a server you have to trust — your phone downloads the chain and checks it block by block with
+          Bitcoin Core's own code.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/CoreJBH/pocketcore/releases/latest/download/pocketcore.apk" rel="noopener">
+            <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg>
+            Download APK · v1.0.0
+          </a>
+          <a class="btn btn-ghost" href="#install">
+            <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.8 13 3.6v4.1c0 3-2 5.4-5 6.5-3-1.1-5-3.5-5-6.5V3.6L8 1.8Z"/><path d="m5.9 7.9 1.5 1.5 2.9-3"/></svg>
+            Verify a download
+          </a>
+          <a class="btn btn-link" href="https://github.com/CoreJBH/pocketcore" rel="noopener">Source &#8599;</a>
+        </div>
+        <p class="hero-note">
+          <span>no wallet</span><span>no accounts</span><span>no telemetry</span><span>loopback RPC only</span>
+        </p>
+      </div>
+      <div class="hero-phone" aria-hidden="true">
+        <div class="halo"></div>
+        <picture>
+          <source srcset="../assets/img/screen-sync.webp" type="image/webp">
+          <img src="../assets/img/screen-sync.png" width="620" height="1399" alt="" decoding="async">
+        </picture>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="strip" aria-label="At a glance">
+      <span><b>unmodified bitcoind</b></span>
+      <span>NDK r30 · aarch64</span>
+      <span>pruned 550 MB → full</span>
+      <span>mainnet · signet · testnet4</span>
+      <span>AssumeUTXO</span>
+    </div>
+  </div>
+
+  <section class="sec" id="crypto">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">01 / CRYPTOGRAPHY</span>
+        <h2>What the phone verifies</h2>
+        <p>Bitcoin is checked at four layers, plus the two secrets the app keeps — and the phone does all of it.</p>
+      </div>
+
+      <div class="spec-grid">
+        <article class="spec reveal">
+          <p class="sym">Hash · double SHA-256</p>
+          <h3>SHA-256d</h3>
+          <p>Double SHA-256 over the 80-byte header, transaction ids and wtxids, and every Merkle node. The block
+            hash and Merkle root on screen are the daemon's own arithmetic, not a peer's claim.</p>
+          <span class="where">src/hash.h · src/crypto/sha256.cpp</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Consensus</p>
+          <h3>Proof of work</h3>
+          <p>The block hash is compared against the target decoded from <code>nBits</code>, and chainwork is
+            accumulated per header. A header is only accepted if the work stands behind it; the best chain is the
+            one with the most work.</p>
+          <span class="where">Core's own validation · never a peer's preference</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Signatures · libsecp256k1</p>
+          <h3>ECDSA &amp; BIP340 Schnorr</h3>
+          <p>ECDSA over secp256k1 (DER) and BIP340 Schnorr — 64-byte signatures with x-only public keys — for
+            taproot, plus BIP32 child-key derivation for descriptors. A spend is valid only if every signature in
+            its script actually verifies.</p>
+          <span class="where">src/secp256k1 · static in libbitcoind.so · no JNI, no Pure-Java curve</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Execution</p>
+          <h3>Script interpreter</h3>
+          <p>P2PKH, P2SH, P2WPKH, P2WSH and P2TR with BIP143 and BIP341 sighash, <code>OP_CLTV</code>,
+            <code>OP_CSV</code>, multisig and the rest. The UTXO being spent is locked to this exact script and this
+            exact transaction.</p>
+          <span class="where">script/interpreter.cpp</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Transport · BIP324</p>
+          <h3>Encrypted v2 P2P</h3>
+          <p>BIP324's ElligatorSwift x-only ECDH handshake and a ChaCha20-Poly1305 AEAD session for every peer, on
+            by Core 32.1's default. A passive observer no longer reads every block and transaction you relay; a peer
+            without v2 falls back to the legacy handshake.</p>
+          <span class="where">BIP324 · ChaCha20-Poly1305</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">UTXO · watch-only</p>
+          <h3>scantxoutset</h3>
+          <p>Addresses are derived from a public descriptor (<code>wpkh</code>, <code>tr</code>,
+            <code>sh(wpkh)</code>, <code>pkh</code> or a bare xpub/zpub/ypub) and matched by asking the node to
+            scan its own validated UTXO set. Not a balance from an API — the daemon searching itself.</p>
+          <span class="where">private keys and WIF are refused before they reach the node</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Secrets · Android Keystore</p>
+          <h3>AES-256-GCM &amp; rpcauth</h3>
+          <p>The RPC pair is generated on the device and sealed with an AES-256-GCM key that never leaves the
+            Android Keystore. <code>bitcoin.conf</code> carries only Core's salted <code>rpcauth</code> hash —
+            user, salt and <code>HMAC-SHA256(salt, password)</code> — never the password itself.</p>
+          <span class="where">SecretStore.kt · RpcAuth.kt · never shown, copied or written in the clear</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="architecture">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">02 / ARCHITECTURE</span>
+        <h2>A thin, honest client</h2>
+        <p>The UI has no opinion about validity. Everything it shows is an RPC answer from the daemon.</p>
+      </div>
+
+      <div class="two-col">
+        <div class="arch reveal" role="img" aria-label="Architecture: Compose UI talks to NodeController and NodeService, which call RpcClient over loopback JSON-RPC; RpcClient drives the bitcoind child process, which connects to the Bitcoin network with BIP324 v2.">
+          <div class="layer"><span class="lbl">Compose UI</span><span class="chip">NODE</span><span class="chip">SYNC</span><span class="chip">EXPLORE</span><span class="chip">SETTINGS</span><span class="note">StateFlow</span></div>
+          <div class="down">&#9660;</div>
+          <div class="layer"><span class="lbl">NodeController</span><span class="note">state, polling, Wi-Fi / charging policy</span><span class="lbl">NodeService</span><span class="note">foreground service + status card</span></div>
+          <div class="down">&#9660;</div>
+          <div class="layer"><span class="lbl">RpcClient</span><span class="note">HTTP JSON-RPC on 127.0.0.1 · generated user + password</span></div>
+          <div class="down">&#9660;</div>
+          <div class="layer core"><span class="lbl">bitcoind</span><span class="note">libbitcoind.so executed from nativeLibraryDir</span><span class="chip">Core 32.1</span><span class="chip">C++</span></div>
+          <div class="down">&#9660;</div>
+          <div class="layer"><span class="lbl">BIP324 v2</span><span class="note">P2P to the Bitcoin network</span></div>
+          <div class="down">&#9660;</div>
+          <div class="layer"><span class="lbl">&lt;app files&gt;/node/data</span><span class="note">pruned or full chain · debug.log · lock</span></div>
+        </div>
+
+        <div>
+          <ul class="checks">
+            <li><b>Unmodified daemon.</b> Bitcoin Core 32.1, source from the official tarball, built with NDK r30 for <span class="mono">aarch64-linux-android</span> (API 26) and stripped to 10,729,904 bytes.</li>
+            <li><b>Native app.</b> Kotlin 2.0.21 and Jetpack Compose on Android 8.0+, <span class="mono">arm64-v8a</span> only.</li>
+            <li><b>Real child process.</b> The APK ships <span class="mono">libbitcoind.so</span>; it is extracted into <span class="mono">nativeLibraryDir</span> and run by a foreground service, not emulated in-app.</li>
+            <li><b>Loopback only.</b> RPC binds to <span class="mono">127.0.0.1</span>; cleartext HTTP is allowed for localhost and nothing else.</li>
+            <li><b>Pruned or full.</b> Default <span class="mono">prune=550</span> MB, switchable to 2048, 5120 or Full — every block kept, roughly 750–800 GB on mainnet. A pruned node still validates every block.</li>
+            <li><b>AssumeUTXO.</b> Load a <span class="mono">dumptxoutset</span> snapshot to reach a recent height in minutes; background validation continues from genesis with both chainstates shown.</li>
+            <li><b>Three networks.</b> Mainnet, Signet and Testnet4, each with its own data directory and ports.</li>
+            <li><b>Resilient start.</b> Ports are checked before launch, an orphaned node is stopped through its own credentials, and a busy port moves the node to a free one.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="screens">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">03 / SCREENS</span>
+        <h2>Inside the app</h2>
+        <p>SYNC, EXPLORE and SETTINGS as shipped in v1.0.0 — every figure is an RPC answer from the phone's own node.</p>
+      </div>
+      <div class="shots">
+        <figure class="shot reveal">
+          <picture>
+            <source srcset="../assets/img/screen-sync.webp" type="image/webp">
+            <img src="../assets/img/screen-sync.png" width="620" height="1399" alt="SYNC tab: chainstate validation progress, AssumeUTXO snapshot picker and pruned storage figures" decoding="async">
+          </picture>
+          <figcaption>SYNC</figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <picture>
+            <source srcset="../assets/img/screen-explore.webp" type="image/webp">
+            <img src="../assets/img/screen-explore.png" width="620" height="1399" alt="EXPLORE tab: best block, block lookup and transaction lookup against this phone's node" decoding="async">
+          </picture>
+          <figcaption>EXPLORE</figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <picture>
+            <source srcset="../assets/img/screen-settings.webp" type="image/webp">
+            <img src="../assets/img/screen-settings.png" width="620" height="1399" alt="SETTINGS tab: network selector, watch-only descriptor, prune size, data directory and background policy" decoding="async">
+          </picture>
+          <figcaption>SETTINGS</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="install">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">04 / INSTALL</span>
+        <h2>Download, check, run</h2>
+        <p>One APK, one hash, no account. Build it yourself if you would rather trust your own compiler.</p>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <ol class="checks steps">
+            <li><b>Download</b> <span class="mono">pocketcore.apk</span> from <a href="https://github.com/CoreJBH/pocketcore/releases/latest" rel="noopener">Releases</a> — v1.0.0, 17,216,155 bytes.</li>
+            <li><b>Allow “install unknown apps”</b> for the app you open it with, then install. Android 8.0 (API 26) or newer, <span class="mono">arm64-v8a</span>.</li>
+            <li><b>Open POCKETCORE and press START NODE.</b> The status card shows the height while the node syncs; “Wi-Fi only” and “Charging only” pause it politely.</li>
+            <li><b>Update in place.</b> A newer APK installs over the old one and keeps the chain. Do not uninstall to upgrade — that deletes the node data.</li>
+          </ol>
+          <p class="mono" style="margin-top:22px">About 1 GB free storage for the default pruned chain plus the app.
+            Full validation from genesis takes days; load an AssumeUTXO snapshot to start near the tip instead.</p>
+        </div>
+
+        <div class="verify">
+          <h3 style="margin:0 0 6px;font-family:var(--mono);letter-spacing:.04em">SHA-256 · pocketcore.apk v1.0.0</h3>
+          <p class="mono" style="margin:0">Check this before you install. If the hashes differ, the file is not the build we published.</p>
+          <div class="hash">
+            <code id="apk-sha">872b8a6c406574ce15852ce0b1d895ffa08cb4b08f65f9e8f80b153379daabce</code>
+            <button class="copy" type="button" data-copy="apk-sha">copy</button>
+          </div>
+          <pre class="cmd"><span class="p">$</span> sha256sum pocketcore.apk
+872b8a6c406574ce15852ce0b1d895ffa08cb4b08f65f9e8f80b153379daabce</pre>
+          <pre class="cmd"><span class="p">$</span> apksigner verify --print-certs pocketcore.apk
+<span class="p">#</span> debug certificate SHA-256 f5074815…2aa9c011
+<span class="p">#</span> the same key as every build since versionCode 2</pre>
+          <p class="mono" style="margin:16px 0 0">Every claim above is recorded in the
+            <a href="https://github.com/CoreJBH/pocketcore/blob/main/docs/BUILD-RECORD.md" rel="noopener">build record</a>,
+            including the bundled daemon's own hash and the 93 unit tests that ran before release.</p>
+        </div>
+      </div>
+
+      <div class="grid" style="margin-top:22px">
+        <div class="card">
+          <p class="kicker">GitHub Releases</p>
+          <h3>APK, debug-signed</h3>
+          <p>The current public build. Same signing key since versionCode 2, so it updates in place.</p>
+          <div class="actions" style="margin-top:18px">
+            <a class="btn btn-ghost" href="https://github.com/CoreJBH/pocketcore/releases/latest" rel="noopener">Releases &#8599;</a>
+          </div>
+        </div>
+        <div class="card">
+          <p class="kicker">Google Play</p>
+          <h3><span class="badge soon">listing in preparation</span></h3>
+          <p>The Play build is a separate identity — <span class="mono">com.corejbh.pocketcore</span>, versionCode 10,
+            signed with a release key — so it installs beside the debug APK with its own empty node directory.</p>
+        </div>
+        <div class="card">
+          <p class="kicker">F-Droid</p>
+          <h3><span class="badge soon">planned</span></h3>
+          <p>F-Droid needs a reproducible recipe for the bundled daemon; the build instructions in the repository are
+            written for exactly that. Until then, build from source and compare the bundled hash.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="limits">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">05 / LIMITS</span>
+        <h2>What it does not do</h2>
+        <p>A tool that hides its edges cannot be audited.</p>
+      </div>
+      <div class="limits">
+        <div class="limit"><h3>Debug-signed APK</h3><p>The public release is signed with a debug key and is not byte-for-byte reproducible. Rebuild it if you need a binary you fully trust.</p></div>
+        <div class="limit"><h3>ARM64 only</h3><p>Built for <span class="mono">arm64-v8a</span> phones. x86 and 32-bit ARM devices are not supported.</p></div>
+        <div class="limit"><h3>Not a wallet</h3><p><span class="mono">ENABLE_WALLET=OFF</span>. POCKETCORE never creates, stores or accepts private keys, seed phrases or WIF strings.</p></div>
+        <div class="limit"><h3>No Electrum server</h3><p>RPC is loopback-only, so wallets that require an Electrum backend cannot attach to this node yet.</p></div>
+        <div class="limit"><h3>Pruned lookups</h3><p>On a pruned node, old block bodies are gone. Those lookups show the verified header, not the full block.</p></div>
+        <div class="limit"><h3>Sync takes time</h3><p>Full validation from genesis takes days on a phone. The first launch and the real chain download happen on a device, not in a test rig.</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <g fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+            <path d="M24 3 42 13.5 42 34.5 24 45 6 34.5 6 13.5Z"/>
+            <path d="M24 15.2 31.5 19.5 31.5 28.5 24 32.8 16.5 28.5 16.5 19.5Z" stroke="#9be8ff"/>
+            <path d="M24 3v12.2M42 13.5 31.5 19.5M42 34.5 31.5 28.5M6 34.5 16.5 28.5M6 13.5 16.5 19.5" stroke="#5ccfff" stroke-width="1.7"/>
+          </g>
+        </svg>
+        <div>
+          <div class="word">CORE<span class="dot" style="color:var(--cyan)">JBH</span></div>
+          <p class="tagline">POCKETCORE · verify, don't trust.</p>
+        </div>
+      </div>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="../">CoreJBH</a>
+        <a href="../pocketcore/privacy/">Privacy</a>
+        <a href="https://github.com/CoreJBH/pocketcore" rel="noopener">Source</a>
+        <a href="https://github.com/CoreJBH/pocketcore/issues" rel="noopener">Issues</a>
+      </nav>
+    </div>
+    <div class="foot-note">
+      <span>POCKETCORE v1.0.0 · Bitcoin Core 32.1 · arm64-v8a</span>
+      <span>this page loads nothing from another host · no cookies · no analytics</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/site.js" defer></script>
+</body>
+</html>
