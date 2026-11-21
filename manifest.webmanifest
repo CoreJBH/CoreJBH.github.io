@@ -1,7 +1,7 @@
 {
   "name": "CoreJBH — Verify, don't trust",
   "short_name": "CoreJBH",
-  "description": "Independent Bitcoin and cryptography engineering: POCKETCORE, PUREWALLET, CLEANSWAP and NODEPULSE. No accounts, no telemetry, no server you have to trust.",
+  "description": "Independent Bitcoin and cryptography engineering: POCKETCORE, ZEROWALLET, CLEANSWAP and NODEPULSE. No accounts, no telemetry, no server you have to trust.",
   "lang": "en",
   "dir": "ltr",
   "id": "/",
