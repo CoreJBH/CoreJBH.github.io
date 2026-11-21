@@ -553,7 +553,6 @@ h3 { font-size: 1.12rem; letter-spacing: -0.015em; line-height: 1.35; }
 .proj .top .pname { text-decoration: none; }
 .proj .top .pname:hover { color: #9ceeff; }
 .proj .ver {
-  margin-left: auto;
   flex: none;
   font-family: var(--mono);
   font-size: 10px;
@@ -572,12 +571,14 @@ h3 { font-size: 1.12rem; letter-spacing: -0.015em; line-height: 1.35; }
 .proj .card-links {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 6px 16px;
   font-family: var(--mono);
   font-size: 10.5px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
+.proj .card-links .ver { margin-right: 2px; }
 .proj .card-links a { color: var(--muted); text-decoration: none; }
 .proj .card-links a:hover { color: var(--cyan); }
 
