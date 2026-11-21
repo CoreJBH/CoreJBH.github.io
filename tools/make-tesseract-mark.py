@@ -29,7 +29,7 @@ Outputs (assets/img/):
     icon-1024.png        master, opaque #030B27
     icon-512.png  icon-192.png  apple-touch-icon.png   opaque, resampled
     favicon-32.png       heavier line and tighter framing so it survives 32 px
-    tesseract-mark.png   straight-alpha RGBA for the navbar and footer
+    tesseract-mark.png   straight-alpha RGBA (128 px) for the navbar and footer
 
 Usage: python3 tools/make-tesseract-mark.py [--preview DIR]
 """
@@ -289,7 +289,10 @@ def main() -> None:
 
     # The navbar and footer show this file at 28-32 px, so it carries a heavier
     # line and a tighter frame than the app icons.
-    to_mark(render(line_w=LINE_W * 2.0, content=0.80)).save(
+    # 128 px is 4x the largest CSS size it appears at (32 px footer mark) and
+    # keeps the file at ~20 KB, since every page loads it in the navbar.
+    to_mark(render(line_w=LINE_W * 2.0, content=0.80)).resize(
+        (128, 128), Image.LANCZOS).save(
         os.path.join(out, "tesseract-mark.png"), optimize=True)
     write_svg(os.path.join(out, "favicon.svg"))
     print("icons written to", out)
