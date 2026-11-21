@@ -512,7 +512,7 @@ h3 { font-size: 1.12rem; letter-spacing: -0.015em; line-height: 1.35; }
 /* in the flagship card the facts are the right-hand column */
 .flagship .facts {
   margin: 0;
-  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   align-self: center;
 }
 
