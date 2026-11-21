@@ -223,6 +223,7 @@ h1, h2, h3 {
 }
 
 h2 { font-size: clamp(1.5rem, 2.6vw, 2.05rem); }
+.nm { text-transform: none; }   /* project names are proper nouns, not labels */
 h3 { font-size: 1.12rem; letter-spacing: -0.015em; line-height: 1.35; }
 
 .lead {

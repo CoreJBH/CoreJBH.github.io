@@ -11,7 +11,7 @@
  * deploy is live on the next load and a visitor never gets a stale page that
  * looks like the release hash changed when it did not.
  */
-const VERSION = "2026-11-21h";
+const VERSION = "2026-11-21i";
 
 self.addEventListener("install", () => {
   // No precache list: there is no copy of the site that could go out of date.

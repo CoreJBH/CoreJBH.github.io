@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CoreJBH — Verify, don't trust</title>
-<meta name="description" content="CoreJBH is independent Bitcoin and cryptography engineering: POCKETCORE, a real Bitcoin Core full node for Android, plus ZEROWALLET, CLEANSWAP and NODEPULSE. No accounts, no telemetry, no servers you have to trust.">
+<meta name="description" content="CoreJBH is independent Bitcoin and cryptography engineering: PocketCore, a real Bitcoin Core full node for Android, plus ZeroWallet, CleanSwap and NodePulse. No accounts, no telemetry, no servers you have to trust.">
 <meta name="author" content="CoreJBH">
 <meta name="theme-color" content="#030B27">
 <meta name="color-scheme" content="dark">
@@ -15,17 +15,17 @@
 <meta name="apple-mobile-web-app-title" content="CoreJBH">
 <meta property="og:type" content="website">
 <meta property="og:title" content="CoreJBH — Verify, don't trust">
-<meta property="og:description" content="Independent Bitcoin and cryptography engineering. POCKETCORE runs an unmodified Bitcoin Core 32.1 full node on your phone.">
+<meta property="og:description" content="Independent Bitcoin and cryptography engineering. PocketCore runs an unmodified Bitcoin Core 32.1 full node on your phone.">
 <meta property="og:url" content="https://corejbh.github.io/">
 <meta property="og:image" content="https://corejbh.github.io/assets/img/og-pocketcore.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://corejbh.github.io/">
-<link rel="icon" href="assets/img/favicon-32.png?v=2026-11-21h" sizes="32x32" type="image/png">
-<link rel="icon" href="assets/img/icon-192.png?v=2026-11-21h" sizes="192x192" type="image/png">
-<link rel="icon" href="assets/img/icon-512.png?v=2026-11-21h" sizes="512x512" type="image/png">
-<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=2026-11-21h" sizes="180x180">
+<link rel="icon" href="assets/img/favicon-32.png?v=2026-11-21i" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/img/icon-192.png?v=2026-11-21i" sizes="192x192" type="image/png">
+<link rel="icon" href="assets/img/icon-512.png?v=2026-11-21i" sizes="512x512" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=2026-11-21i" sizes="180x180">
 <link rel="manifest" href="/manifest.webmanifest">
-<link rel="stylesheet" href="assets/css/site.css?v=2026-11-21h">
+<link rel="stylesheet" href="assets/css/site.css?v=2026-11-21i">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -33,11 +33,11 @@
 <header class="site-head">
   <div class="wrap">
     <a class="brand" href="./" aria-label="CoreJBH home">
-      <img class="brand-mark" src="assets/img/tesseract-mark.png?v=2026-11-21h" width="30" height="30" alt="" decoding="async">
+      <img class="brand-mark" src="assets/img/tesseract-mark.png?v=2026-11-21i" width="30" height="30" alt="" decoding="async">
       <span class="word">CORE<span class="dot">JBH</span></span>
     </a>
     <nav class="site-nav" aria-label="Main">
-      <a href="#flagship">Pocketcore</a>
+      <a href="#flagship"><span class="nm">PocketCore</span></a>
       <a href="#projects">Projects</a>
       <a href="#principles" class="opt">Principles</a>
       <a class="gh" href="https://github.com/CoreJBH" rel="noopener">GitHub &#8599;</a>
@@ -58,7 +58,7 @@
         <div class="actions">
           <a class="btn btn-primary" href="pocketcore/">
             <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h11M9 4l4 4-4 4"/></svg>
-            POCKETCORE — the flagship
+            PocketCore — the flagship
           </a>
           <a class="btn btn-ghost" href="https://github.com/CoreJBH" rel="noopener">
             <svg viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
@@ -88,16 +88,16 @@
     <div class="wrap">
       <div class="sec-head">
         <span class="idx">01 / FLAGSHIP</span>
-        <h2>POCKETCORE</h2>
+        <h2>PocketCore</h2>
         <p>A full node, not a promise: the chain is checked on the phone that holds it.</p>
       </div>
 
       <article class="flagship reveal">
         <div>
           <div class="flag-head">
-            <img src="assets/img/tesseract-512.png" width="62" height="62" alt="POCKETCORE tesseract icon" decoding="async">
+            <img src="assets/img/tesseract-512.png" width="62" height="62" alt="PocketCore tesseract icon" decoding="async">
             <div>
-              <div class="name">POCKETCORE</div>
+              <div class="name">PocketCore</div>
               <div class="sub">Bitcoin Core 32.1 · Android arm64</div>
             </div>
           </div>
@@ -117,7 +117,7 @@
           <div class="actions">
             <a class="btn btn-primary" href="pocketcore/">
               <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h11M9 4l4 4-4 4"/></svg>
-              Open the POCKETCORE page
+              Open the PocketCore page
             </a>
             <a class="btn btn-ghost" href="https://github.com/CoreJBH/pocketcore/releases/latest/download/pocketcore.apk" rel="noopener">
               <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg>
@@ -128,7 +128,7 @@
         <div class="flag-art">
           <picture>
             <source srcset="assets/img/screen-sync.webp" type="image/webp">
-            <img src="assets/img/screen-sync.png" width="620" height="1399" alt="POCKETCORE SYNC tab: chainstate validation progress and storage read from the phone's own node over RPC" decoding="async">
+            <img src="assets/img/screen-sync.png" width="620" height="1399" alt="PocketCore SYNC tab: chainstate validation progress and storage read from the phone's own node over RPC" decoding="async">
           </picture>
           <span class="cap">SYNC tab · every figure is an RPC answer</span>
         </div>
@@ -148,7 +148,7 @@
         <a class="card proj reveal" href="pocketcore/">
           <div class="top">
             <img src="assets/img/tesseract-512.png" width="42" height="42" alt="" decoding="async">
-            <span class="pname">POCKETCORE</span>
+            <span class="pname">PocketCore</span>
             <span class="arrow" aria-hidden="true">&#8599;</span>
           </div>
           <p class="desc">A real Bitcoin Core full node on Android. Full validation on the phone, wallet-free, RPC on loopback only.</p>
@@ -158,7 +158,7 @@
         <a class="card proj reveal" href="https://github.com/CoreJBH/zerowallet" rel="noopener">
           <div class="top">
             <img src="assets/img/icon-zerowallet.png" width="42" height="42" alt="" decoding="async">
-            <span class="pname">ZEROWALLET</span>
+            <span class="pname">ZeroWallet</span>
             <span class="arrow" aria-hidden="true">&#8599;</span>
           </div>
           <p class="desc">On-device P2P Lightning and on-chain bitcoin wallet. No LSP, no backend, no custodian in the payment path.</p>
@@ -168,7 +168,7 @@
         <a class="card proj reveal" href="https://github.com/CoreJBH/cleanswap" rel="noopener">
           <div class="top">
             <img src="assets/img/icon-cleanswap.png" width="42" height="42" alt="" decoding="async">
-            <span class="pname">CLEANSWAP</span>
+            <span class="pname">CleanSwap</span>
             <span class="arrow" aria-hidden="true">&#8599;</span>
           </div>
           <p class="desc">Non-custodial Lightning bitcoin ⇄ USDT atomic swap. Both sides locked by a hashlock before either leg moves.</p>
@@ -178,7 +178,7 @@
         <a class="card proj reveal" href="https://github.com/CoreJBH/nodepulse" rel="noopener">
           <div class="top">
             <img src="assets/img/icon-nodepulse.png" width="42" height="42" alt="" decoding="async">
-            <span class="pname">NODEPULSE</span>
+            <span class="pname">NodePulse</span>
             <span class="arrow" aria-hidden="true">&#8599;</span>
           </div>
           <p class="desc">Live Bitcoin mainnet and Lightning topology on an interactive 3D globe, drawn frame by frame in one file.</p>
@@ -247,14 +247,14 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <img class="brand-mark" src="assets/img/tesseract-mark.png?v=2026-11-21h" width="30" height="30" alt="" decoding="async">
+        <img class="brand-mark" src="assets/img/tesseract-mark.png?v=2026-11-21i" width="30" height="30" alt="" decoding="async">
         <div>
           <div class="word">CORE<span class="dot" style="color:var(--cyan)">JBH</span></div>
           <p class="tagline">Verify, don't trust.</p>
         </div>
       </div>
       <nav class="foot-links" aria-label="Footer">
-        <a href="pocketcore/">Pocketcore</a>
+        <a href="pocketcore/"><span class="nm">PocketCore</span></a>
         <a href="pocketcore/privacy/">Privacy</a>
         <a href="https://github.com/CoreJBH" rel="noopener">GitHub</a>
         <a href="https://github.com/CoreJBH/pocketcore/issues" rel="noopener">Contact</a>
@@ -267,6 +267,6 @@
   </div>
 </footer>
 
-<script src="assets/js/site.js?v=2026-11-21h" defer></script>
+<script src="assets/js/site.js?v=2026-11-21i" defer></script>
 </body>
 </html>

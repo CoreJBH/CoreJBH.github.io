@@ -1,6 +1,6 @@
 # CoreJBH.github.io
 
-Static site for **CoreJBH** and **POCKETCORE**, served by GitHub Pages at
+Static site for **CoreJBH** and **PocketCore**, served by GitHub Pages at
 <https://corejbh.github.io/>.
 
 No build step, no framework, no external host. Every page, stylesheet, script and
@@ -9,7 +9,7 @@ cookie.
 
 ```
 index.html                     CoreJBH — Verify, don't trust
-pocketcore/index.html          POCKETCORE landing page
+pocketcore/index.html          PocketCore landing page
 pocketcore/privacy/index.html  Privacy policy (canonical)
 pocketcore/privacy.html        alias that redirects to the policy
 404.html                       GitHub Pages not-found page

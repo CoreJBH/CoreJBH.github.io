@@ -1,7 +1,7 @@
 {
   "name": "CoreJBH — Verify, don't trust",
   "short_name": "CoreJBH",
-  "description": "Independent Bitcoin and cryptography engineering: POCKETCORE, ZEROWALLET, CLEANSWAP and NODEPULSE. No accounts, no telemetry, no server you have to trust.",
+  "description": "Independent Bitcoin and cryptography engineering: PocketCore, ZeroWallet, CleanSwap and NodePulse. No accounts, no telemetry, no server you have to trust.",
   "lang": "en",
   "dir": "ltr",
   "id": "/",
@@ -15,19 +15,19 @@
   "prefer_related_applications": false,
   "icons": [
     {
-      "src": "/assets/img/icon-192.png?v=2026-11-21h",
+      "src": "/assets/img/icon-192.png?v=2026-11-21i",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/assets/img/icon-512.png?v=2026-11-21h",
+      "src": "/assets/img/icon-512.png?v=2026-11-21i",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/assets/img/icon-512-maskable.png?v=2026-11-21h",
+      "src": "/assets/img/icon-512-maskable.png?v=2026-11-21i",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"

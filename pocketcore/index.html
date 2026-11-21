@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>POCKETCORE — a real Bitcoin Core full node in your pocket</title>
-<meta name="description" content="POCKETCORE runs an unmodified Bitcoin Core 32.1 full node on Android. SHA-256d, libsecp256k1 ECDSA and BIP340 Schnorr, BIP324 v2 transport and descriptor UTXO scans, all verified on the phone. No wallet, no accounts, no telemetry.">
+<title>PocketCore — a real Bitcoin Core full node in your pocket</title>
+<meta name="description" content="PocketCore runs an unmodified Bitcoin Core 32.1 full node on Android. SHA-256d, libsecp256k1 ECDSA and BIP340 Schnorr, BIP324 v2 transport and descriptor UTXO scans, all verified on the phone. No wallet, no accounts, no telemetry.">
 <meta name="author" content="CoreJBH">
 <meta name="theme-color" content="#030B27">
 <meta name="color-scheme" content="dark">
@@ -14,18 +14,18 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="CoreJBH">
 <meta property="og:type" content="website">
-<meta property="og:title" content="POCKETCORE — Bitcoin Core 32.1 full node for Android">
+<meta property="og:title" content="PocketCore — Bitcoin Core 32.1 full node for Android">
 <meta property="og:description" content="Every block checked by SHA-256d and libsecp256k1 on your own phone. No wallet, no accounts, no servers, no fake node.">
 <meta property="og:url" content="https://corejbh.github.io/pocketcore/">
 <meta property="og:image" content="https://corejbh.github.io/assets/img/og-pocketcore.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://corejbh.github.io/pocketcore/">
-<link rel="icon" href="../assets/img/favicon-32.png?v=2026-11-21h" sizes="32x32" type="image/png">
-<link rel="icon" href="../assets/img/icon-192.png?v=2026-11-21h" sizes="192x192" type="image/png">
-<link rel="icon" href="../assets/img/icon-512.png?v=2026-11-21h" sizes="512x512" type="image/png">
-<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=2026-11-21h" sizes="180x180">
+<link rel="icon" href="../assets/img/favicon-32.png?v=2026-11-21i" sizes="32x32" type="image/png">
+<link rel="icon" href="../assets/img/icon-192.png?v=2026-11-21i" sizes="192x192" type="image/png">
+<link rel="icon" href="../assets/img/icon-512.png?v=2026-11-21i" sizes="512x512" type="image/png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=2026-11-21i" sizes="180x180">
 <link rel="manifest" href="/manifest.webmanifest">
-<link rel="stylesheet" href="../assets/css/site.css?v=2026-11-21h">
+<link rel="stylesheet" href="../assets/css/site.css?v=2026-11-21i">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -33,7 +33,7 @@
 <header class="site-head">
   <div class="wrap">
     <a class="brand" href="../" aria-label="CoreJBH home">
-      <img class="brand-mark" src="../assets/img/tesseract-mark.png?v=2026-11-21h" width="30" height="30" alt="" decoding="async">
+      <img class="brand-mark" src="../assets/img/tesseract-mark.png?v=2026-11-21i" width="30" height="30" alt="" decoding="async">
       <span class="word">CORE<span class="dot">JBH</span></span>
     </a>
     <nav class="site-nav" aria-label="Main">
@@ -56,7 +56,7 @@
           <span class="badge">arm64-v8a</span>
           <span class="badge">Android 8.0+</span>
         </div>
-        <h1 class="wordmark">POCKETCORE</h1>
+        <h1 class="wordmark">PocketCore</h1>
         <p class="lead" style="margin-top:20px">A real Bitcoin Core full node in your pocket. Not a wallet, not a light
           client, not a server you have to trust — your phone downloads the chain and checks it block by block with
           Bitcoin Core's own code.</p>
@@ -254,7 +254,7 @@
           <ul class="checks steps">
             <li><b>Download</b> <span class="mono">pocketcore.apk</span> from <a href="https://github.com/CoreJBH/pocketcore/releases/latest" rel="noopener">Releases</a> — v1.0.0, 17,216,155 bytes.</li>
             <li><b>Allow “install unknown apps”</b> for the app you open it with, then install. Android 8.0 (API 26) or newer, <span class="mono">arm64-v8a</span>.</li>
-            <li><b>Open POCKETCORE and press START NODE.</b> The status card shows the height while the node syncs; “Wi-Fi only” and “Charging only” pause it politely.</li>
+            <li><b>Open PocketCore and press START NODE.</b> The status card shows the height while the node syncs; “Wi-Fi only” and “Charging only” pause it politely.</li>
             <li><b>Update in place.</b> A newer APK installs over the old one and keeps the chain. Do not uninstall to upgrade — that deletes the node data.</li>
           </ul>
           <p class="mono" style="margin-top:22px">About 1 GB free storage for the default pruned chain plus the app.
@@ -316,7 +316,7 @@
       <div class="limits">
         <div class="limit"><h3>Debug-signed APK</h3><p>The public release is signed with a debug key and is not byte-for-byte reproducible. Rebuild it if you need a binary you fully trust.</p></div>
         <div class="limit"><h3>ARM64 only</h3><p>Built for <span class="mono">arm64-v8a</span> phones. x86 and 32-bit ARM devices are not supported.</p></div>
-        <div class="limit"><h3>Not a wallet</h3><p><span class="mono">ENABLE_WALLET=OFF</span>. POCKETCORE never creates, stores or accepts private keys, seed phrases or WIF strings.</p></div>
+        <div class="limit"><h3>Not a wallet</h3><p><span class="mono">ENABLE_WALLET=OFF</span>. PocketCore never creates, stores or accepts private keys, seed phrases or WIF strings.</p></div>
         <div class="limit"><h3>No Electrum server</h3><p>RPC is loopback-only, so wallets that require an Electrum backend cannot attach to this node yet.</p></div>
         <div class="limit"><h3>Pruned lookups</h3><p>On a pruned node, old block bodies are gone. Those lookups show the verified header, not the full block.</p></div>
         <div class="limit"><h3>Sync takes time</h3><p>Full validation from genesis takes days on a phone. The first launch and the real chain download happen on a device, not in a test rig.</p></div>
@@ -330,10 +330,10 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <img class="brand-mark" src="../assets/img/tesseract-mark.png?v=2026-11-21h" width="30" height="30" alt="" decoding="async">
+        <img class="brand-mark" src="../assets/img/tesseract-mark.png?v=2026-11-21i" width="30" height="30" alt="" decoding="async">
         <div>
           <div class="word">CORE<span class="dot" style="color:var(--cyan)">JBH</span></div>
-          <p class="tagline">POCKETCORE · verify, don't trust.</p>
+          <p class="tagline">PocketCore · verify, don't trust.</p>
         </div>
       </div>
       <nav class="foot-links" aria-label="Footer">
@@ -344,12 +344,12 @@
       </nav>
     </div>
     <div class="foot-note">
-      <span>POCKETCORE v1.0.0 · Bitcoin Core 32.1 · arm64-v8a</span>
+      <span>PocketCore v1.0.0 · Bitcoin Core 32.1 · arm64-v8a</span>
       <span>this page loads nothing from another host · no cookies · no analytics</span>
     </div>
   </div>
 </footer>
 
-<script src="../assets/js/site.js?v=2026-11-21h" defer></script>
+<script src="../assets/js/site.js?v=2026-11-21i" defer></script>
 </body>
 </html>
