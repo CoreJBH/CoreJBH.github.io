@@ -21,10 +21,13 @@ Outputs (assets/img/, all opaque #000000 except the navbar mark):
 
     icon-512.png           512   content 0.76  PWA / install icon, "any"
     icon-192.png           192   content 0.76  PWA / install icon, "any"
-    icon-512-maskable.png  512   content 0.62  "maskable": the drawn mark's
-                                              farthest point is 0.31 of the
-                                              canvas, well inside the 80 %
-                                              safe circle Android masks to
+    icon-512-maskable.png  512   content 0.62  kept on disk but deliberately
+                                              NOT listed in
+                                              manifest.webmanifest: Samsung
+                                              Internet draws a white square
+                                              behind a "maskable" icon on its
+                                              splash screen, so the manifest
+                                              now offers "any" icons only
     apple-touch-icon.png   180   content 0.76  iOS home screen
     favicon-32.png          32   content 0.94  the browser tab
     tesseract-mark.png     128   content 0.92  straight-alpha RGBA, no field
