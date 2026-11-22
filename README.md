@@ -34,7 +34,7 @@ When a release goes out, change the version on its card here and in the list bel
 | PocketCore | v1.0.0-vc21 | <https://github.com/CoreJBH/pocketcore/releases/latest> |
 | ZeroWallet | v1.2.1 | <https://github.com/CoreJBH/zerowallet/releases/latest> |
 | CleanSwap | v0.6.12 | <https://github.com/CoreJBH/cleanswap/releases/latest> |
-| NodePulse | v1.1.3 | <https://github.com/CoreJBH/nodepulse/releases/latest> |
+| NodePulse | v1.1.12 | <https://github.com/CoreJBH/nodepulse/releases/latest> |
 
 PocketCore's card downloads the APK straight from
 `releases/latest/download/pocketcore.apk`.
