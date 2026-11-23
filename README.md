@@ -37,7 +37,7 @@ When a release goes out, change the version on its card here and in the list bel
 | NodePulse | v1.1.13 | <https://github.com/CoreJBH/nodepulse/releases/latest> |
 
 PocketCore's card downloads the APK straight from
-`releases/latest/download/pocketcore.apk`.
+`releases/latest/download/pocketcore-1.0.0-release-v21.apk`.
 
 ## Local check
 

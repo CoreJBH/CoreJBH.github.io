@@ -61,9 +61,9 @@
           client, not a server you have to trust — your phone downloads the chain and checks it block by block with
           Bitcoin Core's own code.</p>
         <div class="actions">
-          <a class="btn btn-primary" href="https://github.com/CoreJBH/pocketcore/releases/latest/download/pocketcore.apk" rel="noopener">
+          <a class="btn btn-primary" href="https://github.com/CoreJBH/pocketcore/releases/latest/download/pocketcore-1.0.0-release-v21.apk" rel="noopener">
             <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg>
-            Download APK · v1.0.0
+            Download APK · v1.0.0-vc21
           </a>
           <a class="btn btn-ghost" href="#install">
             <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.8 13 3.6v4.1c0 3-2 5.4-5 6.5-3-1.1-5-3.5-5-6.5V3.6L8 1.8Z"/><path d="m5.9 7.9 1.5 1.5 2.9-3"/></svg>
@@ -298,8 +298,11 @@
       <div class="grid" style="margin-top:22px">
         <div class="card">
           <p class="kicker">GitHub Releases</p>
-          <h3>APK, debug-signed</h3>
-          <p>The current public build. Same signing key since versionCode 2, so it updates in place.</p>
+          <h3>APK, release-signed</h3>
+          <p>The current public build, signed with the release key as <span class="mono">com.corejbh.pocketcore</span>
+            — the same app and the same key as the Play build, so either one updates the other in place. An older
+            <span class="mono">com.jbitmstr.pocketcore</span> debug build cannot: export a snapshot there, then
+            uninstall and load it here, or the synced chain goes with the uninstall.</p>
           <div class="actions" style="margin-top:18px">
             <a class="btn btn-ghost" href="https://github.com/CoreJBH/pocketcore/releases/latest" rel="noopener">Releases &#8599;</a>
           </div>
@@ -307,14 +310,19 @@
         <div class="card">
           <p class="kicker">Google Play</p>
           <h3><span class="badge soon">listing in preparation</span></h3>
-          <p>The Play build is a separate identity — <span class="mono">com.corejbh.pocketcore</span>, versionCode 10,
-            signed with a release key — so it installs beside the debug APK with its own empty node directory.</p>
+          <p>The Play bundle carries the same identity, <span class="mono">com.corejbh.pocketcore</span>, and the same
+            release key, so a Play install and the APK above are one app that updates in place — not two apps sharing
+            a screen name.</p>
         </div>
         <div class="card">
           <p class="kicker">F-Droid</p>
-          <h3><span class="badge soon">planned</span></h3>
-          <p>F-Droid needs a reproducible recipe for the bundled daemon; the build instructions in the repository are
-            written for exactly that. Until then, build from source and compare the bundled hash.</p>
+          <h3><span class="badge soon">recipe ready</span></h3>
+          <p>The recipe in <span class="mono">docs/fdroid/</span> deletes the prebuilt daemon and rebuilds it from the
+            Bitcoin Core 32.1 source inside F-Droid's own builder, which then signs the APK with its key. The
+            submission (<a href="https://gitlab.com/fdroid/fdroiddata/-/merge_requests/58699" rel="noopener">fdroiddata
+            !58699</a>) was closed: F-Droid wants an app maintained for more than three months before it enters the
+            store, so the recipe goes back in once the project has that history. Until then, build from source and
+            compare the bundled hash.</p>
         </div>
       </div>
     </div>
@@ -328,7 +336,7 @@
         <p>A tool that hides its edges cannot be audited.</p>
       </div>
       <div class="limits">
-        <div class="limit"><h3>Debug-signed APK</h3><p>The public release is signed with a debug key and is not byte-for-byte reproducible. Rebuild it if you need a binary you fully trust.</p></div>
+        <div class="limit"><h3>Release-signed, not reproducible</h3><p>The APK is signed with the release key, but it is not byte-for-byte reproducible — a build timestamp and the signing block differ. Rebuild it if you need a binary you fully trust.</p></div>
         <div class="limit"><h3>ARM64 only</h3><p>Built for <span class="mono">arm64-v8a</span> phones. x86 and 32-bit ARM devices are not supported.</p></div>
         <div class="limit"><h3>Not a wallet</h3><p><span class="mono">ENABLE_WALLET=OFF</span>. PocketCore never creates, stores or accepts private keys, seed phrases or WIF strings.</p></div>
         <div class="limit"><h3>No Electrum server</h3><p>RPC is loopback-only, so wallets that require an Electrum backend cannot attach to this node yet.</p></div>
