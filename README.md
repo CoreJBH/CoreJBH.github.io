@@ -31,13 +31,13 @@ When a release goes out, change the version on its card here and in the list bel
 
 | Project | Version shown | Release link |
 | --- | --- | --- |
-| PocketCore | v1.0.0-vc21 | <https://github.com/CoreJBH/pocketcore/releases/latest> |
+| PocketCore | v1.0.0-vc22 | <https://github.com/CoreJBH/pocketcore/releases/latest> |
 | ZeroWallet | v1.2.3 | <https://github.com/CoreJBH/zerowallet/releases/latest> |
 | CleanSwap | v0.6.13 | <https://github.com/CoreJBH/cleanswap/releases/latest> |
 | NodePulse | v1.1.13 | <https://github.com/CoreJBH/nodepulse/releases/latest> |
 
 PocketCore's card downloads the APK straight from
-`releases/latest/download/pocketcore-1.0.0-release-v21.apk`.
+`releases/latest/download/pocketcore-1.0.0-release-vc22.apk`.
 
 ## Local check
 
@@ -68,7 +68,7 @@ The repository is the site: commit to `main` and GitHub Pages publishes it
 
 ## Facts that must stay in sync with the release
 
-- APK version `v1.0.0-vc21` (versionCode 21), size 8,499,267 bytes
-- SHA-256 `09cd37caafa58bbd3ba65d597b1e3a1d0df485d34dfccb3ce8b987bbecfaf003`
-- daemon Bitcoin Core 32.1, `arm64-v8a`, Android 8.0+ (API 26)
+- APK version `v1.0.0-vc22` (versionCode 22), size 8,472,003 bytes
+- SHA-256 `6715e22752446206095bb5daf7f2bddf375eea7e891bd46c67417753ef64f373`
+- daemon Bitcoin Core 32.1, `arm64-v8a`, Android 8.0+ (API 26), built against API 36 (Android 16)
 - source: <https://github.com/CoreJBH/pocketcore>

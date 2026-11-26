@@ -51,7 +51,7 @@
     <div class="wrap hero-grid">
       <div class="hero-copy">
         <div class="badge-row">
-          <span class="badge live">v1.0.0-vc21 released</span>
+          <span class="badge live">v1.0.0-vc22 released</span>
           <span class="badge">Bitcoin Core 32.1</span>
           <span class="badge">arm64-v8a</span>
           <span class="badge">Android 8.0+</span>
@@ -61,9 +61,9 @@
           client, not a server you have to trust — your phone downloads the chain and checks it block by block with
           Bitcoin Core's own code.</p>
         <div class="actions">
-          <a class="btn btn-primary" href="https://github.com/CoreJBH/pocketcore/releases/latest/download/pocketcore-1.0.0-release-v21.apk" rel="noopener">
+          <a class="btn btn-primary" href="https://github.com/CoreJBH/pocketcore/releases/latest/download/pocketcore-1.0.0-release-vc22.apk" rel="noopener">
             <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg>
-            Download APK · v1.0.0-vc21
+            Download APK · v1.0.0-vc22
           </a>
           <a class="btn btn-ghost" href="#install">
             <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.8 13 3.6v4.1c0 3-2 5.4-5 6.5-3-1.1-5-3.5-5-6.5V3.6L8 1.8Z"/><path d="m5.9 7.9 1.5 1.5 2.9-3"/></svg>
@@ -266,8 +266,8 @@
       <div class="two-col">
         <div>
           <ul class="checks steps">
-            <li><b>Download</b> <span class="mono">pocketcore-1.0.0-release-v21.apk</span> from <a href="https://github.com/CoreJBH/pocketcore/releases/latest" rel="noopener">Releases</a> — v1.0.0-vc21, versionCode 21, 8,499,267 bytes.</li>
-            <li><b>Allow “install unknown apps”</b> for the app you open it with, then install. Android 8.0 (API 26) or newer, <span class="mono">arm64-v8a</span>.</li>
+            <li><b>Download</b> <span class="mono">pocketcore-1.0.0-release-vc22.apk</span> from <a href="https://github.com/CoreJBH/pocketcore/releases/latest" rel="noopener">Releases</a> — v1.0.0-vc22, versionCode 22, 8,472,003 bytes.</li>
+            <li><b>Allow “install unknown apps”</b> for the app you open it with, then install. Android 8.0 (API 26) or newer, <span class="mono">arm64-v8a</span>. The build targets API 36 (Android 16).</li>
             <li><b>Open PocketCore and press START NODE.</b> The status card shows the height while the node syncs; “Wi-Fi only” and “Charging only” pause it politely.</li>
             <li><b>Update in place.</b> A newer APK installs over the old one and keeps the chain. Do not uninstall to upgrade — that deletes the node data.</li>
           </ul>
@@ -277,21 +277,21 @@
 
         <div class="verify">
           <div class="verify-head">
-            <h3>SHA-256 · pocketcore-1.0.0-release-v21.apk</h3>
+            <h3>SHA-256 · pocketcore-1.0.0-release-vc22.apk</h3>
             <button class="copy" type="button" data-copy="apk-sha">copy</button>
           </div>
           <p class="mono" style="margin:0">Check this before you install. If the hashes differ, the file is not the build we published.</p>
           <div class="hash">
-            <code id="apk-sha">09cd37caafa58bbd3ba65d597b1e3a1d0df485d34dfccb3ce8b987bbecfaf003</code>
+            <code id="apk-sha">6715e22752446206095bb5daf7f2bddf375eea7e891bd46c67417753ef64f373</code>
           </div>
-          <pre class="cmd wrap"><span class="p">$</span> sha256sum pocketcore-1.0.0-release-v21.apk
-09cd37caafa58bbd3ba65d597b1e3a1d0df485d34dfccb3ce8b987bbecfaf003</pre>
-          <pre class="cmd"><span class="p">$</span> apksigner verify --print-certs pocketcore-1.0.0-release-v21.apk
+          <pre class="cmd wrap"><span class="p">$</span> sha256sum pocketcore-1.0.0-release-vc22.apk
+6715e22752446206095bb5daf7f2bddf375eea7e891bd46c67417753ef64f373</pre>
+          <pre class="cmd"><span class="p">$</span> apksigner verify --print-certs pocketcore-1.0.0-release-vc22.apk
 <span class="p">#</span> release certificate SHA-256 92:86:76:E8…13:E3:9A
 <span class="p">#</span> signed with the unified Release key</pre>
           <p class="mono" style="margin:16px 0 0">Every claim above is recorded in the
             <a href="https://github.com/CoreJBH/pocketcore/blob/main/docs/BUILD-RECORD.md" rel="noopener">build record</a>,
-            including the bundled daemon's own hash and the 293 unit tests that ran before release.</p>
+            including the bundled daemon's own hash and the 299 unit tests that ran before release.</p>
         </div>
       </div>
 
@@ -366,7 +366,7 @@
       </nav>
     </div>
     <div class="foot-note">
-      <span>PocketCore v1.0.0-vc21 · Bitcoin Core 32.1 · arm64-v8a</span>
+      <span>PocketCore v1.0.0-vc22 · Bitcoin Core 32.1 · arm64-v8a</span>
       <span>this page loads nothing from another host · no cookies · no analytics</span>
     </div>
   </div>
