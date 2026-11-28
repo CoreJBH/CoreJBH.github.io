@@ -90,7 +90,7 @@
       <span>one arc per open channel</span>
       <span>235 entities · 1,899 addresses</span>
       <span>build-time snapshot, labelled</span>
-      <span>1.16 MB, everything inline</span>
+      <span>1.18 MB, everything inline</span>
     </div>
   </div>
 
@@ -343,7 +343,7 @@
           <p class="sym">Dependencies</p>
           <h3>Zero, and the build enforces it</h3>
           <p><span class="mono">build.py</span> inlines CSS, geometry, the snapshots, the entity table, thirteen JS modules and the icon
-            into one 1.16 MB document, with tokens that fail the build if a substitution is missed. The shipped page
+            into one 1.18 MB document, with tokens that fail the build if a substitution is missed. The shipped page
             carries its own Content-Security-Policy naming each inline block by hash, and the test hook is stripped
             from it.</p>
           <span class="where">python3 build.py --check · the assembled code compiles with node</span>
