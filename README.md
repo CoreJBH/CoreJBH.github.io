@@ -1,6 +1,6 @@
 # CoreJBH.github.io
 
-Static site for **CoreJBH** and **PocketCore**, served by GitHub Pages at
+Static site for **CoreJBH**, **PocketCore** and **Hashes**, served by GitHub Pages at
 <https://corejbh.github.io/>.
 
 No build step, no framework, no external host. Every page, stylesheet, script and
@@ -12,6 +12,8 @@ index.html                     CoreJBH — Verify, don't trust
 pocketcore/index.html          PocketCore landing page
 pocketcore/privacy/index.html  Privacy policy (canonical)
 pocketcore/privacy.html        alias that redirects to the policy
+hashes/index.html              Hashes landing page
+hashes/privacy/index.html      Hashes privacy policy
 404.html                       GitHub Pages not-found page
 assets/css/site.css            the whole design system
 assets/js/site.js              copy-to-clipboard for the release hash
@@ -24,20 +26,22 @@ tools/make-icons.py            renders every install icon and the navbar mark fr
 .nojekyll                      serve files as-is, no Jekyll processing
 ```
 
-## The four projects
+## The five projects
 
-The home page names all four in PascalCase and shows the version each one ships.
+The home page names all five in PascalCase and shows the version each one ships.
 When a release goes out, change the version on its card here and in the list below.
 
 | Project | Version shown | Release link |
 | --- | --- | --- |
 | PocketCore | v1.0.0-vc22 | <https://github.com/CoreJBH/pocketcore/releases/latest> |
+| Hashes | v1.0.0 | <https://github.com/CoreJBH/hashes/releases/latest> |
 | ZeroWallet | v1.2.3 | <https://github.com/CoreJBH/zerowallet/releases/latest> |
 | CleanSwap | v0.6.13 | <https://github.com/CoreJBH/cleanswap/releases/latest> |
 | NodePulse | v1.1.13 | <https://github.com/CoreJBH/nodepulse/releases/latest> |
 
 PocketCore's card downloads the APK straight from
-`releases/latest/download/pocketcore-1.0.0-release-vc22.apk`.
+`releases/latest/download/pocketcore-1.0.0-release-vc22.apk`; the Hashes page uses
+the same shape, `releases/latest/download/hashes-v1.0.0-arm64-release.apk`.
 
 ## Local check
 
@@ -72,3 +76,6 @@ The repository is the site: commit to `main` and GitHub Pages publishes it
 - SHA-256 `6715e22752446206095bb5daf7f2bddf375eea7e891bd46c67417753ef64f373`
 - daemon Bitcoin Core 32.1, `arm64-v8a`, Android 8.0+ (API 26), built against API 36 (Android 16)
 - source: <https://github.com/CoreJBH/pocketcore>
+- Hashes `v1.0.0` (versionCode 1), `hashes-v1.0.0-arm64-release.apk`, size and
+  SHA-256 copied from the release's `SHA256SUMS.txt`; the demo GIF
+  (`assets/img/hashes-demo.gif`) shows an example payout address, never a real one

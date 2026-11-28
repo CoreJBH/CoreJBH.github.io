@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hashes — a solo Bitcoin miner with a CRT terminal, on your phone</title>
+<meta name="description" content="Hashes hashes real mainnet block headers on an Android phone with the ARMv8 SHA-256 instructions, over Stratum V1, in a monochrome green CRT terminal. No account, no wallet, no seed, no trackers.">
+<meta name="author" content="CoreJBH">
+<meta name="theme-color" content="#030B27">
+<meta name="color-scheme" content="dark">
+<meta name="application-name" content="CoreJBH">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="CoreJBH">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hashes — solo Bitcoin miner, CRT terminal">
+<meta property="og:description" content="Every digest on screen was computed on the phone with the ARMv8 SHA-256 instructions. A payout address, a pool, and nothing else.">
+<meta property="og:url" content="https://corejbh.github.io/hashes/">
+<meta property="og:image" content="https://corejbh.github.io/assets/img/og-hashes.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://corejbh.github.io/hashes/">
+<link rel="icon" href="../assets/img/favicon-32.png?v=2026-11-22f" sizes="32x32" type="image/png">
+<link rel="icon" href="../assets/img/icon-192.png?v=2026-11-22f" sizes="192x192" type="image/png">
+<link rel="icon" href="../assets/img/icon-512.png?v=2026-11-22f" sizes="512x512" type="image/png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=2026-11-22f" sizes="180x180">
+<link rel="manifest" href="/manifest.webmanifest?v=2026-11-22g">
+<link rel="stylesheet" href="../assets/css/site.css?v=2026-11-22f">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="../" aria-label="CoreJBH home">
+      <img class="brand-mark" src="../assets/img/tesseract-mark.png?v=2026-11-22f" width="30" height="30" alt="" decoding="async">
+      <span class="word">CORE<span class="dot">JBH</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#terminal">Terminal</a>
+      <a href="#core" class="opt">Hash core</a>
+      <a href="#install">Install</a>
+      <a class="gh" href="https://github.com/CoreJBH/hashes" rel="noopener">GitHub &#8599;</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero app-hero hero-solo">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="badge-row">
+          <span class="badge live">v1.0.0 released</span>
+          <span class="badge">mainnet</span>
+          <span class="badge">arm64-v8a</span>
+          <span class="badge">Android 8.0+</span>
+        </div>
+        <h1 class="wordmark">Hashes</h1>
+        <p class="lead" style="margin-top:20px">A solo Bitcoin miner that is honest about the arithmetic. The phone takes
+          work from a pool, assembles the 80-byte header itself, and hashes it with the ARMv8 crypto instructions —
+          and every digest on the terminal is one the device actually produced.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/CoreJBH/hashes/releases/latest/download/hashes-v1.0.0-arm64-release.apk" rel="noopener">
+            <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg>
+            Download APK · v1.0.0
+          </a>
+          <a class="btn btn-ghost" href="#install">
+            <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.8 13 3.6v4.1c0 3-2 5.4-5 6.5-3-1.1-5-3.5-5-6.5V3.6L8 1.8Z"/><path d="m5.9 7.9 1.5 1.5 2.9-3"/></svg>
+            Verify a download
+          </a>
+          <a class="btn btn-link" href="https://github.com/CoreJBH/hashes" rel="noopener">Source &#8599;</a>
+        </div>
+        <p class="hero-note">
+          <span>no account</span><span>no wallet</span><span>no seed</span><span>mainnet only</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="strip" aria-label="At a glance">
+      <span><b>SHA-256d · ARMv8 crypto</b></span>
+      <span>Stratum V1 · TLS or TCP</span>
+      <span>TURBO_MODE + thermal guard</span>
+      <span>foreground service</span>
+      <span>English only</span>
+    </div>
+  </div>
+
+  <section class="sec" id="terminal">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">01 / THE TERMINAL</span>
+        <h2>One palette, no decoration that is not information</h2>
+        <p>A CRT screen with the session facts on top, the hash stream in the middle and the two buttons at the bottom.</p>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <p style="color:var(--ink-dim)">The screen is a terminal, not a dashboard. The top carries the pool, the
+            engine and the temperature; the block panel carries the height, the previous hash, the payout address, the
+            network target and the nonce; below it the <code class="mono">LIVE_HASH_STREAM</code> prints each digest as
+            it is produced, newest first, down to the last row the panel has room for.</p>
+          <p style="color:var(--ink-dim)">A near miss — four or more leading zeros — is inverted so it is visible at a
+            glance. <code class="mono">WORKERS</code> draws one bar per thread from that thread's own counter, with
+            live rate and temperature sparklines. <code class="mono">EVENT_LOG</code> prints jobs, shares, link changes
+            and thermal steps, newest first.</p>
+          <p style="color:var(--ink-dim)">Nothing on the screen is a number the app did not compute: the odds line is
+            difficulty × 2³² ÷ the measured rate, and it says so in years.</p>
+
+          <dl class="facts">
+            <div><dt>hash</dt><dd>double SHA-256</dd></div>
+            <div><dt>ABI</dt><dd>arm64-v8a</dd></div>
+            <div><dt>Android</dt><dd>8.0+ (API 26)</dd></div>
+            <div><dt>pool</dt><dd>Stratum V1</dd></div>
+            <div><dt>threads</dt><dd>1 · up to 8</dd></div>
+            <div><dt>modes</dt><dd>COOL / TURBO</dd></div>
+          </dl>
+        </div>
+
+        <div class="shots" style="grid-template-columns:minmax(0,1fr);justify-items:center">
+          <figure class="shot reveal" style="max-width:330px">
+            <img src="../assets/img/hashes-demo.gif" width="540" height="1170" alt="The splash screen settles on its glow, the terminal opens, and the live hash stream scrolls while the worker meter, rate and event log move" loading="lazy" decoding="async">
+            <figcaption>Splash → terminal · the payout address in this capture is an example value</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="core">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">02 / THE HASH CORE</span>
+        <h2>The instructions the phone already has</h2>
+        <p>SHA-256 is in the silicon. The app asks the kernel once and then uses it — or quietly uses C instead.</p>
+      </div>
+
+      <div class="spec-grid">
+        <article class="spec reveal">
+          <p class="sym">Hash · ARMv8 crypto</p>
+          <h3>SHA256H &amp; SHA256H2</h3>
+          <p>The compression function is written against the ARMv8 crypto extensions
+            (<span class="mono">SHA256H</span>, <span class="mono">SHA256H2</span>,
+            <span class="mono">SHA256SU0</span>, <span class="mono">SHA256SU1</span>), with the midstate over header
+            bytes 0..63 computed once per job and only the nonce walked per hash.</p>
+          <span class="where">app/src/main/cpp/sha256_arm64_crypto.c</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Fallback · portable C</p>
+          <h3>FIPS 180-4, on every ABI</h3>
+          <p>A plain C implementation of the same compression function, checked against the FIPS 180-4 vectors and the
+            genesis, block 1 and block 170000 headers. It is what the host tests run and what an older core uses.</p>
+          <span class="where">sha256_portable.c · one AT_HWCAP check in the dispatcher</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Database</p>
+          <h3>The header, assembled here</h3>
+          <p>Coinbase reconstruction, the coinbase txid, the Merkle root and the exact 80-byte header are built on the
+            phone from the pool's job, and a share is submitted against the job it came from — never a stale one after
+            a reconnect.</p>
+          <span class="where">network/BlockAssembler.kt · tested byte for byte</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Bridge · JNI</p>
+          <h3>Ten calls, not one per hash</h3>
+          <p>Kotlin hands over a job, flips the mode, and reads eight counters about thirty times a second. The only
+            locks on that path are over the current digest and the best digest.</p>
+          <span class="where">docs/native-bridge-contract.md</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="turbo">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">03 / HEAT</span>
+        <h2>TURBO, and the guard that ends it</h2>
+        <p>COOL is the default and is never named on screen. Only TURBO is a word, so a glance tells you whether the
+          phone is running hot.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <p class="kicker">COOL · default</p>
+          <h3>One worker, a duty cycle</h3>
+          <p>1.5 ms of hashing in every ~32.5 ms window — a 30 fps duty cycle that keeps the CPU share low and the
+            frame pacing natural. The title is plain <span class="mono">HASHES</span> and the badge carries the
+            temperature alone.</p>
+        </div>
+        <div class="card">
+          <p class="kicker">TURBO_MODE</p>
+          <h3>Every core but one</h3>
+          <p>Up to eight worker threads at background priority, so a busy UI thread still gets its frames. The worker
+            line reads <span class="mono">TURBO 7T</span> and the badge adds the word.</p>
+        </div>
+        <div class="card">
+          <p class="kicker">Two-stage guard</p>
+          <h3>Speed first, then the session</h3>
+          <p>At the first hot reading TURBO keeps running on half its workers (<span class="mono">CAP 4T</span>); a
+            second consecutive one switches TURBO off, prints <span class="mono">THERMAL GUARD</span> and refuses
+            TURBO until <span class="mono">[ RESET THERMAL GUARD ]</span> is pressed. The phone loses speed, not the
+            session.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="install">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">04 / INSTALL</span>
+        <h2>Download, check, run</h2>
+        <p>One APK, one hash, no account. Google Play does not accept mainnet mining, so the release lives here and on
+          GitHub.</p>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <ul class="checks steps">
+            <li><b>Download</b> <span class="mono">hashes-v1.0.0-arm64-release.apk</span> from
+              <a href="https://github.com/CoreJBH/hashes/releases/latest" rel="noopener">Releases</a> — v1.0.0,
+              versionCode 1, <span class="mono" id="apk-size">2,643,187 bytes</span>.</li>
+            <li><b>Allow “install unknown apps”</b> for the app you open it with, then install. Android 8.0 (API 26) or
+              newer, <span class="mono">arm64-v8a</span>.</li>
+            <li><b>Open</b> <span class="mono">POOL &amp; PAYOUT</span>, paste or scan a Bech32 payout address and choose
+              the pool. The address is checked — checksum and network — before a socket opens.</li>
+            <li><b>Press</b> <span class="mono">[ START / STOP MINER ]</span>. The session keeps running while you use
+              another app; the notification carries the rate and a <span class="mono">STOP</span> action.</li>
+          </ul>
+          <p class="mono" style="margin-top:22px">Solo mining is a lottery with honest odds: at a phone's rate the
+            expected time to a block is measured in tens of thousands of years. The app says so on screen instead of
+            implying a payout.</p>
+        </div>
+
+        <div class="verify">
+          <div class="verify-head">
+            <h3>SHA-256 · hashes-v1.0.0-arm64-release.apk</h3>
+            <button class="copy" type="button" data-copy="apk-sha">copy</button>
+          </div>
+          <p class="mono" style="margin:0">Check this before you install. If the hash differs, the file is not the build
+            we published.</p>
+          <div class="hash">
+            <code id="apk-sha">ea379a825d4259212e7f3a966b39197111b32cb7092f1b8ec428a0aee70c03be</code>
+          </div>
+          <pre class="cmd wrap"><span class="p">$</span> sha256sum hashes-v1.0.0-arm64-release.apk
+ea379a825d4259212e7f3a966b39197111b32cb7092f1b8ec428a0aee70c03be</pre>
+          <pre class="cmd"><span class="p">$</span> apksigner verify --print-certs hashes-v1.0.0-arm64-release.apk
+<span class="p">#</span> release certificate SHA-256 8A:45:67:FC…E0:7C:A2
+<span class="p">#</span> CN=CoreJBH, RSA 4096, SHA256withRSA</pre>
+          <p class="mono" style="margin:16px 0 0">The release is built from
+            <a href="https://github.com/CoreJBH/hashes" rel="noopener">the tagged source</a> with the pinned NDK and
+            CMake, and signed with the release key — never the debug key.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="limits">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">05 / LIMITS</span>
+        <h2>What it does not do</h2>
+        <p>A tool that hides its edges cannot be audited.</p>
+      </div>
+      <div class="limits">
+        <div class="limit"><h3>No block promised</h3><p>The odds line is the honest expected time at the measured rate. At a phone's rate that is tens of thousands of years; the app will show every share and every near miss, not a payout it cannot make.</p></div>
+        <div class="limit"><h3>ARM64 only</h3><p>Built for <span class="mono">arm64-v8a</span> phones, where the SHA-256 instructions live. x86 and 32-bit ARM are not supported.</p></div>
+        <div class="limit"><h3>Not a wallet</h3><p>No private key, no seed phrase, no wallet. A payout address is a destination; the coins are spendable only with a wallet you control elsewhere.</p></div>
+        <div class="limit"><h3>Mainnet only</h3><p>Testnet and regtest addresses are refused before a socket opens. There is no simulated mode: a debug build that cannot reach a pool says so.</p></div>
+        <div class="limit"><h3>Battery is the limit</h3><p>COOL is a duty cycle for a reason. TURBO is the phone's whole core budget, and the thermal guard exists because a phone in a hand is not a miner in a rack.</p></div>
+        <div class="limit"><h3>One pool at a time</h3><p>One Stratum connection to the endpoint you chose. No pool hopping, no fallback list, no server of ours in the middle.</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img class="brand-mark" src="../assets/img/tesseract-mark.png?v=2026-11-22f" width="30" height="30" alt="" decoding="async">
+        <div>
+          <div class="word">CORE<span class="dot" style="color:var(--cyan)">JBH</span></div>
+          <p class="tagline">Hashes · verify, don't trust.</p>
+        </div>
+      </div>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="../">CoreJBH</a>
+        <a href="privacy/">Privacy</a>
+        <a href="https://github.com/CoreJBH/hashes" rel="noopener">Source</a>
+        <a href="https://github.com/CoreJBH/hashes/issues" rel="noopener">Issues</a>
+      </nav>
+    </div>
+    <div class="foot-note">
+      <span>Hashes v1.0.0 · double SHA-256 · arm64-v8a</span>
+      <span>this page loads nothing from another host · no cookies · no analytics</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/site.js?v=2026-11-22f" defer></script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hashes Privacy Policy — no account, no analytics, no server of its own</title>
+<meta name="description" content="Hashes keeps the mining session on the phone: no account, no analytics, no crash reporting, no server of its own. The only connection is the stratum pool you choose, and the only datum it holds is the payout address you entered.">
+<meta name="author" content="CoreJBH">
+<meta name="theme-color" content="#030B27">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hashes Privacy Policy">
+<meta property="og:description" content="One connection, to the pool you chose. No account, no analytics, no server of the developer's.">
+<meta property="og:url" content="https://corejbh.github.io/hashes/privacy/">
+<link rel="canonical" href="https://corejbh.github.io/hashes/privacy/">
+<link rel="icon" href="../../assets/img/favicon-32.png?v=2026-11-22f" sizes="32x32" type="image/png">
+<link rel="icon" href="../../assets/img/icon-192.png?v=2026-11-22f" sizes="192x192" type="image/png">
+<link rel="icon" href="../../assets/img/icon-512.png?v=2026-11-22f" sizes="512x512" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png?v=2026-11-22f" sizes="180x180">
+<link rel="manifest" href="/manifest.webmanifest?v=2026-11-22g">
+<link rel="stylesheet" href="../../assets/css/site.css?v=2026-11-22f">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="../../" aria-label="CoreJBH home">
+      <img class="brand-mark" src="../../assets/img/tesseract-mark.png?v=2026-11-22f" width="30" height="30" alt="" decoding="async">
+      <span class="word">CORE<span class="dot">JBH</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../../hashes/"><span class="nm">Hashes</span></a>
+      <a href="../">App page</a>
+      <a class="gh" href="https://github.com/CoreJBH/hashes/blob/main/PRIVACY.md" rel="noopener">Source &#8599;</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap doc">
+    <p class="eyebrow">Legal · <span class="nm">Hashes</span></p>
+    <h1>Privacy Policy</h1>
+    <p class="updated">App: <span class="nm">Hashes</span> — solo Bitcoin miner for Android · Package <code>com.corejbh.hashes</code> · Developer CoreJBH · Effective 28 November 2026</p>
+
+    <h2>The short version</h2>
+    <p>Hashes keeps the mining session on the phone. It has <strong>no account, no analytics and no server of its
+      own</strong>, and it never asks for a private key or a seed phrase. The only connection it opens is the pool you
+      chose, and the only thing it knows about you is the payout address you typed or scanned.</p>
+
+    <h2>What leaves the phone</h2>
+    <ul>
+      <li><strong>The pool you chose.</strong> Exactly one connection, to the Stratum V1 endpoint selected in
+        <code>POOL &amp; PAYOUT</code> — TLS where the pool offers it. The login line carries your payout address and
+        the worker name <code>&lt;address&gt;.hashes</code>, because that is how a solo pool knows where to pay a
+        block; the password field carries the pool's conventional <code>x</code>. What that pool then does with the
+        address and your IP is the pool's policy, not this app's.</li>
+      <li><strong>Nothing else.</strong> No telemetry, no crash reporting, no advertising SDK, no Google Play
+        Services, and no request to a server the developer runs. The app has no account system to log in to.</li>
+    </ul>
+
+    <h2>What stays on the phone</h2>
+    <ul>
+      <li><strong>The payout address</strong> you typed or scanned, the chosen pool endpoint and the TURBO preference,
+        in the app's own preferences file.</li>
+      <li><strong>Your best hashes</strong> — session and all-time — so the terminal can show the best work this device
+        has produced across restarts.</li>
+      <li><strong>Nothing to spend.</strong> The app holds no wallet, no key and no seed. A payout address is a
+        destination, not a credential: a pool pays it in the coinbase of any block found, and the coins are spendable
+        only with a wallet you control elsewhere.</li>
+    </ul>
+
+    <h2>Permissions</h2>
+    <table>
+      <tr><th>Permission</th><th>Why</th></tr>
+      <tr><td><code>INTERNET</code></td><td>The Stratum connection to the pool you selected.</td></tr>
+      <tr><td><code>CAMERA</code></td><td>Only while the QR scanner is open, to read a payout address from a QR code. Never in the background, and no image is stored or sent.</td></tr>
+      <tr><td><code>FOREGROUND_SERVICE</code></td><td>A running session keeps going while the app is not on screen; Android only allows that as a foreground service.</td></tr>
+      <tr><td><code>FOREGROUND_SERVICE_DATA_SYNC</code></td><td>The type that session runs under: an ongoing data connection, which is exactly what the pool link is.</td></tr>
+      <tr><td><code>POST_NOTIFICATIONS</code></td><td>The status-bar entry a foreground service must show: live hash rate, mode and a <code>STOP</code> action (Android 13+, asked at the first start).</td></tr>
+    </table>
+    <p>The app does not ask for <code>ACCESS_NETWORK_STATE</code>: an unreachable pool simply fails the connection and
+      the status line reports it. The manifest declares the camera as not required, so the app installs on a device
+      without one and the address can still be typed or pasted.</p>
+
+    <h2>Background</h2>
+    <p>Mining continues when you leave the terminal, and the notification is how you can tell. The session runs as a
+      <code>dataSync</code> foreground service: the notification shows <code>TURBO</code> while TURBO is on, the pool
+      link, the live hash rate and the block being hashed, and carries a <code>STOP</code> action that ends it at
+      once. Nothing else runs in the background — no scheduled work, no wake lock, no sensor.</p>
+    <p>It stops when you press <code>[ START / STOP MINER ]</code>, when you press <code>STOP</code> in the
+      notification, or when you swipe the app out of the recent-tasks list. If Android itself ends the foreground
+      service, the session stops with it rather than lingering half-alive, and nothing reconnects on its own.</p>
+    <p>Declining the notification permission on Android 13+ does not stop the service: the session still runs, the
+      status-bar entry is simply not drawn, and the running service stays visible in the system's own task
+      manager.</p>
+
+    <h2>Removing your data</h2>
+    <p>Uninstalling the app, or clearing its storage in Android settings, deletes the saved address, the endpoint and
+      the best-share records. Nothing is kept anywhere else, because there is nowhere else.</p>
+
+    <h2>Contact</h2>
+    <p>The source, the issue tracker and this policy live at
+      <a href="https://github.com/CoreJBH/hashes" rel="noopener">github.com/CoreJBH/hashes</a>.</p>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img class="brand-mark" src="../../assets/img/tesseract-mark.png?v=2026-11-22f" width="30" height="30" alt="" decoding="async">
+        <div>
+          <div class="word">CORE<span class="dot" style="color:var(--cyan)">JBH</span></div>
+          <p class="tagline">Hashes · verify, don't trust.</p>
+        </div>
+      </div>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="../../">CoreJBH</a>
+        <a href="../">Hashes</a>
+        <a href="https://github.com/CoreJBH/hashes" rel="noopener">Source</a>
+      </nav>
+    </div>
+    <div class="foot-note">
+      <span>Hashes v1.0.0 · privacy policy</span>
+      <span>this page loads nothing from another host · no cookies · no analytics</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/site.js?v=2026-11-22f" defer></script>
+</body>
+</html>

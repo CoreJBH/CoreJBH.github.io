@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CoreJBH — Verify, don't trust</title>
-<meta name="description" content="CoreJBH is independent Bitcoin and cryptography engineering: PocketCore, a real Bitcoin Core full node for Android, plus ZeroWallet, CleanSwap and NodePulse. No accounts, no telemetry, no servers you have to trust.">
+<meta name="description" content="CoreJBH is independent Bitcoin and cryptography engineering: PocketCore, a real Bitcoin Core full node for Android, Hashes, a solo miner with a CRT terminal, plus ZeroWallet, CleanSwap and NodePulse. No accounts, no telemetry, no servers you have to trust.">
 <meta name="author" content="CoreJBH">
 <meta name="theme-color" content="#030B27">
 <meta name="color-scheme" content="dark">
@@ -38,6 +38,7 @@
     </a>
     <nav class="site-nav" aria-label="Main">
       <a href="#flagship"><span class="nm">PocketCore</span></a>
+      <a href="#hashes"><span class="nm">Hashes</span></a>
       <a href="#projects">Projects</a>
       <a href="#principles" class="opt">Principles</a>
       <a class="gh" href="https://github.com/CoreJBH" rel="noopener">GitHub &#8599;</a>
@@ -133,7 +134,7 @@
     <div class="wrap">
       <div class="sec-head">
         <span class="idx">02 / PROJECTS</span>
-        <h2>Four tools, one rule</h2>
+        <h2>Five tools, one rule</h2>
         <p>Each one does its work on your device. None of them phones home.</p>
       </div>
 
@@ -193,6 +194,67 @@
             <a href="https://github.com/CoreJBH/nodepulse/releases/latest" rel="noopener">Release <span aria-hidden="true">&#8599;</span></a>
           </div>
         </article>
+        <article class="card proj reveal">
+          <div class="top">
+            <img src="assets/img/icon-hashes.png?v=2026-11-28a" width="42" height="42" alt="" decoding="async">
+            <a class="pname" href="hashes/">Hashes</a>
+          </div>
+          <p class="desc">A solo Bitcoin miner in a monochrome CRT terminal: real mainnet headers hashed with the ARMv8 SHA-256 instructions, every digest printed as it is produced. A payout address, a pool, and nothing else but the app's own arithmetic.</p>
+          <span class="meta">Kotlin · Compose · C/NDK · arm64</span>
+          <div class="card-links">
+            <span class="ver">v1.0.0</span>
+            <a href="hashes/">The page</a>
+            <a href="https://github.com/CoreJBH/hashes/releases/latest" rel="noopener">Release <span aria-hidden="true">&#8599;</span></a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="hashes">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">03 / TERMINAL</span>
+        <h2>Hashes</h2>
+        <p>The phone has SHA-256 in its silicon. This one asks the kernel once and then mines with it.</p>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <p style="color:var(--ink-dim)">A solo Stratum V1 miner with no account, no wallet and no seed. The phone
+            assembles the 80-byte header itself, hashes it with the ARMv8 crypto instructions, prints every digest in a
+            <code class="mono">LIVE_HASH_STREAM</code>, and submits a share against the job it came from.</p>
+          <p style="color:var(--ink-dim)">It is honest about the odds: the expected time to a block is printed on
+            screen, and at a phone's rate it is measured in tens of thousands of years. COOL is the default duty
+            cycle; <code class="mono">TURBO_MODE</code> runs every core, and a two-stage thermal guard takes it back
+            when the phone gets hot.</p>
+
+          <dl class="facts">
+            <div><dt>hash</dt><dd>double SHA-256</dd></div>
+            <div><dt>pool</dt><dd>Stratum V1</dd></div>
+            <div><dt>ABI</dt><dd>arm64-v8a</dd></div>
+            <div><dt>Android</dt><dd>8.0+</dd></div>
+          </dl>
+
+          <div class="actions" style="margin-top:24px">
+            <a class="btn btn-primary" href="hashes/">
+              <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h11M9 4l4 4-4 4"/></svg>
+              Open the Hashes page
+            </a>
+            <a class="btn btn-ghost" href="https://github.com/CoreJBH/hashes/releases/latest" rel="noopener">
+              <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg>
+              Release v1.0.0
+            </a>
+          </div>
+        </div>
+
+        <div class="shots" style="grid-template-columns:minmax(0,1fr);justify-items:center">
+          <figure class="shot reveal" style="max-width:300px">
+            <img src="assets/img/hashes-demo.gif" width="540" height="1170" alt="The Hashes splash screen settles on its glow and the terminal opens: the live hash stream scrolls while the worker meter, hash rate and event log move" loading="lazy" decoding="async">
+            <figcaption>v1.0.0 · example payout address in the capture</figcaption>
+          </figure>
+        </div>
       </div>
     </div>
   </section>
@@ -200,7 +262,7 @@
   <section class="sec" id="principles">
     <div class="wrap">
       <div class="sec-head">
-        <span class="idx">03 / PRINCIPLES</span>
+        <span class="idx">04 / PRINCIPLES</span>
         <h2>What the work is held to</h2>
       </div>
       <div class="principles">
@@ -232,7 +294,7 @@
     <div class="wrap about">
       <div>
         <div class="sec-head" style="margin-bottom:26px">
-          <span class="idx">04 / ABOUT</span>
+          <span class="idx">05 / ABOUT</span>
           <h2 style="font-size:1.5rem">The code is the credential</h2>
         </div>
         <p>CoreJBH is an independent engineering label: one developer, no company behind it, no funding round,
