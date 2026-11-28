@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NodePulse — the Bitcoin node network on a globe</title>
+<meta name="description" content="NodePulse draws the Bitcoin L1 full-node network as the Bitnodes crawler sees it, and the Lightning channel graph one tap away, on one Canvas 2D globe. Zero dependencies, one HTML file, and no simulated data.">
+<meta name="author" content="CoreJBH">
+<meta name="theme-color" content="#030B27">
+<meta name="color-scheme" content="dark">
+<meta name="application-name" content="CoreJBH">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="CoreJBH">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NodePulse — the Bitcoin node network on a globe">
+<meta property="og:description" content="Every dot was reported by a reachable node and every arc is a real open channel. One Canvas 2D globe, zero dependencies, no simulated data.">
+<meta property="og:url" content="https://corejbh.github.io/nodepulse/">
+<meta property="og:image" content="https://corejbh.github.io/assets/img/icon-nodepulse-512.png">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://corejbh.github.io/nodepulse/">
+<link rel="icon" href="../assets/img/favicon-32.png?v=2026-11-28a" sizes="32x32" type="image/png">
+<link rel="icon" href="../assets/img/icon-192.png?v=2026-11-28a" sizes="192x192" type="image/png">
+<link rel="icon" href="../assets/img/icon-512.png?v=2026-11-28a" sizes="512x512" type="image/png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=2026-11-28a" sizes="180x180">
+<link rel="manifest" href="/manifest.webmanifest?v=2026-11-22g">
+<link rel="stylesheet" href="../assets/css/site.css?v=2026-11-28a">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="../" aria-label="CoreJBH home">
+      <img class="brand-mark" src="../assets/img/tesseract-mark.png?v=2026-11-22f" width="30" height="30" alt="" decoding="async">
+      <span class="word">CORE<span class="dot">JBH</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#globe">Globe</a>
+      <a href="#lightning" class="opt">Lightning</a>
+      <a href="#install">Install</a>
+      <a class="gh" href="https://github.com/CoreJBH/nodepulse" rel="noopener">GitHub &#8599;</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero app-hero hero-solo">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="badge-row">
+          <span class="badge live">v1.1.13 released</span>
+          <span class="badge">Bitcoin L1 · Lightning</span>
+          <span class="badge">Canvas 2D</span>
+          <span class="badge">Android 7.0+</span>
+        </div>
+        <div class="mark-row">
+          <img class="app-icon" src="../assets/img/icon-nodepulse-512.png?v=2026-11-28a" width="76" height="76" alt="NodePulse app icon: a blue globe with a network pulse across it" decoding="async">
+          <h1 class="wordmark">NodePulse</h1>
+        </div>
+        <p class="lead" style="margin-top:20px">The Bitcoin L1 full-node network as the Bitnodes crawler actually sees it,
+          drawn dot by dot on a globe that turns under your finger, with the chain tip, mempool pressure and fee market
+          along the bottom. The Lightning channel graph is one tap away. No framework, no CDN, no simulated data.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/CoreJBH/nodepulse/releases/latest/download/nodepulse-1.1.13-release.apk" rel="noopener">
+            <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg>
+            Download APK · v1.1.13
+          </a>
+          <a class="btn btn-ghost" href="#install">
+            <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.8 13 3.6v4.1c0 3-2 5.4-5 6.5-3-1.1-5-3.5-5-6.5V3.6L8 1.8Z"/><path d="m5.9 7.9 1.5 1.5 2.9-3"/></svg>
+            Verify a download
+          </a>
+          <a class="btn btn-link" href="https://github.com/CoreJBH/nodepulse/blob/main/dist/nodepulse.html" rel="noopener">The page itself &#8599;</a>
+        </div>
+        <p class="hero-note">
+          <span>zero dependencies</span><span>one HTML file</span><span>no simulated data</span><span>no CDN</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="strip" aria-label="At a glance">
+      <span><b>Bitnodes · L1</b></span>
+      <span>mempool.space REST + WS</span>
+      <span>one arc per open channel</span>
+      <span>build-time snapshot, labelled</span>
+      <span>386 KB, everything inline</span>
+    </div>
+  </div>
+
+  <section class="sec" id="globe">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">01 / THE GLOBE</span>
+        <h2>A dot is a node the crawler reached</h2>
+        <p>Every point on the sphere is a coordinate Bitnodes geolocated, one dot per 3° cell. Nothing is placed for
+          visual balance.</p>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <p style="color:var(--ink-dim)">The L1 layer is the default. It shows the reachable full-node network — the
+            node count, the clear-net / Tor / I2P split, country and continent spread, client versions — plus the chain
+            tip, mempool size and transaction count, the fee histogram and the next-block projection. The node count
+            comes from <span class="mono">bitnodes.io/api/v1/snapshots/latest/</span>; the chain figures come from
+            mempool.space, with two public mirrors behind it.</p>
+          <p style="color:var(--ink-dim)">The L1 layer draws <b>no links at all</b>. Bitnodes publishes no per-node peer
+            graph, so the only honest options are to draw nothing or to invent a mesh — it draws nothing. Tor and I2P
+            nodes (15,577 of the 21,826 in the bundled snapshot) carry no coordinates, so they are counted in the totals
+            and the transport split, never placed on the globe.</p>
+          <p style="color:var(--ink-dim)">A static answer says it is static. The layer is always in one of three states
+            — a live read, a saved answer, or the snapshot embedded at build time — and three places on screen name it.
+            A plain browser cannot read Bitnodes at all (the host sends no CORS header), so the web build makes one
+            attempt, stops, and prints <span class="mono">static snapshot · browser CORS block</span>; the Android app
+            reads it live through its own native bridge.</p>
+
+          <dl class="facts">
+            <div><dt>layer</dt><dd>Bitcoin L1</dd></div>
+            <div><dt>source</dt><dd>Bitnodes crawler</dd></div>
+            <div><dt>dots</dt><dd>1 per 3° cell</dd></div>
+            <div><dt>links</dt><dd>none, by design</dd></div>
+            <div><dt>split</dt><dd>clear-net · Tor · I2P</dd></div>
+            <div><dt>refresh</dt><dd>5 min</dd></div>
+          </dl>
+        </div>
+
+        <div class="shots" style="grid-template-columns:minmax(0,1fr);justify-items:center">
+          <figure class="shot reveal shot-demo">
+            <img src="../assets/img/np-demo.gif" width="400" height="866" alt="The NodePulse globe in the Bitcoin L1 layer, then the same globe in the Lightning layer with violet node dots and channel arcs between them" loading="lazy" decoding="async">
+            <figcaption>Bitcoin L1 → Lightning · the two layers of one page</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="shots two" style="margin-top:26px">
+        <figure class="shot reveal">
+          <img src="../assets/img/np-l1.webp" width="760" height="1645" alt="NodePulse on a phone: the Bitcoin L1 full-node globe in cyan, the mempool row, the legend, and the block height, mempool and fastest-fee figures" loading="lazy" decoding="async">
+          <figcaption>Bitcoin L1 · the full-node globe</figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <img src="../assets/img/np-desktop.webp" width="1200" height="750" alt="NodePulse in a desktop browser: the globe between a header and the figure row, with the network panel opened" loading="lazy" decoding="async">
+          <figcaption>The same file in a desktop browser</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="lightning">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">02 / LIGHTNING</span>
+        <h2>Every arc is a channel that exists</h2>
+        <p>Up to 22 nodes are sampled from the real channel graph, and a line is drawn only where a line is true.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <p class="kicker">Layer two</p>
+          <h3>Topology, not a ranking</h3>
+          <p>Nodes are picked from <span class="mono">channels-geo</span>, not from a popularity list, so every dot is
+            a node that holds channels that can be drawn. A node key is checked by its 66 code points rather than two
+            regular expressions per row.</p>
+        </div>
+        <div class="card">
+          <p class="kicker">Pruning</p>
+          <h3>Five arcs per node, ascending degree</h3>
+          <p>Processing nodes from the lowest real degree upward keeps regional nodes visible instead of crowding them
+            out with hubs: out of 5,812 usable channels in the current snapshot the globe draws about 44 arcs between
+            20 plotted nodes — a single connected component at under 1% of the raw edge count.</p>
+        </div>
+        <div class="card">
+          <p class="kicker">Motion</p>
+          <h3>Packets that follow the clock</h3>
+          <p>Each moving light is placed by interpolating along its arc with the real timestamp, so motion stays
+            correct when a frame is late instead of stepping once per frame. Arcs are stroked in depth bands, so near
+            channels read bright and far ones fade toward the limb.</p>
+        </div>
+      </div>
+
+      <div class="two-col" style="margin-top:26px">
+        <div>
+          <p style="color:var(--ink-dim)">The Lightning layer has its own palette — electric violet on near-black
+            against the L1 layer's cyan — so the layer you are looking at is readable at a glance. Neither layer borrows
+            the other's signal colour, and the choice is remembered.</p>
+          <p style="color:var(--ink-dim)">Along the bottom the Lightning figures come from
+            <span class="mono">/api/v1/lightning/statistics/latest</span> and the channel geography from
+            <span class="mono">channels-geo</span>. A node card opens on a tap with the node's alias, capacity and
+            channel count, read from the API and cached — a failed detail fetch keeps the alias it already had instead
+            of overwriting it with nothing.</p>
+          <ul class="checks" style="margin-top:20px">
+            <li><b>Shape-checked.</b> Every feed — REST and WebSocket alike — checks what it uses before drawing it. A payload that fails keeps the previous value, so a broken mirror cannot print <span class="mono">NaN</span>.</li>
+            <li><b>A cache is rebuilt, not trusted.</b> Every field of a saved answer is re-typed on the way out of storage, so a poisoned cache costs the app its remembered values and never its rendering.</li>
+            <li><b>Both block feeds raise the tip.</b> The tip endpoint and the block list report the same fact, and a height above the known tip raises it whichever one reported it.</li>
+          </ul>
+        </div>
+        <div class="shots" style="grid-template-columns:minmax(0,1fr);justify-items:center">
+          <figure class="shot reveal" style="max-width:420px">
+            <img src="../assets/img/np-lightning.webp" width="760" height="1645" alt="NodePulse on a phone in the Lightning layer: violet globe with node dots and channel arcs, the legend, and 17,420 Lightning nodes, 40,664 channels and 4,798.0 BTC capacity" loading="lazy" decoding="async">
+            <figcaption>Lightning · nodes, channels, capacity</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="renderer">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">03 / THE RENDERER</span>
+        <h2>Sixty frames a second on a phone, from a rasterised canvas</h2>
+        <p>Every decision below exists to remove work from a frame, because the network is still arriving while the
+          globe turns.</p>
+      </div>
+
+      <div class="spec-grid">
+        <article class="spec reveal">
+          <p class="sym">Projection</p>
+          <h3>Orthographic, with ring caches</h3>
+          <p>Every coastline ring is converted once into unit-sphere vectors; each frame applies a pre-computed camera
+            matrix and produces screen points and a depth. No trigonometric function runs at draw time, and the same
+            cache feeds land, graticule and hit-testing.</p>
+          <span class="where">js/70-render.js · prepRing / projectRing</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Fill</p>
+          <h3>A horizon solved at z = 0</h3>
+          <p>The visible hemisphere is exactly <span class="mono">z = 0</span>, so a ring is split at its own
+            crossings and each run is closed along the limb arc. Every run of every continent goes into one path and
+            one fill call per frame: a solid body with no seam, no chord, and no ocean filled at any rotation.</p>
+          <span class="where">test/fill-truth.js · 50 camera angles, 743k pixels</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Glow</p>
+          <h3>Never shadowBlur</h3>
+          <p>Every glow is a radial-gradient sprite rendered once and blitted with <span class="mono">drawImage</span>.
+            On a mid-range Android GPU <span class="mono">shadowBlur</span> alone costs more than the rest of the frame
+            together, so it is not used anywhere.</p>
+          <span class="where">starfield, globe body, atmosphere and land glow: one offscreen layer each</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Budget</p>
+          <h3>Adaptive resolution</h3>
+          <p>Device pixel ratio is capped at 2, and an adaptive tier drops the backing store to 0.75, 0.62, then 0.50
+            when frames persistently miss vsync, stepping back up when they do not. Node dots are batched into one
+            path per alpha level instead of one draw per dot.</p>
+          <span class="where">test/perf.js · p50 16.7 ms at 390×844</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Idle</p>
+          <h3>Nothing runs behind a hidden page</h3>
+          <p>The frame loop stops on <span class="mono">visibilitychange</span> and so does every repeating timer —
+            polling, refetching, panel repaints, the clock. A retry that comes due while hidden is held, not dropped,
+            and opened once the page is visible again.</p>
+          <span class="where">js/00-core.js · one cadence for every loop</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Dependencies</p>
+          <h3>Zero, and the build enforces it</h3>
+          <p><span class="mono">build.py</span> inlines CSS, geometry, the snapshots, eleven JS modules and the icon
+            into one 386 KB document, with tokens that fail the build if a substitution is missed. The shipped page
+            carries its own Content-Security-Policy naming each inline block by hash, and the test hook is stripped
+            from it.</p>
+          <span class="where">python3 build.py --check · the assembled code compiles with node</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="install">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">04 / INSTALL</span>
+        <h2>Download, check, open</h2>
+        <p>The APK is a shell around the same single file. No server, no account, no asset directory.</p>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <ul class="checks steps">
+            <li><b>Download</b> <span class="mono">nodepulse-1.1.13-release.apk</span> from
+              <a href="https://github.com/CoreJBH/nodepulse/releases/latest" rel="noopener">Releases</a> — v1.1.13,
+              versionCode 15, <span class="mono">765,612 bytes</span>.</li>
+            <li><b>Allow “install unknown apps”</b> for the app you open it with, then install. Android 7.0 (API 24)
+              or newer, target API 34.</li>
+            <li><b>Open it.</b> The globe starts on the Bitcoin L1 layer; the switcher under the title moves to
+              Lightning, and the layer you choose is remembered.</li>
+            <li><b>Or skip the APK:</b> <span class="mono">dist/nodepulse.html</span> is the whole app and runs in any
+              modern browser — add it to a home screen and it opens full-screen with its own icon.</li>
+          </ul>
+          <p class="mono" style="margin-top:22px">v1.1.13 is <span class="mono">com.corejbh.nodepulse</span> and
+            installs beside 1.1.12 rather than over it; the old build keeps its own cache, and uninstalling it removes
+            that data. This release is signed with the project's own RSA 4096 key, valid to 2054, v2 scheme only.</p>
+        </div>
+
+        <div class="verify">
+          <div class="verify-head">
+            <h3>SHA-256 · nodepulse-1.1.13-release.apk</h3>
+            <button class="copy" type="button" data-copy="apk-sha">copy</button>
+          </div>
+          <p class="mono" style="margin:0">Check this before you install. If the hash differs, the file is not the
+            build that was published.</p>
+          <div class="hash">
+            <code id="apk-sha">005199d9d7b01d8fb080fc2ba6d414888541268fcd3cbcbca016eb297a1f664b</code>
+          </div>
+          <pre class="cmd wrap"><span class="p">$</span> sha256sum nodepulse-1.1.13-release.apk
+005199d9d7b01d8fb080fc2ba6d414888541268fcd3cbcbca016eb297a1f664b</pre>
+          <pre class="cmd"><span class="p">$</span> apksigner verify --print-certs nodepulse-1.1.13-release.apk
+<span class="p">#</span> signer CN=NodePulse, O=CoreJBH, C=KR · RSA 4096 · v2
+<span class="p">#</span> SHA-256 e98abd81…596480f9 · com.corejbh.nodepulse</pre>
+          <p class="mono" style="margin:16px 0 0">The page inside the APK is rebuilt from <span class="mono">src/</span>
+            by <span class="mono">build.py</span> and compared byte for byte with the asset the APK ships — 395,617
+            bytes, no Hangul character in it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="limits">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">05 / LIMITS</span>
+        <h2>What it does not show</h2>
+        <p>Nothing the crawler cannot know is invented, and the screen says which answer it is showing.</p>
+      </div>
+      <div class="limits">
+        <div class="limit"><h3>No peer graph on L1</h3><p>Bitnodes publishes no per-node connections, so the L1 layer draws no links at all rather than a plausible mesh.</p></div>
+        <div class="limit"><h3>No latency, uptime or disk</h3><p>No per-node latency, uptime, storage size or per-node height is shown, because the crawler does not report them.</p></div>
+        <div class="limit"><h3>Country counts are a snapshot</h3><p>Bitnodes exposes a country only through a paginated 21,826-row list (~20 MB), so that table is fetched at build time and stamped with its capture date wherever it is drawn.</p></div>
+        <div class="limit"><h3>A browser cannot read Bitnodes</h3><p>The host sends no <span class="mono">Access-Control-Allow-Origin</span>, so the plain web build shows the embedded snapshot and says why. Only the Android shell's native bridge reads L1 live.</p></div>
+        <div class="limit"><h3>Rate limits are shown, not hidden</h3><p>Requests rotate across three mempool.space mirrors; when all of them fail the app degrades to the snapshot and labels it instead of substituting values.</p></div>
+        <div class="limit"><h3>Independent, not affiliated</h3><p>NodePulse is an independent visualiser of Bitnodes and mempool.space data, with no affiliation to or endorsement by either.</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img class="brand-mark" src="../assets/img/tesseract-mark.png?v=2026-11-22f" width="30" height="30" alt="" decoding="async">
+        <div>
+          <div class="word">CORE<span class="dot" style="color:var(--cyan)">JBH</span></div>
+          <p class="tagline">NodePulse · verify, don't trust.</p>
+        </div>
+      </div>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="../">CoreJBH</a>
+        <a href="https://github.com/CoreJBH/nodepulse" rel="noopener">Source</a>
+        <a href="https://github.com/CoreJBH/nodepulse/releases/latest" rel="noopener">Releases</a>
+        <a href="https://github.com/CoreJBH/nodepulse/issues" rel="noopener">Issues</a>
+      </nav>
+    </div>
+    <div class="foot-note">
+      <span>NodePulse v1.1.13 · Canvas 2D · com.corejbh.nodepulse</span>
+      <span>this page loads nothing from another host · no cookies · no analytics</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/site.js?v=2026-11-22f" defer></script>
+</body>
+</html>

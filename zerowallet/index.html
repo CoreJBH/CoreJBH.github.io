@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZeroWallet — a Lightning and on-chain wallet that keeps its own keys</title>
+<meta name="description" content="ZeroWallet is a native Android Bitcoin wallet on LDK Node 0.7.0: P2P Lightning and on-chain in one app, the BIP-39 phrase in 12 or 24 numbered boxes, channels in one encrypted .zwbackup file. No LSP, no backend, no custodian, no telemetry.">
+<meta name="author" content="CoreJBH">
+<meta name="theme-color" content="#030B27">
+<meta name="color-scheme" content="dark">
+<meta name="application-name" content="CoreJBH">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="CoreJBH">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ZeroWallet — P2P Lightning and on-chain wallet for Android">
+<meta property="og:description" content="The node, the wallet and the keys live on the phone. LDK Node 0.7.0, a phrase in numbered boxes, channels in one encrypted backup, no LSP and no backend.">
+<meta property="og:url" content="https://corejbh.github.io/zerowallet/">
+<meta property="og:image" content="https://corejbh.github.io/assets/img/icon-zerowallet-512.png">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://corejbh.github.io/zerowallet/">
+<link rel="icon" href="../assets/img/favicon-32.png?v=2026-11-28a" sizes="32x32" type="image/png">
+<link rel="icon" href="../assets/img/icon-192.png?v=2026-11-28a" sizes="192x192" type="image/png">
+<link rel="icon" href="../assets/img/icon-512.png?v=2026-11-28a" sizes="512x512" type="image/png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=2026-11-28a" sizes="180x180">
+<link rel="manifest" href="/manifest.webmanifest?v=2026-11-22g">
+<link rel="stylesheet" href="../assets/css/site.css?v=2026-11-28a">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="../" aria-label="CoreJBH home">
+      <img class="brand-mark" src="../assets/img/tesseract-mark.png?v=2026-11-22f" width="30" height="30" alt="" decoding="async">
+      <span class="word">CORE<span class="dot">JBH</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#wallet">Wallet</a>
+      <a href="#node" class="opt">Node</a>
+      <a href="#install">Install</a>
+      <a class="gh" href="https://github.com/CoreJBH/zerowallet" rel="noopener">GitHub &#8599;</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero app-hero hero-solo">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="badge-row">
+          <span class="badge live">v1.2.3 released</span>
+          <span class="badge">LDK Node 0.7.0</span>
+          <span class="badge">arm64-v8a · armeabi-v7a</span>
+          <span class="badge">Android 8.0+</span>
+        </div>
+        <div class="mark-row">
+          <img class="app-icon" src="../assets/img/icon-zerowallet-512.png?v=2026-11-28a" width="76" height="76" alt="ZeroWallet app icon: a white wallet outline with a blue lightning bolt" decoding="async">
+          <h1 class="wordmark">ZeroWallet</h1>
+        </div>
+        <p class="lead" style="margin-top:20px">A Lightning and on-chain Bitcoin wallet that runs only on the phone. The node,
+          the wallet and the keys are one app built on LDK Node — no account, no backend, no LSP, no custodian
+          anywhere in the payment path. A channel is opened peer to peer, and the recovery phrase is entered in
+          numbered boxes, not one long field.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/CoreJBH/zerowallet/releases/latest/download/zerowallet-1.2.3-release.apk" rel="noopener">
+            <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg>
+            Download APK · v1.2.3
+          </a>
+          <a class="btn btn-ghost" href="#install">
+            <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.8 13 3.6v4.1c0 3-2 5.4-5 6.5-3-1.1-5-3.5-5-6.5V3.6L8 1.8Z"/><path d="m5.9 7.9 1.5 1.5 2.9-3"/></svg>
+            Verify a download
+          </a>
+          <a class="btn btn-link" href="https://github.com/CoreJBH/zerowallet" rel="noopener">Source &#8599;</a>
+        </div>
+        <p class="hero-note">
+          <span>no LSP</span><span>no backend</span><span>no custodian</span><span>no telemetry</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="strip" aria-label="At a glance">
+      <span><b>LDK Node 0.7.0</b></span>
+      <span>BOLT11 · BOLT12</span>
+      <span>Esplora, three endpoints</span>
+      <span>AES-256-GCM · .zwbackup</span>
+      <span>one fiat figure, in USD</span>
+    </div>
+  </div>
+
+  <section class="sec" id="wallet">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">01 / THE WALLET</span>
+        <h2>Two balances, one screen, no server in between</h2>
+        <p>The Lightning balance and the on-chain balance are read from the node on this phone, never from an API.</p>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <p style="color:var(--ink-dim)">On-chain, the wallet derives a fresh address for every receive, sizes a send
+            from the network's own fee estimate, or sweeps the whole balance. The confirmation screen prints the
+            destination address in full monospace, wrapped over as many lines as it takes — never an abbreviation
+            somebody could swap characters inside. Amounts are read as exact decimals: more than the 21 million
+            supply, a sub-satoshi remainder or an overflow is refused instead of paid.</p>
+          <p style="color:var(--ink-dim)">On Lightning it creates BOLT11 invoices and BOLT12 offers, pays BOLT11
+            invoices, BOLT12 offers and BOLT12 invoices, and reads the same QR for a BIP-21 request that carries
+            both halves. A Lightning send reads <span class="mono">sending</span> until the node reports the payment
+            settled, and only then <span class="mono">sent</span>: routing can still fail after the send screen is
+            done with it, and the history says so instead of hiding the attempt.</p>
+          <p style="color:var(--ink-dim)">Channels are opened peer to peer with a
+            <span class="mono">pubkey@host:port</span>, closed cooperatively or force-closed. There is no
+            just-in-time channel service and no channel-opening fee to a third party. The channel graph arrives
+            from the node's peers, or as a Rapid Gossip Sync snapshot picked per chain.</p>
+
+          <dl class="facts">
+            <div><dt>lightning</dt><dd>LDK Node 0.7.0</dd></div>
+            <div><dt>networks</dt><dd>mainnet · signet · testnet3</dd></div>
+            <div><dt>backup</dt><dd>one sealed .zwbackup</dd></div>
+            <div><dt>phrase</dt><dd>12 or 24 words</dd></div>
+            <div><dt>fiat</dt><dd>USD only</dd></div>
+            <div><dt>ABI</dt><dd>arm64-v8a · armeabi-v7a</dd></div>
+          </dl>
+        </div>
+
+        <div class="shots two" style="grid-template-columns:minmax(0,1fr);justify-items:center">
+          <figure class="shot reveal shot-demo">
+            <img src="../assets/img/zw-demo.gif" width="400" height="848" alt="The ZeroWallet home screen: balances in dollars and satoshis, Scan / Send / Receive / Channels, then the settings screen with the node status, node id and the network selector" loading="lazy" decoding="async">
+            <figcaption>Home → settings · the amounts in this capture are example values</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="grid" style="margin-top:26px">
+        <div class="card">
+          <p class="kicker">Never ₿0 while it starts</p>
+          <h3>The last real sync is kept</h3>
+          <p>A start opens the node store and syncs with Esplora, which takes seconds. The last known balances, block
+            height, sync time and payment list are sealed on the device after every real sync and shown while the
+            node comes up, so opening the wallet never flashes a zero balance.</p>
+        </div>
+        <div class="card">
+          <p class="kicker">Fees</p>
+          <h3>The rate on screen is the rate signed</h3>
+          <p>Normal and Fast come from the chain source's estimator, parsed as JSON and clamped to 1..1000 sat/vB.
+            The confirmation shows the rate and the estimated total together, and a rate of 100 sat/vB or more, or a
+            fee above 10% of a 1,000-sat payment, stops the send behind its own confirmation.</p>
+        </div>
+        <div class="card">
+          <p class="kicker">Offline</p>
+          <h3>A dash, not a stale number</h3>
+          <p>Every fiat figure is the dollar value of the balance, from CoinGecko with mempool.space as the fallback.
+            With no network the wallet prints a dash instead of yesterday's price, and the satoshi figures stay
+            exactly as the node last reported them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="node">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">02 / THE NODE</span>
+        <h2>A Lightning node with no home screen of its own</h2>
+        <p>No foreground service and no notification: the wallet is the only place the node appears.</p>
+      </div>
+
+      <div class="two-col">
+        <div class="arch reveal" role="img" aria-label="Architecture: the Compose UI talks to WalletViewModel, then NodeManager, then WalletCore, which owns one ldk-node Node and its lock over the wallet, runtime, payment, backup and market layers, talking to an Esplora chain source and Lightning peers.">
+          <div class="layer"><span class="lbl">Compose UI</span><span class="chip">HOME</span><span class="chip">SEND</span><span class="chip">RECEIVE</span><span class="chip">CHANNELS</span><span class="note">lock state machine</span></div>
+          <div class="down">&#9660;</div>
+          <div class="layer"><span class="lbl">NodeManager</span><span class="note">the front door on the layers below · no state of its own</span></div>
+          <div class="down">&#9660;</div>
+          <div class="layer core"><span class="lbl">WalletCore</span><span class="note">one Node, one lock, one state flow, one phrase read</span></div>
+          <div class="down">&#9660;</div>
+          <div class="layer"><span class="lbl">layers</span><span class="chip">WalletLayer</span><span class="chip">NodeRuntime</span><span class="chip">PaymentLayer</span><span class="chip">BackupLayer</span><span class="chip">MarketLayer</span></div>
+          <div class="down">&#9660;</div>
+          <div class="layer"><span class="lbl">ldk-node 0.7.0</span><span class="note">Kotlin/UniFFI + Rust .so</span><span class="chip">BOLT11/12</span><span class="chip">BDK</span></div>
+          <div class="down">&#9660;</div>
+          <div class="layer"><span class="lbl">Esplora</span><span class="note">https chain source · peers · gossip</span></div>
+        </div>
+
+        <div>
+          <ul class="checks">
+            <li><b>Native, not a WebView.</b> Kotlin 2.0.21 and Jetpack Compose, <span class="mono">minSdk 26</span>, one app id <span class="mono">com.corejbh.zerowallet</span>.</li>
+            <li><b>A chain source that moves instead of dying.</b> Mainnet starts on <span class="mono">blockstream.info/api</span>; when that endpoint times out the same start is retried on <span class="mono">mempool.space/api</span> and then <span class="mono">mempool.emzy.de/api</span>, and the screen names the server it is reading. A node that is already running walks the same list instead of sitting on “Sync problem”.</li>
+            <li><b>A port that cannot be bound is not a dead wallet.</b> If 9735 is taken, the node starts again without a listening address, so on-chain sync, payments and open channels keep working.</li>
+            <li><b>One lock around every JNI call.</b> Starts, stops, wipes, restores and chain switches are serialised, and a stop waits for the event loop to leave its native call before the node is destroyed.</li>
+            <li><b>Stops that stay stopped.</b> A node the user stopped is written to disk, so a killed process does not bring it back; coming back to the wallet quietly resyncs one that survived.</li>
+            <li><b>Nothing in the notification bar.</b> No foreground service, no ongoing notification: the node lives as long as the app does and reconnects when the screen returns.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="keys">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">03 / KEYS &amp; RECOVERY</span>
+        <h2>The phrase is stored as ciphertext a lock has to open</h2>
+        <p>Every privileged action asks for the device first, and the answer is what runs the action.</p>
+      </div>
+
+      <div class="spec-grid">
+        <article class="spec reveal">
+          <p class="sym">Seed · Android Keystore</p>
+          <h3>AES-256-GCM, generated in the Keystore</h3>
+          <p>The key's material is created inside the Keystore and never exists as bytes this process can hold. On a
+            phone with a screen lock it is created <span class="mono">setUserAuthenticationRequired(true)</span> with
+            a 60-second window, so a shell, a hooked callback or a bypassed screen cannot read the phrase.</p>
+          <span class="where">core/SecureStore.kt · fail-closed: a seal it cannot make is not written</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Restore · BIP-39</p>
+          <h3>One numbered box per word</h3>
+          <p>12 or 24 words, three columns, one word per box. As soon as the letters name exactly one BIP-39 word the
+            box fills itself and the caret moves on; ambiguous prefixes offer tappable suggestions. Pasting a whole
+            phrase — spaces, newlines, commas or a numbered list — spreads it over the boxes.</p>
+          <span class="where">core/Bip39.kt · official vectors in the unit tests</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Backup · .zwbackup</p>
+          <h3>PBKDF2, 210,000 iterations</h3>
+          <p>The node store — channel manager and monitors, on-chain wallet, node keys — is packed into one file
+            sealed with AES-256-GCM under a key derived from the recovery phrase: PBKDF2-HMAC-SHA256, 210,000
+            iterations, a random 16-byte salt in the header (format 3). Older format 2 and format 1 files still open.</p>
+          <span class="where">core/BackupLayer.kt · Android's own file picker, no Play Services</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Gate · BiometricPrompt</p>
+          <h3>Send, show, restore, wipe</h3>
+          <p>Sending, funding or closing a channel, restoring a backup, showing the phrase and wiping the wallet all
+            ask for a strong biometric or the screen lock first. The prompt's answer is the only thing that runs the
+            action: a cancel, a dismissal or a phone with no lock runs none of it.</p>
+          <span class="where">core/AppLock.kt · Authorization.guarded()</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Screen · FLAG_SECURE</p>
+          <h3>No screenshots, no Recents thumbnail</h3>
+          <p>The wallet window is closed to screenshots and screen recording and blanked in the recent-apps list, and
+            the recovery phrase and the setup screens force it on. The phrase dialog is dropped on pause and on stop
+            whether or not lock-on-open is set.</p>
+          <span class="where">core/ScreenSecurity.kt · the pictures below come from a demo build</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Clipboard</p>
+          <h3>A copy that hides itself and expires</h3>
+          <p>Copying an invoice, an offer, an address or a node id marks the clip
+            <span class="mono">EXTRA_IS_SENSITIVE</span> on Android 13+, so the system does not draw it in the
+            clipboard preview. Two minutes later the app takes the copy back itself — a leftover address is what a
+            clipboard-swapping app changes between the copy and the paste.</p>
+          <span class="where">core/SensitiveClipboard.kt · something else on the clip is left alone</span>
+        </article>
+      </div>
+
+      <div class="shots two" style="margin-top:26px">
+        <figure class="shot reveal">
+          <img src="../assets/img/zw-home.webp" width="760" height="1611" alt="ZeroWallet home screen: a $1,596 total beside 1,750,000 sats, Lightning $456 and on-chain $1,140, then Scan, Send, Receive and Channels and the completed payments list" loading="lazy" decoding="async">
+          <figcaption>Home · the amounts are example values</figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <img src="../assets/img/zw-settings.webp" width="760" height="1246" alt="ZeroWallet settings: node status, block height, last sync, the mainnet / signet / testnet3 selector, and Copy id, Sync now, Restart node and Stop node" loading="lazy" decoding="async">
+          <figcaption>Settings · node, chain and network</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="install">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">04 / INSTALL</span>
+        <h2>Download, check, restore</h2>
+        <p>One APK, one hash, no account. The release is signed with the project's own key, and the phrase is the
+          only thing that carries a wallet from another build.</p>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <ul class="checks steps">
+            <li><b>Download</b> <span class="mono">zerowallet-1.2.3-release.apk</span> from
+              <a href="https://github.com/CoreJBH/zerowallet/releases/latest" rel="noopener">Releases</a> — v1.2.3,
+              versionCode 24, <span class="mono">47,511,375 bytes</span>.</li>
+            <li><b>Allow “install unknown apps”</b> for the app you open it with, then install. Android 8.0 (API 26)
+              or newer, <span class="mono">arm64-v8a</span> or <span class="mono">armeabi-v7a</span>.</li>
+            <li><b>Create a wallet</b> on 12 or 24 words and write the phrase down. It is sealed with a key bound to
+              the phone's lock, so removing that lock makes the stored copy unreadable — the words are the way back.</li>
+            <li><b>Coming from 1.1.x?</b> That build was debug-signed and carries another package id, so it cannot be
+              updated in place. Write the recovery phrase down, install 1.2.3, restore from the words or from a
+              <span class="mono">.zwbackup</span>, and only then uninstall the old one.</li>
+          </ul>
+          <p class="mono" style="margin-top:22px">Channel funds need an on-chain reserve of about 1% of the channel
+            size plus the funding fee, and closing a channel costs an on-chain transaction. Keep channel amounts
+            small while the peer-to-peer flows get real-world mileage.</p>
+        </div>
+
+        <div class="verify">
+          <div class="verify-head">
+            <h3>SHA-256 · zerowallet-1.2.3-release.apk</h3>
+            <button class="copy" type="button" data-copy="apk-sha">copy</button>
+          </div>
+          <p class="mono" style="margin:0">Check this before you install. If the hash differs, the file is not the
+            build that was published.</p>
+          <div class="hash">
+            <code id="apk-sha">9258b70abb8d89cd526ca44a19e29227c56fb7048460a1ea3957d0893f5d50f7</code>
+          </div>
+          <pre class="cmd wrap"><span class="p">$</span> sha256sum zerowallet-1.2.3-release.apk
+9258b70abb8d89cd526ca44a19e29227c56fb7048460a1ea3957d0893f5d50f7</pre>
+          <pre class="cmd"><span class="p">$</span> apksigner verify --print-certs zerowallet-1.2.3-release.apk
+<span class="p">#</span> certificate SHA-256 64:58:AE:51:18:0A:19:F0:…:8F:3B:A7
+<span class="p">#</span> com.corejbh.zerowallet · versionCode 24</pre>
+          <p class="mono" style="margin:16px 0 0">The APK is built by the repository's CI from a signed
+            <span class="mono">assembleRelease</span> run, with 380 unit tests passing on both the debug and the
+            release variant before it is attached. The same package and the same key as the build this page's
+            screenshots come from.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="limits">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">05 / LIMITS</span>
+        <h2>What it does not do</h2>
+        <p>A wallet that hides its edges cannot be trusted with money.</p>
+      </div>
+      <div class="limits">
+        <div class="limit"><h3>The phrase restores coins, not channels</h3><p>Open channels live in this phone's node store. Without a <span class="mono">.zwbackup</span> a lost phone loses the funds in them, and a backup is a snapshot — a channel that moved after it may force-close on restore.</p></div>
+        <div class="limit"><h3>The node store is not encrypted at rest</h3><p>ldk-node 0.7.0 writes channel monitors and the BDK wallet as plain SQLite under the app's private directory. The sandbox, <span class="mono">allowBackup="false"</span> and file-based encryption protect it from other apps and from a locked phone; a rooted or unlocked phone hands over the channel balance.</p></div>
+        <div class="limit"><h3>Not a hosted wallet</h3><p>Nobody recovers a channel for you and no service keeps a copy. Backups exist when you save one, from the phone, yourself.</p></div>
+        <div class="limit"><h3>Inbound Lightning needs reachability</h3><p>A phone behind carrier NAT cannot accept inbound connections without port forwarding, which is most of what BOLT12 and receiving a first channel needs.</p></div>
+        <div class="limit"><h3>Testnet3, not Testnet4</h3><p>ldk-node 0.7.0 exposes Testnet3; the wallet offers mainnet, signet and testnet3 only.</p></div>
+        <div class="limit"><h3>A wallet at 1.2.3</h3><p>Self-custody software under active development: keep only amounts you are willing to lose while the peer-to-peer flows get mileage.</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img class="brand-mark" src="../assets/img/tesseract-mark.png?v=2026-11-22f" width="30" height="30" alt="" decoding="async">
+        <div>
+          <div class="word">CORE<span class="dot" style="color:var(--cyan)">JBH</span></div>
+          <p class="tagline">ZeroWallet · verify, don't trust.</p>
+        </div>
+      </div>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="../">CoreJBH</a>
+        <a href="https://github.com/CoreJBH/zerowallet" rel="noopener">Source</a>
+        <a href="https://github.com/CoreJBH/zerowallet/releases/latest" rel="noopener">Releases</a>
+        <a href="https://github.com/CoreJBH/zerowallet/issues" rel="noopener">Issues</a>
+      </nav>
+    </div>
+    <div class="foot-note">
+      <span>ZeroWallet v1.2.3 · LDK Node 0.7.0 · com.corejbh.zerowallet</span>
+      <span>this page loads nothing from another host · no cookies · no analytics</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/site.js?v=2026-11-22f" defer></script>
+</body>
+</html>

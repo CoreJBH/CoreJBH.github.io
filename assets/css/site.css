@@ -808,6 +808,26 @@ ul.checks.steps li::before {
   place-items: center;
 }
 
+/* an app page carries the app's own mark beside its wordmark */
+.mark-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2.4vw, 22px);
+  flex-wrap: wrap;
+}
+.mark-row .app-icon {
+  width: 76px;
+  height: 76px;
+  flex: none;
+  border-radius: 19px;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  box-shadow: 0 0 40px rgba(0, 212, 255, 0.34), 0 10px 30px rgba(0, 8, 30, 0.6);
+}
+@media (max-width: 560px) {
+  .mark-row .app-icon { width: 56px; height: 56px; border-radius: 15px; }
+  .mark-row .wordmark { letter-spacing: 0.1em; }
+}
+
 /* screenshots */
 .shots {
   display: grid;
@@ -845,6 +865,10 @@ ul.checks.steps li::before {
   color: var(--muted);
   text-align: center;
 }
+.shots.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 720px) { .shots.two { grid-template-columns: minmax(0, 1fr); } }
+.shot-demo { max-width: 340px; }
+.shot-demo img { box-shadow: 0 24px 60px rgba(0, 8, 30, 0.7); }
 
 /* verify block */
 .verify {

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CleanSwap — a Lightning bitcoin ⇄ USDT swap with both legs locked first</title>
+<meta name="description" content="CleanSwap swaps Lightning bitcoin for USDT, or USDT for bitcoin, in one HTML file. A SHA-256 hashlock, a real HTLC escrow on Arbitrum, three steps, and a page that reads the chain instead of believing the phone. No key in the app, no custodian.">
+<meta name="author" content="CoreJBH">
+<meta name="theme-color" content="#030B27">
+<meta name="color-scheme" content="dark">
+<meta name="application-name" content="CoreJBH">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="CoreJBH">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CleanSwap — Lightning bitcoin ⇄ USDT, both legs locked first">
+<meta property="og:description" content="A non-custodial atomic swap in a single HTML file: one SHA-256 hashlock, a real escrow on Arbitrum, and a verdict the page reads from the contract.">
+<meta property="og:url" content="https://corejbh.github.io/cleanswap/">
+<meta property="og:image" content="https://corejbh.github.io/assets/img/icon-cleanswap-512.png">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://corejbh.github.io/cleanswap/">
+<link rel="icon" href="../assets/img/favicon-32.png?v=2026-11-28a" sizes="32x32" type="image/png">
+<link rel="icon" href="../assets/img/icon-192.png?v=2026-11-28a" sizes="192x192" type="image/png">
+<link rel="icon" href="../assets/img/icon-512.png?v=2026-11-28a" sizes="512x512" type="image/png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=2026-11-28a" sizes="180x180">
+<link rel="manifest" href="/manifest.webmanifest?v=2026-11-22g">
+<link rel="stylesheet" href="../assets/css/site.css?v=2026-11-28a">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="../" aria-label="CoreJBH home">
+      <img class="brand-mark" src="../assets/img/tesseract-mark.png?v=2026-11-22f" width="30" height="30" alt="" decoding="async">
+      <span class="word">CORE<span class="dot">JBH</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#swap">Swap</a>
+      <a href="#escrow" class="opt">Escrow</a>
+      <a href="#install">Install</a>
+      <a class="gh" href="https://github.com/CoreJBH/cleanswap" rel="noopener">GitHub &#8599;</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero app-hero hero-solo">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="badge-row">
+          <span class="badge live">v0.6.13 released</span>
+          <span class="badge">Arbitrum Sepolia · One</span>
+          <span class="badge">single-file HTML</span>
+          <span class="badge">Android 7.0+</span>
+        </div>
+        <div class="mark-row">
+          <img class="app-icon" src="../assets/img/icon-cleanswap-512.png?v=2026-11-28a" width="76" height="76" alt="CleanSwap app icon: two mint-green arrows turning around each other" decoding="async">
+          <h1 class="wordmark">CleanSwap</h1>
+        </div>
+        <p class="lead" style="margin-top:20px">A non-custodial swap between Lightning bitcoin and USDT. Three steps — the
+          invoice, the USDT address, <span class="mono">Approve</span> — over one SHA-256 hashlock that settles both
+          legs with the same 32-byte secret. The USDT leg is a real HTLC on Arbitrum, and the page believes the
+          contract, never the phone.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/CoreJBH/cleanswap/releases/latest/download/cleanswap.apk" rel="noopener">
+            <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg>
+            Download APK · v0.6.13
+          </a>
+          <a class="btn btn-ghost" href="#install">
+            <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.8 13 3.6v4.1c0 3-2 5.4-5 6.5-3-1.1-5-3.5-5-6.5V3.6L8 1.8Z"/><path d="m5.9 7.9 1.5 1.5 2.9-3"/></svg>
+            Verify a download
+          </a>
+          <a class="btn btn-link" href="https://github.com/CoreJBH/cleanswap" rel="noopener">Source &#8599;</a>
+        </div>
+        <p class="hero-note">
+          <span>no key in the app</span><span>no custodian</span><span>no account</span><span>chain-read verdict</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="strip" aria-label="At a glance">
+      <span><b>sha256 hashlock</b></span>
+      <span>solc 0.8.26 · no owner · no fees</span>
+      <span>two endpoints, cross-checked</span>
+      <span>30 min – 7 day window</span>
+      <span>one file, zero dependencies</span>
+    </div>
+  </div>
+
+  <section class="sec" id="swap">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">01 / THE SWAP</span>
+        <h2>Three steps, and the chain decides the last one</h2>
+        <p>Nothing completes on a tap. The swap closes when the contract says the USDT was locked for these terms and
+          then claimed.</p>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <p style="color:var(--ink-dim)">A hold invoice states the 32-byte payment hash the escrow will be locked
+            against. The page checks the bech32 checksum, the payee's signature over the invoice, the amount, the
+            network prefix and the expiry before either side is bound to it — and a BOLT12 offer is refused outright,
+            because the invoice a wallet gets for an offer carries a fresh hash of its own and the USDT would lock
+            against a secret no payment moves.</p>
+          <p style="color:var(--ink-dim)">Then the USDT address, then <span class="mono">Approve</span>, which reads
+            the escrow before anything is signed: endpoints alive and agreeing, the contract deployed, the record for
+            this exact <span class="mono">swapId</span>. The id is
+            <span class="mono">sha256(hashlock, sender, receiver, token, amount, timelock)</span> — the funding address
+            is part of it, so copying the terms does not let a stranger lock them first and burn the id by
+            refunding.</p>
+          <p style="color:var(--ink-dim)">The window has a floor, a ceiling and a margin: no less than 30 minutes, no
+            more than 7 days, and the Lightning invoice has to stay payable at least an hour past the window. A
+            record past its timelock reads as <span class="mono">window closed</span>, not as locked.</p>
+
+          <dl class="facts">
+            <div><dt>hashlock</dt><dd>SHA-256, 32 bytes</dd></div>
+            <div><dt>escrow</dt><dd>Arbitrum HTLC</dd></div>
+            <div><dt>chains</dt><dd>Sepolia · One</dd></div>
+            <div><dt>window</dt><dd>30 min – 7 days</dd></div>
+            <div><dt>invoice</dt><dd>BOLT11 hold</dd></div>
+            <div><dt>key</dt><dd>yours, in your wallet</dd></div>
+          </dl>
+        </div>
+
+        <div class="shots" style="grid-template-columns:minmax(0,1fr);justify-items:center">
+          <figure class="shot reveal shot-demo">
+            <img src="../assets/img/cs-demo.gif" width="400" height="866" alt="CleanSwap in Practice mode: the form with an example invoice and address, Approve, the Waiting for payment screen, then Swap complete with the same 50,000 sats and 30.57 USDT" loading="lazy" decoding="async">
+            <figcaption>Practice: ready → waiting → complete · every value is an example</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="grid" style="margin-top:26px">
+        <div class="card">
+          <p class="kicker">Step 1 · the invoice</p>
+          <h3>A payment hash or nothing</h3>
+          <p>A BOLT11 hold invoice with the standard <span class="mono">payment_hash</span> field and a signature the
+            page verifies itself, in the page, with no network. An <span class="mono">lno1</span> offer is refused
+            with the reason and a request for a hold invoice; a BOLT12 invoice is refused because this page has no
+            verifier for its Schnorr signature.</p>
+        </div>
+        <div class="card">
+          <p class="kicker">Step 2 · the address</p>
+          <h3>Checked against its own spelling</h3>
+          <p>An Arbitrum address with exactly 40 hex characters, not the zero address, and a mixed-case one must
+            match its EIP-55 spelling — one replaced character is refused instead of locking money against it. A
+            USDT address that arrives in a partner's code is shown and has to be tapped in, never written silently.</p>
+        </div>
+        <div class="card">
+          <p class="kicker">Step 3 · approve</p>
+          <h3>One tap, one operation</h3>
+          <p>Every tap that can move money marks itself in flight and refuses the next one before anything is built
+            or sent, so a second tap in the read's gap cannot start a second swap on the same money. The terms a tap
+            built are dropped on refusal, and the secret never leaves the page.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="escrow">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">02 / THE ESCROW</span>
+        <h2>Two legs, one secret, and who can move first</h2>
+        <p>The contract has no owner, no fee switch and no proxy. It is small enough to read in one sitting.</p>
+      </div>
+
+      <div class="arch reveal" role="img" aria-label="Diagram: the Lightning leg's invoice payment hash H is the same value the clean swap escrow locks against; the 32-byte secret R that pays the invoice also claims the USDT escrow, and after the timelock the escrow can be refunded.">
+        <div class="layer"><span class="lbl">bitcoin leg · Lightning</span><span class="note">hold invoice, payment hash H</span><span class="chip">BOLT11</span></div>
+        <div class="down">&#9660; &nbsp; same 32-byte H &nbsp; &#9660;</div>
+        <div class="layer core"><span class="lbl">CleanSwapHTLC.lock(H, T2, receiver, token, amount)</span><span class="note">swapId = sha256(H ‖ sender ‖ receiver ‖ token ‖ amount ‖ T2)</span></div>
+        <div class="down">&#9660; &nbsp; reveal R, sha256(R) == H &nbsp; &#9660;</div>
+        <div class="layer"><span class="lbl">claim(swapId, R)</span><span class="note">USDT → receiver</span><span class="lbl">refund(swapId)</span><span class="note">after T2, USDT → sender</span></div>
+        <div class="down">&#9660;</div>
+        <div class="layer"><span class="lbl">swaps(swapId)</span><span class="note">8 words: hashlock, amount, timelock, token, sender, receiver, claimed, refunded — the only verdict the page accepts</span></div>
+      </div>
+
+      <div class="spec-grid" style="margin-top:26px">
+        <article class="spec reveal">
+          <p class="sym">Contract · solc 0.8.26</p>
+          <h3>Lock, claim, refund</h3>
+          <p>Checks-effects-interactions, custom errors, a reentrancy guard on all three movers, a zero hashlock and a
+            receiver that is the escrow itself refused at the door. Token movement goes through
+            <span class="mono">_safeTransfer</span> and a balance-delta check, so a fee-on-transfer token or one that
+            returns no bool cannot leave the escrow holding less than it promised.</p>
+          <span class="where">contracts/CleanSwapHTLC.sol · 58 contract tests on py-evm</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Reads · quorum</p>
+          <h3>One node is not a cross-check</h3>
+          <p>Sepolia is read from <span class="mono">sepolia-rollup.arbitrum.io/rpc</span> and
+            <span class="mono">arbitrum-sepolia-rpc.publicnode.com</span>; One from its two public endpoints. A state
+            the money depends on is believed only when two answers agree, and a single answer is shown as
+            <span class="mono">one endpoint, no cross-check</span> rather than passed off as a check.</p>
+          <span class="where">chain.js · receipts and transactions compared field by field</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Clock</p>
+          <h3>The chain's time, not the phone's</h3>
+          <p>The window is measured against the head's timestamp — the median of the endpoints that agree within five
+            minutes — and re-read before <span class="mono">I paid</span> starts watching. Moving the phone's clock
+            cannot open a window the chain has closed.</p>
+          <span class="where">chain.js · a head a day off is treated as a mistake, not a clock</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Price</p>
+          <h3>Two quotes, ninety seconds</h3>
+          <p>The BTC/USD rate is mempool.space and Coinbase asked at the same time: two answers within 2% are one live
+            rate, two answers further apart are not a rate at all, and a quote older than 90 seconds is read again
+            before a swap is approved or a code is written. The offline guess never prices a wallet swap.</p>
+          <span class="where">price.js · the rate line names what it is</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Hand-off · EIP-1193 / EIP-681</p>
+          <h3>Signing stays in your wallet</h3>
+          <p>With a wallet in the page the approve, lock, claim and refund calls are sent from it and the allowance is
+            checked first. Without one, the exact call is copied as text or opened as an
+            <span class="mono">ethereum:</span> link, and the transaction hash is pasted back — the page reads the
+            receipt itself and still judges only what the escrow says.</p>
+          <span class="where">wallet.js · the app holds no key and never asks for one</span>
+        </article>
+
+        <article class="spec reveal">
+          <p class="sym">Terms · cleanswap: code</p>
+          <h3>Terms, not a web address</h3>
+          <p>A code is base64url JSON under the QR budget: both amounts, the window, the hashlock, the address, and in
+            Wallet mode the chain and escrow. It never switches the network and never writes an escrow address — a
+            code naming another escrow is refused whole, with the reason on screen.</p>
+          <span class="where">swap.js · a code arriving over existing terms asks before it replaces them</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="screens">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">03 / SCREENS</span>
+        <h2>Practice and Wallet, the same three steps</h2>
+        <p>A rehearsal walks the identical screen, gate and reading against a stand-in escrow, so what Practice teaches
+          is what Wallet does.</p>
+      </div>
+
+      <div class="shots">
+        <figure class="shot reveal">
+          <img src="../assets/img/cs-ready.webp" width="760" height="1645" alt="CleanSwap ready to approve in Practice: Arbitrum Sepolia, 50,000 sats to 30.57 USDT, the partner's invoice field with a Sample button, the USDT address field, and the Approve button" loading="lazy" decoding="async">
+          <figcaption>Ready · Practice, example terms</figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <img src="../assets/img/cs-wallet.webp" width="760" height="1645" alt="CleanSwap in Wallet mode: the chain line reads Arbitrum Sepolia, USDT locked, block 3,087,424, and the screen says Waiting for payment with I paid at the bottom" loading="lazy" decoding="async">
+          <figcaption>Waiting · Wallet mode, Sepolia test chain</figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <img src="../assets/img/cs-complete.webp" width="760" height="1645" alt="CleanSwap Swap complete: 50,000 sats sent, 30.57 USDT received, the USDT address in full, and Settled on Practice · simulated" loading="lazy" decoding="async">
+          <figcaption>Complete · Practice, simulated settle</figcaption>
+        </figure>
+      </div>
+
+      <div class="grid" style="margin-top:26px">
+        <div class="card">
+          <p class="kicker">Practice</p>
+          <h3>Nothing to deploy, nothing written down</h3>
+          <p>The stand-in escrow lives in the page and answers with the same record shape as the contract, at
+            rehearsal speed. A practice swap is never written to Recent and never survives the page — its escrow died
+            with it.</p>
+        </div>
+        <div class="card">
+          <p class="kicker">Wallet</p>
+          <h3>A swap that outlives the page</h3>
+          <p>An external wallet is another app, and Android may kill the WebView while it is in front. The terms of a
+            running swap go into one <span class="mono">localStorage</span> key before that happens and are read back
+            at boot — the terms, the window, the addresses and the transaction hashes, never the payment secret.</p>
+        </div>
+        <div class="card">
+          <p class="kicker">Shell</p>
+          <h3>No screenshots, one document</h3>
+          <p>The Android shell sets <span class="mono">FLAG_SECURE</span>, serves exactly one page from its own
+            virtual <span class="mono">https</span> origin, keeps the WebView cache off, refuses plain HTTP except to
+            loopback, and hands <span class="mono">lightning:</span>, <span class="mono">bitcoin:</span>,
+            <span class="mono">ethereum:</span> and allowlisted <span class="mono">https:</span> links to the app that
+            owns them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="install">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">04 / INSTALL</span>
+        <h2>Download, check, rehearse</h2>
+        <p>One APK, one hash. Practice needs no escrow, no key and no network beyond the price line.</p>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <ul class="checks steps">
+            <li><b>Download</b> <span class="mono">cleanswap.apk</span> from
+              <a href="https://github.com/CoreJBH/cleanswap/releases/latest" rel="noopener">Releases</a> — v0.6.13,
+              versionCode 22, <span class="mono">417,635 bytes</span>.</li>
+            <li><b>Allow “install unknown apps”</b> for the app you open it with, then install. Android 7.0 (API 24)
+              or newer. The page is a single HTML file inside the APK; the app needs no Play Services.</li>
+            <li><b>Practice first.</b> The mode switch at the top is set to Practice: the chain line says
+              <span class="mono">Arbitrum Sepolia · escrow ready</span> and <span class="mono">Sample</span> fills both
+              fields with example terms.</li>
+            <li><b>Wallet mode</b> wants a deployed escrow of your own (<span class="mono">Copy bytecode</span> →
+              Remix → <span class="mono">Save</span>) or the address your partner gives you in a
+              <span class="mono">cleanswap:</span> code.</li>
+          </ul>
+          <p class="mono" style="margin-top:22px">v0.6.13 is <span class="mono">com.corejbh.cleanswap</span>: it
+            installs beside v0.6.12, not over it. A swap running on the old build is finished there; the new build
+            starts with nothing.</p>
+          <p class="mono">This is a prototype. The contract has not been audited — do not escrow real value with it,
+            and on Arbitrum One real USDT is real money.</p>
+        </div>
+
+        <div class="verify">
+          <div class="verify-head">
+            <h3>SHA-256 · cleanswap.apk</h3>
+            <button class="copy" type="button" data-copy="apk-sha">copy</button>
+          </div>
+          <p class="mono" style="margin:0">Check this before you install. If the hash differs, the file is not the
+            build that was published.</p>
+          <div class="hash">
+            <code id="apk-sha">e2eeaae3c0cf2f3cc1d781637e0e439b6768ad5bca8e0b4c7af0d51270193471</code>
+          </div>
+          <pre class="cmd wrap"><span class="p">$</span> sha256sum cleanswap.apk
+e2eeaae3c0cf2f3cc1d781637e0e439b6768ad5bca8e0b4c7af0d51270193471</pre>
+          <pre class="cmd"><span class="p">$</span> apksigner verify --print-certs cleanswap.apk
+<span class="p">#</span> signer CN=CleanSwap, O=CoreJBH, C=KR · v2 scheme
+<span class="p">#</span> com.corejbh.cleanswap · versionCode 22</pre>
+          <p class="mono" style="margin:16px 0 0">618 end-to-end assertions in a headless browser, 58 contract tests,
+            64 QR matrices, 79 minted invoices and 45 shell checks pass on this tree before the APK is built.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="limits">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">05 / LIMITS</span>
+        <h2>What it does not do</h2>
+        <p>A tool that hides its edges cannot be audited — and this one moves money.</p>
+      </div>
+      <div class="limits">
+        <div class="limit"><h3>Unaudited</h3><p>The escrow is minimal by design and has not been audited. Treat it as a prototype and rehearse in Practice on Sepolia before anything real.</p></div>
+        <div class="limit"><h3>It never signs</h3><p>The page reads the chain and builds calls; a wallet signs them. Anything it reports as settled is read from <span class="mono">swaps(swapId)</span>, and everything else is a sentence, not a receipt.</p></div>
+        <div class="limit"><h3>One endpoint is trusted</h3><p>With a single RPC endpoint there is no cross-check, and the screen says so. Run your own node for real value.</p></div>
+        <div class="limit"><h3>BOLT12 is refused</h3><p>An <span class="mono">lni1</span> invoice carries a Schnorr signature this page cannot verify, so it is refused and an ordinary hold invoice is asked for.</p></div>
+        <div class="limit"><h3>Practice invoices cannot be paid</h3><p>They are real BOLT11 strings signed by a key that ships in the page. They verify and they parse, and no node holds that key.</p></div>
+        <div class="limit"><h3>Two clocks, one order</h3><p>The payment has to outlive the escrow. An invoice whose final delta would end before the window plus an hour is refused, because otherwise one secret could collect both legs.</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img class="brand-mark" src="../assets/img/tesseract-mark.png?v=2026-11-22f" width="30" height="30" alt="" decoding="async">
+        <div>
+          <div class="word">CORE<span class="dot" style="color:var(--cyan)">JBH</span></div>
+          <p class="tagline">CleanSwap · verify, don't trust.</p>
+        </div>
+      </div>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="../">CoreJBH</a>
+        <a href="https://github.com/CoreJBH/cleanswap" rel="noopener">Source</a>
+        <a href="https://github.com/CoreJBH/cleanswap/releases/latest" rel="noopener">Releases</a>
+        <a href="https://github.com/CoreJBH/cleanswap/issues" rel="noopener">Issues</a>
+      </nav>
+    </div>
+    <div class="foot-note">
+      <span>CleanSwap v0.6.13 · Arbitrum Sepolia / One · com.corejbh.cleanswap</span>
+      <span>this page loads nothing from another host · no cookies · no analytics</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/site.js?v=2026-11-22f" defer></script>
+</body>
+</html>
