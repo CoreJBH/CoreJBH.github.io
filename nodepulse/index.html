@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NodePulse — the Bitcoin node network on a globe</title>
-<meta name="description" content="NodePulse draws the Bitcoin L1 full-node network as the Bitnodes crawler sees it, and the Lightning channel graph one tap away, on one Canvas 2D globe. Zero dependencies, one HTML file, and no simulated data.">
+<meta name="description" content="NodePulse draws the Bitcoin L1 full-node network as the Bitnodes crawler sees it, the Lightning channel graph one tap away, and the supply dashboard for the 235 entities it tracks, on one Canvas 2D globe. Zero dependencies, one HTML file, and no simulated data.">
 <meta name="author" content="CoreJBH">
 <meta name="theme-color" content="#030B27">
 <meta name="color-scheme" content="dark">
@@ -15,7 +15,7 @@
 <meta name="apple-mobile-web-app-title" content="CoreJBH">
 <meta property="og:type" content="website">
 <meta property="og:title" content="NodePulse — the Bitcoin node network on a globe">
-<meta property="og:description" content="Every dot was reported by a reachable node and every arc is a real open channel. One Canvas 2D globe, zero dependencies, no simulated data.">
+<meta property="og:description" content="Every dot was reported by a reachable node, every arc is a real open channel, and the 21M supply dashboard counts what the tracked entities hold. One Canvas 2D globe, zero dependencies, no simulated data.">
 <meta property="og:url" content="https://corejbh.github.io/nodepulse/">
 <meta property="og:image" content="https://corejbh.github.io/assets/img/icon-nodepulse-512.png">
 <meta name="twitter:card" content="summary">
@@ -39,6 +39,7 @@
     <nav class="site-nav" aria-label="Main">
       <a href="#globe">Globe</a>
       <a href="#lightning" class="opt">Lightning</a>
+      <a href="#entities">Entities</a>
       <a href="#install">Install</a>
       <a class="gh" href="https://github.com/CoreJBH/nodepulse" rel="noopener">GitHub &#8599;</a>
     </nav>
@@ -51,8 +52,8 @@
     <div class="wrap hero-grid">
       <div class="hero-copy">
         <div class="badge-row">
-          <span class="badge live">v1.1.13 released</span>
-          <span class="badge">Bitcoin L1 · Lightning</span>
+          <span class="badge live">v1.2.0 released</span>
+          <span class="badge">Bitcoin L1 · Lightning · Entities</span>
           <span class="badge">Canvas 2D</span>
           <span class="badge">Android 7.0+</span>
         </div>
@@ -62,11 +63,12 @@
         </div>
         <p class="lead" style="margin-top:20px">The Bitcoin L1 full-node network as the Bitnodes crawler actually sees it,
           drawn dot by dot on a globe that turns under your finger, with the chain tip, mempool pressure and fee market
-          along the bottom. The Lightning channel graph is one tap away. No framework, no CDN, no simulated data.</p>
+          along the bottom. The Lightning channel graph is one tap away, and so is ENTITIES — a supply dashboard for the
+          235 entities the app tracks, over 1,899 public addresses. No framework, no CDN, no simulated data.</p>
         <div class="actions">
-          <a class="btn btn-primary" href="https://github.com/CoreJBH/nodepulse/releases/latest/download/nodepulse-1.1.13-release.apk" rel="noopener">
+          <a class="btn btn-primary" href="https://github.com/CoreJBH/nodepulse/releases/download/v1.2.0/nodepulse-v1.2.0-release.apk" rel="noopener">
             <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg>
-            Download APK · v1.1.13
+            Download APK · v1.2.0
           </a>
           <a class="btn btn-ghost" href="#install">
             <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.8 13 3.6v4.1c0 3-2 5.4-5 6.5-3-1.1-5-3.5-5-6.5V3.6L8 1.8Z"/><path d="m5.9 7.9 1.5 1.5 2.9-3"/></svg>
@@ -86,8 +88,9 @@
       <span><b>Bitnodes · L1</b></span>
       <span>mempool.space REST + WS</span>
       <span>one arc per open channel</span>
+      <span>235 entities · 1,899 addresses</span>
       <span>build-time snapshot, labelled</span>
-      <span>386 KB, everything inline</span>
+      <span>1.16 MB, everything inline</span>
     </div>
   </div>
 
@@ -206,10 +209,85 @@
     </div>
   </section>
 
+  <section class="sec" id="entities">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">03 / ENTITIES</span>
+        <h2>Where the 21 million actually sits</h2>
+        <p>235 publicly named entities over 1,899 public addresses, and a supply dashboard that says how much of the
+          mined bitcoin they hold — and how much nobody can attribute.</p>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <p style="color:var(--ink-dim)">An address has no location, so the Entities layer puts nothing on the globe.
+            The tab opens on its own screen instead: the whole <span class="mono">20,999,999.977 BTC</span> supply as
+            one bar — what the tracked entities hold, what is private or untracked, what is still unmined — with the
+            mined and unmined figures beside the block they were read at and the protocol's next subsidy. Under it,
+            <span class="mono">SHARE BY CATEGORY</span>: one bar and four cards for PERSON, CORP, GOV and OTHER, each
+            card a button into that category's ranking, with <span class="mono">+</span> still opening all 235.</p>
+          <p style="color:var(--ink-dim)">The supply is counted, never fetched: 210,000 blocks per epoch, the subsidy
+            halving each time, rounded down to whole satoshis until the last coin falls around block 6,930,000. A block
+            arriving moves the figure by one subsidy, and the USD column comes from
+            <span class="mono">/api/v1/prices</span>.</p>
+
+          <dl class="facts">
+            <div><dt>entities</dt><dd>235</dd></div>
+            <div><dt>addresses</dt><dd>1,899</dd></div>
+            <div><dt>tracked</dt><dd>3,525,932 BTC</dd></div>
+            <div><dt>of mined</dt><dd>17.5 %</dd></div>
+            <div><dt>private / untracked</dt><dd>82.5 %</dd></div>
+            <div><dt>table</dt><dd>daily, live balances</dd></div>
+          </dl>
+        </div>
+
+        <div class="shots" style="grid-template-columns:minmax(0,1fr);justify-items:center">
+          <figure class="shot reveal" style="max-width:420px">
+            <img src="../assets/img/np-entities-dashboard.webp?v=2026-11-28b" width="780" height="1098" alt="The ENTITIES supply dashboard on a 390 px phone: the 20,999,999.977 BTC supply bar in tracked, private/untracked and unmined colours, the mined and unmined rows with their block and subsidy, the tracked and private columns, and four category cards — PERSON 31.4 %, CORP 57.7 %, GOV 7.59 %, OTHER 3.25 %" loading="lazy" decoding="async">
+            <figcaption>Supply dashboard · tracked, private and unmined</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="grid" style="margin-top:26px">
+        <div class="card">
+          <p class="kicker">Whale Watch</p>
+          <h3>A ranking of holders</h3>
+          <p>100 companies, 100 others (hacks, ransomware, mixers, sanctioned parties, mining pools, non-profits), 31
+            people and 4 governments, each address checksummed and each balance read on chain. The sheet lists every
+            holder rather than a top 100, and an entity with a zero balance stays off it unless one of its addresses is
+            watched.</p>
+        </div>
+        <div class="card">
+          <p class="kicker">Attribution</p>
+          <h3>Every card says what its source says</h3>
+          <p>Proof of reserves, self-published, analytics attribution, self-disclosed, issuer reserve, attributed. A
+            total that carries an estimate prints the verified part beside it, the Patoshi estimate is never folded
+            into the verified total unnamed, and a card that cannot be read says so instead of showing a figure with no
+            basis.</p>
+        </div>
+        <div class="card">
+          <p class="kicker">Clustering</p>
+          <h3>ANALYZE CLUSTER, on demand</h3>
+          <p>Walk the addresses of a ranking when you ask for it: common-input spends merge, change is estimated or
+            refused, and progress and CANCEL are on screen throughout. Verified, Common-Input and Change Est. stay
+            apart, and the rules are written down in <span class="mono">docs/cluster-api.md</span>.</p>
+        </div>
+      </div>
+
+      <div class="shots" style="grid-template-columns:minmax(0,1fr);justify-items:center;margin-top:26px">
+        <figure class="shot reveal shot-demo">
+          <img src="../assets/img/np-entities-demo.gif?v=2026-11-28b" width="390" height="844" alt="NodePulse v1.2.0 running on a 390×844 phone: the Bitcoin L1 globe, the ENTITIES tab opening on the supply dashboard, the CORP card opening the Whale Watch sheet with Binance at the top, and the + button opening all 235 entities" loading="lazy" decoding="async">
+          <figcaption>L1 → ENTITIES dashboard → the CORP sheet → all 235 · v1.2.0</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section class="sec" id="renderer">
     <div class="wrap">
       <div class="sec-head">
-        <span class="idx">03 / THE RENDERER</span>
+        <span class="idx">04 / THE RENDERER</span>
         <h2>Sixty frames a second on a phone, from a rasterised canvas</h2>
         <p>Every decision below exists to remove work from a frame, because the network is still arriving while the
           globe turns.</p>
@@ -264,8 +342,8 @@
         <article class="spec reveal">
           <p class="sym">Dependencies</p>
           <h3>Zero, and the build enforces it</h3>
-          <p><span class="mono">build.py</span> inlines CSS, geometry, the snapshots, eleven JS modules and the icon
-            into one 386 KB document, with tokens that fail the build if a substitution is missed. The shipped page
+          <p><span class="mono">build.py</span> inlines CSS, geometry, the snapshots, the entity table, thirteen JS modules and the icon
+            into one 1.16 MB document, with tokens that fail the build if a substitution is missed. The shipped page
             carries its own Content-Security-Policy naming each inline block by hash, and the test hook is stripped
             from it.</p>
           <span class="where">python3 build.py --check · the assembled code compiles with node</span>
@@ -277,7 +355,7 @@
   <section class="sec" id="install">
     <div class="wrap">
       <div class="sec-head">
-        <span class="idx">04 / INSTALL</span>
+        <span class="idx">05 / INSTALL</span>
         <h2>Download, check, open</h2>
         <p>The APK is a shell around the same single file. No server, no account, no asset directory.</p>
       </div>
@@ -285,39 +363,41 @@
       <div class="two-col">
         <div>
           <ul class="checks steps">
-            <li><b>Download</b> <span class="mono">nodepulse-1.1.13-release.apk</span> from
-              <a href="https://github.com/CoreJBH/nodepulse/releases/latest" rel="noopener">Releases</a> — v1.1.13,
-              versionCode 15, <span class="mono">765,612 bytes</span>.</li>
+            <li><b>Download</b> <span class="mono">nodepulse-v1.2.0-release.apk</span> from
+              <a href="https://github.com/CoreJBH/nodepulse/releases/tag/v1.2.0" rel="noopener">Releases</a> — v1.2.0,
+              versionCode 16, <span class="mono">901,092 bytes</span>. The release carries
+              <span class="mono">nodepulse-v1.2.0-release.apk.sha256</span> beside it.</li>
             <li><b>Allow “install unknown apps”</b> for the app you open it with, then install. Android 7.0 (API 24)
               or newer, target API 34.</li>
             <li><b>Open it.</b> The globe starts on the Bitcoin L1 layer; the switcher under the title moves to
-              Lightning, and the layer you choose is remembered.</li>
+              Lightning and to ENTITIES, which opens on the supply dashboard, and the layer you choose is remembered.</li>
             <li><b>Or skip the APK:</b> <span class="mono">dist/nodepulse.html</span> is the whole app and runs in any
               modern browser — add it to a home screen and it opens full-screen with its own icon.</li>
           </ul>
-          <p class="mono" style="margin-top:22px">v1.1.13 is <span class="mono">com.corejbh.nodepulse</span> and
-            installs beside 1.1.12 rather than over it; the old build keeps its own cache, and uninstalling it removes
-            that data. This release is signed with the project's own RSA 4096 key, valid to 2054, v2 scheme only.</p>
+          <p class="mono" style="margin-top:22px">v1.2.0 is <span class="mono">com.corejbh.nodepulse</span> and installs
+            over 1.1.13 in place (versionCode 15 → 16), keeping what the app saved. The package name moved off the
+            older id in 1.1.13, so a build under that one stays beside this app. This release is signed with the
+            project's own RSA 4096 key, valid to 2054, v2 scheme only.</p>
         </div>
 
         <div class="verify">
           <div class="verify-head">
-            <h3>SHA-256 · nodepulse-1.1.13-release.apk</h3>
+            <h3>SHA-256 · nodepulse-v1.2.0-release.apk</h3>
             <button class="copy" type="button" data-copy="apk-sha">copy</button>
           </div>
           <p class="mono" style="margin:0">Check this before you install. If the hash differs, the file is not the
             build that was published.</p>
           <div class="hash">
-            <code id="apk-sha">005199d9d7b01d8fb080fc2ba6d414888541268fcd3cbcbca016eb297a1f664b</code>
+            <code id="apk-sha">31c6480e6ec82d6312eb6cd02e1f0e1c52ced75644b3e979e404fd85676ae797</code>
           </div>
-          <pre class="cmd wrap"><span class="p">$</span> sha256sum nodepulse-1.1.13-release.apk
-005199d9d7b01d8fb080fc2ba6d414888541268fcd3cbcbca016eb297a1f664b</pre>
-          <pre class="cmd"><span class="p">$</span> apksigner verify --print-certs nodepulse-1.1.13-release.apk
+          <pre class="cmd wrap"><span class="p">$</span> sha256sum nodepulse-v1.2.0-release.apk
+31c6480e6ec82d6312eb6cd02e1f0e1c52ced75644b3e979e404fd85676ae797</pre>
+          <pre class="cmd"><span class="p">$</span> apksigner verify --print-certs nodepulse-v1.2.0-release.apk
 <span class="p">#</span> signer CN=NodePulse, O=CoreJBH, C=KR · RSA 4096 · v2
 <span class="p">#</span> SHA-256 e98abd81…596480f9 · com.corejbh.nodepulse</pre>
           <p class="mono" style="margin:16px 0 0">The page inside the APK is rebuilt from <span class="mono">src/</span>
-            by <span class="mono">build.py</span> and compared byte for byte with the asset the APK ships — 395,617
-            bytes, no Hangul character in it.</p>
+            by <span class="mono">build.py</span> and compared byte for byte with the asset the APK ships — 1,183,376
+            bytes, SHA-256 630edf27…ce5f554de.</p>
         </div>
       </div>
     </div>
@@ -326,7 +406,7 @@
   <section class="sec" id="limits">
     <div class="wrap">
       <div class="sec-head">
-        <span class="idx">05 / LIMITS</span>
+        <span class="idx">06 / LIMITS</span>
         <h2>What it does not show</h2>
         <p>Nothing the crawler cannot know is invented, and the screen says which answer it is showing.</p>
       </div>
@@ -336,6 +416,7 @@
         <div class="limit"><h3>Country counts are a snapshot</h3><p>Bitnodes exposes a country only through a paginated 21,826-row list (~20 MB), so that table is fetched at build time and stamped with its capture date wherever it is drawn.</p></div>
         <div class="limit"><h3>A browser cannot read Bitnodes</h3><p>The host sends no <span class="mono">Access-Control-Allow-Origin</span>, so the plain web build shows the embedded snapshot and says why. Only the Android shell's native bridge reads L1 live.</p></div>
         <div class="limit"><h3>Rate limits are shown, not hidden</h3><p>Requests rotate across three mempool.space mirrors; when all of them fail the app degrades to the snapshot and labels it instead of substituting values.</p></div>
+        <div class="limit"><h3>A holding is not a wallet</h3><p>An entity's figure is the sum of the addresses published for it plus any estimate named beside it — not proof of everything it controls. Private / untracked is the rest of the mined supply, lost coins included.</p></div>
         <div class="limit"><h3>Independent, not affiliated</h3><p>NodePulse is an independent visualiser of Bitnodes and mempool.space data, with no affiliation to or endorsement by either.</p></div>
       </div>
     </div>
@@ -361,7 +442,7 @@
       </nav>
     </div>
     <div class="foot-note">
-      <span>NodePulse v1.1.13 · Canvas 2D · com.corejbh.nodepulse</span>
+      <span>NodePulse v1.2.0 · Canvas 2D · com.corejbh.nodepulse</span>
       <span>this page loads nothing from another host · no cookies · no analytics</span>
     </div>
   </div>

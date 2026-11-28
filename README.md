@@ -25,6 +25,7 @@ tools/check_site.py            offline link, tag and remote-resource check
 tools/make-icons.py            renders every install icon and the navbar mark from favicon.svg
 tools/update_l1_snapshot.py    refreshes nodepulse/l1-snapshot.json from bitnodes.io/api/v1
 nodepulse/l1-snapshot.json     the current Bitnodes L1 round, the file NodePulse reads
+nodepulse/entities.json        the verified entity table NodePulse adopts when it is newer
 .nojekyll                      serve files as-is, no Jekyll processing
 ```
 
@@ -39,7 +40,7 @@ When a release goes out, change the version on its card here and in the list bel
 | Hashes | v1.0.0 | <https://github.com/CoreJBH/hashes/releases/latest> |
 | ZeroWallet | v1.2.3 | <https://github.com/CoreJBH/zerowallet/releases/latest> |
 | CleanSwap | v0.6.13 | <https://github.com/CoreJBH/cleanswap/releases/latest> |
-| NodePulse | v1.1.13 | <https://github.com/CoreJBH/nodepulse/releases/latest> |
+| NodePulse | v1.2.0 | <https://github.com/CoreJBH/nodepulse/releases/tag/v1.2.0> |
 
 PocketCore's card downloads the APK straight from
 `releases/latest/download/pocketcore-1.0.0-release-vc22.apk`; the Hashes page uses
