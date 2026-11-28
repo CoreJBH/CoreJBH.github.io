@@ -23,6 +23,8 @@ manifest.webmanifest          install metadata: #000000 field, standalone, any +
 sw.js                         service worker: lets the site install as a real app, caches nothing
 tools/check_site.py            offline link, tag and remote-resource check
 tools/make-icons.py            renders every install icon and the navbar mark from favicon.svg
+tools/update_l1_snapshot.py    refreshes nodepulse/l1-snapshot.json from bitnodes.io/api/v1
+nodepulse/l1-snapshot.json     the current Bitnodes L1 round, the file NodePulse reads
 .nojekyll                      serve files as-is, no Jekyll processing
 ```
 
@@ -51,6 +53,23 @@ python3 -m http.server -d . 8080
 
 python3 tools/check_site.py   # links, tag balance, no remote resources
 python3 tools/make-icons.py   # re-render the install icons (needs resvg-py)
+```
+
+## The L1 snapshot NodePulse reads
+
+`nodepulse/l1-snapshot.json` is the object `CoreJBH/nodepulse`'s `fetch_l1.py` writes —
+the same keys in the same order — as a plain file the app can fetch from
+<https://corejbh.github.io/nodepulse/l1-snapshot.json> instead of waiting for a new APK
+build. It carries the Bitnodes round's node count, height, country split, unique
+coordinates with their country, client versions and the clear-net/Tor/I2P split.
+
+`tools/update_l1_snapshot.py` rebuilds it from `bitnodes.io/api/v1`. Every value is what
+Bitnodes reported for that round; if any endpoint fails or the crawl rolls over mid-run
+the script stops and the previous file stays, because a half-fresh snapshot would be a
+lie about its date.
+
+```sh
+python3 tools/update_l1_snapshot.py   # needs the network; writes nodepulse/l1-snapshot.json
 ```
 
 ## Install as an app
